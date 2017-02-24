@@ -123,8 +123,6 @@ After running the snippet the value obtained was `9`.
 
 ### The `collection()` method
 
-The `collection` method works similar with the `list` method and the `set` method, but it allows to return a `Collection`:
-
 ```java
 Collection<Boolean> vector = mock.bools()
                                  .probability(35.50)
