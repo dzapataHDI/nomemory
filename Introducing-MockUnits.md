@@ -268,7 +268,7 @@ Similar shortcut methods exists for translating the MockUnit<Boolean> into a `Mo
 
 ## [MockUnitInt](#mockunitint)
 
-The `MockUnitInt` interface extends MockUnit<Integer>. 
+The `MockUnitInt` interface extends `MockUnit<Integer>`. 
 
 ```java
 public interface `MockUnitInt` extends MockUnit<Integer>
