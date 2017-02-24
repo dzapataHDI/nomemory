@@ -1,32 +1,33 @@
 # Introducing MockUnits
 
-Each main `MockNeat` object is composed by `MockUnit<T>`, `MockUnitInt`, `MockUnitLong`, `MockUnitDouble`, `MockUnitString`, `MockUnitDays`, `MockUnitMonths`, `MockUnitLocalDate` objects that are used to generate sets of data in a very generic and flexible way.
+Each main `MockNeat` object is composed by different implementations of `MockUnit<T>`, `MockUnitInt`, `MockUnitLong`, `MockUnitDouble`, `MockUnitString`, `MockUnitDays`, `MockUnitMonths`, `MockUnitLocalDate` interfaces.
 
-The `MockUnit<T>` is the generic interface from which all the MockUnits inherit their methods. 
+Those implementations that are used to generate sets of data in a very generic and flexible way.
 
-The rest of the units are particular implementations that are enhancing the general interface with methods that are specific to their enclosed types (`Integer`, `String`, etc.)
+The `MockUnit<T>` is the generic interface from which all the other MockUnits inherit their methods. 
+
+The rest of the interfaces are extending `MockUnit<T>` by enhancing it with methods that are very specific to their enclosed types (`Integer`, `String`, etc.)
 
 ## [MockUnit<T>](#mockunit-t)
 
 This is the generic interface that contains useful methods to manipulate data. It allows us to generate not only  individual values but also collections (list, sets), maps, streams and arrays. 
 
-To better understand the power the MockUnits let's follow a simple example. Let's say we want to generate `Boolean` values with a 35.25% probability of obtaining `true`.
+To better understand the power the MockUnits let's follow a simple example in which we want to generate `Boolean` values with a 35.25% probability of obtaining `true`.
 
-For this we will create first a `MockUnit<Boolean>` object by calling the `bools()` method:
+For this we will create first a `MockUnit<Boolean>` object by calling the `bools()` method on `MockNeat`:
 
 ```java
 // Re-using a pre-existent ThreadLocl MockNeat Object
 MockNeat mock = MockNeat.threadLocal();
-
 // Creating our first MockUnit<Boolean>
 MockUnit<Boolean> boolUnit = mock.bools();
 ```
 
-Plain and simple. But doing only this the probability of generating a `true` is 50.00%. 
-
 We will want to go further and put a constraint on our `MockUnit<Boolean>` object. 
 
-We will add a new condition on our object by calling the `probability(double)` method. This methods "recursively" returns a new instance of `MockUnit<Boolean>` but internally the boolean generating method will behave accordingly to our constraint.
+We will add a new condition on our object by calling the `probability(double)` method. 
+
+This methods "recursively" returns a new instance of `MockUnit<Boolean>` but internally the boolean generating method will behave accordingly to our constraint.
 
 ```java
 MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
@@ -50,7 +51,7 @@ We can write all of the above simpler without keeping the reference:
 Boolean val = mock.bools().probability(35.50).val();
 ```
 
-Think of the `val()` method as the final step we doing before obtaining our values. This represents the "EXIT POINT" of a MockUnit chain. 
+Think of the `val()` method as the final step we doing before obtaining our values. This represents the "EXIT POINT" of a `MockUnit` chain. 
 
 ### The `valStr()` method
 
@@ -58,16 +59,15 @@ This method works exactly like `val()` but instead of returning directly it's va
 
 ### The `list()` method
 
-Let's say we want to re-use the same generator but this generate `List<Boolean>` values, while keeping the same constraints. The List implementation we want to use is `LinkedList`, and it's size is `100`.
-
-All we need to is to make use of the `list` method of the `RandUnit<T>` interface:
+Let's say we want to re-use the same MockUnit<Boolean> but this time we generate a `List<Boolean>` values, while keeping the same constraints. The List implementation is `LinkedList`, and it's size is `100`:
 
 ```java
 MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
 List<Boolean> list = boolUnit.list(LinkedList.class, 100).val();
 ``` 
 
-The `list` method will return a new `RandUnit` but this type the returning type will be `RandUnit<List<Boolean>>`. It might look a little bit confusing but we can re-write the above code like this:
+The `list` method will return a new `RandUnit` but this time the returning type will be `RandUnit<List<Boolean>>`. 
+It might look a little bit confusing but we can re-write the above code like this:
 
 ```java
 MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
@@ -75,7 +75,7 @@ MockUnit<List<Boolean>> listBoolUnit = boolUnit.list(LinkedList.class, 100);
 List<Boolean> list = listBoolUnit.val();
 ```
 
-We stretch our minds and go even further to generate a `List<List<Boolean>>` by creating the associated `MockUnit<List<List<Boolean>>>`. 
+If we stretch our minds even further we can generate a `List<List<Boolean>>` by creating the associated `MockUnit<List<List<Boolean>>>`. 
 
 ```java
 MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
@@ -87,7 +87,7 @@ List<List<Boolean>> list = listListBoolUnit.val();
 And we can go like this forever... well not exactly because after a few thousand `List<List<List....<Boolean>..>`  we will eventually receive a `StackOverFlow` exception.
 
 For making the code look more clean, there's no reason why we should keep references of `MockUnit`s all the time.  
-We can simply start chaining our methods starting with `MockNeat` instance:
+We can simply start chaining our methods.
 
 ```java
 List<Boolean> list = mock.bools().probability(35.50).list(100).val();
@@ -119,11 +119,11 @@ for(int i = 0 ;; i++) {
 }
 ```
 
-After running the snippet I've obtained: `9`.
+After running the snippet the value obtained was `9`.
 
 ### The `collection()` method
 
-The `collection` method works similar with the `list` method and the `set` method:
+The `collection` method works similar with the `list` method and the `set` method, but it allows to return a `Collection`:
 
 ```java
 Collection<Boolean> vector = mock.bools()
@@ -218,17 +218,19 @@ Possible output:
 
 ### The `stream()` method
 
-Instead of obtaining a `Collection`, `List`, `Set` or a `Map` we can use the `MockUnit<Boolean>` to generate a `Stream<Boolean>` values by simply calling the `stream()` method.
+Instead of obtaining a `Collection`, `List`, `Set` or a `Map` we can use the `MockUnit<Boolean>` to generate a `Stream<Boolean>`:
 
 ```java
 Stream<Boolean> stream = mock.bools().stream().val();
 ```
 
+The Stream is infinite. 
+
 ### The `map()` method
 
 This method allows us to do pre-processing on the values before they are actually generated.
 
-The input parameter is `Function<T, R>`, thus allowing us to actually change the returned type and to actually translate our "mocking" chain into a `MockUnit<R>`.
+The input parameter is a `Function<T, R>`. As you can see in the definition it is possible to change the return type of the next MockUnit in the chain.
 
 For example, if we want to transform our `MockUnit<Boolean>` into a `MockUnit<String>` that holds the `String` values `"true"` and `"false"`, we can do like this:
 
@@ -236,13 +238,13 @@ For example, if we want to transform our `MockUnit<Boolean>` into a `MockUnit<St
 List<String> list = mock.bools().map((b) -> b.toString()).list(10).val();
 ```
 
-There is also a shortcut function that is recommended to be used in this case that help us "translate" our MockUnit<Boolean> into a MockUnitString. 
+`mapToString` a shortcut function that can to be used to "translate" the `MockUnit<Boolean>` into a `MockUnitString`, instead of `MockUnit<String>`.
 
 ```java
 List<String> list = mock.bools().mapToString().list(10).val();
 ```
 
-Let's take another example. We will want to make our `MockUnit<Boolean>` generator translates into a `MockUnitInt` that returns 0s and 1s.
+If we want to translate the `MockUnit<Boolean>` into a `MockUnitInt` that returns 0s and 1s, we can use the shortcut method: `mapToInt`. 
 
 ```java
 MockUnitInt mockInt = mock.bools().mapToInt(b -> (b) ? 1 : 0);
@@ -262,4 +264,53 @@ A possible output:
 [1, 0, 0, 1, 0, 0, 0, 0, 0, 0]
 ```
 
+Similar shortcut methods exists for translating the MockUnit<Boolean> into a `MockUnitDouble`  or a `MockUnitLong`.
 
+## [MockUnitInt](#mockunitint)
+
+The `MockUnitInt` interface extends MockUnit<Integer>. 
+
+```java
+public interface `MockUnitInt` extends MockUnit<Integer>
+```
+
+This means that it "inherits" all the methods from `MockUnit<Integer>`.
+
+The easiest way to obtain a `MockUnitInt` is to call the `ints()` method from `MockNeat` or to call the `mapToInt()` method documented above on an existing `MockUnit<T>`.
+
+**Example:** 
+```java
+MockUnitInt mockUnitInt = mock.ints();
+```
+
+Additionally it has some methods of it's own.
+
+### The `intStream()` method
+
+Returns an IntStream instead of a Stream<Integer>.
+
+### The `arrayPrimitve()` method
+
+Can be used to create an primitive array of `int[]`.
+
+For example, to create an array of random integers, with values between [1000, 2000), a with a length of 100:
+
+```java
+int[] array = mock.ints()
+                  .range(1000, 200)
+                  .arrayPrimitive(100)
+                  .val();
+```
+
+### The `array()` method
+
+Can be used to create an array of `Integer[]`.
+
+To create an array of random Integers, with values between [1000, 2000), with a length of 100: 
+
+```java
+Integer[] array = mock.ints()
+                      .range(1000, 2000)
+                      .array(100)
+                      .val();
+````
