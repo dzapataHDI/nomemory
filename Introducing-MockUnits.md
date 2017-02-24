@@ -143,7 +143,7 @@ The keys can be obtained from:
 
 **Examples**:
 
-**Example 1.** Obtaining a `Map<Integer, Boolean>` from an array of `int[]`s
+**Example 1.** Obtaining a `Map<Integer, Boolean>` from an array of `int[]`:
 
 ```java
 int[] keys = { 100, 200, 300, 400, 500, 600 };
