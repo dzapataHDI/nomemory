@@ -1,10 +1,19 @@
 # Introducing MockUnits
 
-Each main `MockNeat` object is composed by `MockUnit<T>`, `MockUnitInt`, `MockUnitLong`, `MockUnitDouble`, `MockUnitString`, `MockUnitDays`, `MockUnitLocalDate` objects that are used to generate sets of data in a very generic and flexible way.
+Each main `MockNeat` object is composed by `MockUnit<T>`, `MockUnitInt`, `MockUnitLong`, `MockUnitDouble`, `MockUnitString`, `MockUnitDays`, `MockUnitMonths`, `MockUnitLocalDate` objects that are used to generate sets of data in a very generic and flexible way.
 
 The `MockUnit<T>` is the generic interface from which all the MockUnits inherit their methods. 
 
 The rest of the units are particular implementations that are enhancing the general interface with methods that are specific to their enclosed types (Integer, String, etc.)
+
+1. MockUnit
+* MockUnitInt 
+* MockUnitLong
+* MockUnitDouble
+* MockUnitString
+* MockUnitDays
+* MockUnitMonths
+* MockUnitLocalDate
 
 ## [MockUnit<T>](#mockunit-t)
 
