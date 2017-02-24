@@ -52,6 +52,10 @@ Boolean val = mock.bools().probability(35.50).val();
 
 Think of the `val()` method as the final step we doing before obtaining our values. This represents the "EXIT POINT" of a MockUnit chain. 
 
+### The `valStr()` method
+
+This method works exactly like `val()` but instead of returning directly it's value, it first calls `toString` on the object. If the generated object is `null`, it should return an empty String.
+
 ### The `list()` method
 
 Let's say we want to re-use the same generator but this generate `List<Boolean>` values, while keeping the same constraints. The List implementation we want to use is `LinkedList`, and it's size is `100`.
