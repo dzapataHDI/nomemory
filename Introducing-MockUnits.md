@@ -52,7 +52,7 @@ Boolean val = mock.bools().probability(35.50).val();
 
 ### The `list` method
 
-Let's say we want to re-use the same generator but this generate `List<Boolean>` values, while keeping the same constraints. The List implementation we want to use is `LinkedList`.
+Let's say we want to re-use the same generator but this generate `List<Boolean>` values, while keeping the same constraints. The List implementation we want to use is `LinkedList`, and it's size is `100`.
 
 All we need to is to make use of the `list` method of the `RandUnit<T>` interface:
 
@@ -78,7 +78,7 @@ MockUnit<List<List<Boolean>>> listListBoolUnit = listBoolUnit.list(LinkedList.cl
 List<List<Boolean>> list = listListBoolUnit.val();
 ```
 
-And we can go like this forever... *(well not exactly because after a few thousand `List<List<List....<Boolean>..>`  we will eventually receive a `StackOverFlow` Exception)*.
+And we can go like this forever... well not exactly because after a few thousand `List<List<List....<Boolean>..>`  we will eventually receive a `StackOverFlow` exception.
 
 For making the code look more clean, there's no reason why we should keep references of `MockUnit`s all the time.  
 We can simply start chaining our methods starting with `MockNeat` instance:
@@ -90,4 +90,31 @@ List<List<List<Boolean>>> listListList = mock.bools().probability(35.50).list(10
 // Show can go on (if there's a good reason...)
 ```
 
+_Note: If we don't specify the implementing List type, by default we will return an `ArrayList.class`_
 
+### The `set` method
+
+This method works like the `list` one, with one exception: given the nature of `Set` we cannot guarantee a fixed size. We will generate `N` elements and add them into the `Set`, but if the elements are not unique, the `Set` will only keep what's possible. Duplicates won't be permitted.
+
+Let's do a small exercise for fun. 
+
+> We will generate 3 Booleans with a probability of returning `true` being 5%, and afterwards we put all the values a HashSet. 
+
+> Let's see how many iterations we are going to have before we obtaining a Set with both `true` and `false` in it.
+
+```java
+Set<Boolean> set;
+for(int i = 0 ;; i++) {
+    set = mock.bools().probability(5.0).set(3).val();
+    if (set.size()==2) {
+        System.out.println("Number of iterations: " + i);
+        break;
+    }
+}
+```
+
+After running the snippet I've obtained: `9`.
+
+### The `collection` method
+
+If we want to broader our 
