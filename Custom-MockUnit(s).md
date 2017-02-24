@@ -8,7 +8,7 @@ Supplier<String> supp = () -> {
     buff.append(mock.chars().digits().val())
         .append(mock.chars().lowerLetters().val())
         .append(mock.chars().digits().val());
-        return buff.toString();
+    return buff.toString();
 };
 MockUnitString mockUnit = () -> supp;
 
