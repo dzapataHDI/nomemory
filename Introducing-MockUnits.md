@@ -6,7 +6,7 @@ The `MockUnit<T>` is the generic interface from which all the MockUnits inherit 
 
 The rest of the units are particular implementations that are enhancing the general interface with methods that are specific to their enclosed types (Integer, String, etc.)
 
-## MockUnit<T>
+## [MockUnit<T>](#mockunit-t)
 
 This is the generic interface that contains useful methods to manipulate data. It allows us to generate not only  individual values but also collections (list, sets), maps, streams and arrays. 
 
@@ -117,4 +117,54 @@ After running the snippet I've obtained: `9`.
 
 ### The `collection` method
 
-If we want to broader our 
+The `collection` method works similar with the `list` method and the `set` method:
+
+```java
+Collection<Boolean> vector = mock.bools()
+                                 .probability(35.50)
+                                 .collection(Vector.class, 100)
+                                 .val();
+```
+
+### The `mapKeys` methods
+
+This allows us to build `Map<T,R>`s, mapping our MockUnit generated values with a Set of keys.
+
+The method allow us to:
+- specify the number of elements in the map;
+- specify the map implementation;
+
+The keys can be obtained from:
+- Another `MockUnit`;
+- From a `Supplier<K>`;
+- From an `Iterable<K>`;
+- From an generic array `K[]`;
+- From primitives arrays: `int[]`, `double[]`, `long[]`;
+
+**Examples**:
+
+**Example 1.** Obtaining a `Map<Integer, Boolean>` from an array of `int[]`s
+
+```java
+int[] keys = { 100, 200, 300, 400, 500, 600 };
+Map<Integer, Boolean> map = mock.bools().mapKeys(keys).val();
+```
+
+Possible output:
+```
+{400=true, 100=false, 500=false, 200=true, 600=true, 300=true}
+```
+
+**Example 2.** Obtaining a `Map<Double, Boolean>` from an `Iterable<Double>`:
+
+Note that this time the keys are in ordered of their iteration: 
+
+```
+Iterable<Double> iterable = unmodifiableList(asList(0.1, 0.2, 0.3, 0.4, 0.5));
+Map<Double, Boolean> map = mock.bools().mapKeys(LinkedHashMap.class, iterable).val();
+```
+
+Possible output:
+```
+{0.1=true, 0.2=true, 0.3=false, 0.4=false, 0.5=true}
+```
