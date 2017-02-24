@@ -1,1 +1,0 @@
-[Home](github.com/nomemory/mockneat/wiki/)
