@@ -2,22 +2,21 @@
 
 MockNeat is a **Java 8+** library that facilitates the generation of random test data for your application(s). 
 
-With **MockNeat** you can create random:
+With **MockNeat** you helps you to create: 
 
-- Booleans, Characters, Doubles, Floats, Integers, Longs, Strings;
+- random values for the basic java types; 
 
-- User information: Usernames, Emails, Names, Passwords, etc.;
+- random time related information;
 
-- Time objects: Days, Months, LocalTimes, etc.
+- random user information: ids, usernames, emails, names, passwords, etc.;
 
-- Markov Text;
+- random text based on [Markov Models](https://en.wikipedia.org/wiki/Markov_model).
 
-- Networking data: URLs, IPv4/IPv6 Addresses, MAC Addresses;
+- random data related to networking: ip addresses, mac addresses, urls, etc.
 
-- Unique IDs;
+- random data for financial apps: currencies, money amounts, credit card numbers, etc.
 
-- Financial data: Currencies, Money Amounts, Credit Card Numbers, CVVs, etc.
+- random geographical data: country names, cities, etc.
 
-- Geographical data: Country Names, Cities, etc.
 
 __NOTICE__: The library is still under heavy development, and there are no stable releases. 
