@@ -12,6 +12,17 @@ Integer randInt = mock.ints().val();
 Integer boundInt = mock.ints().bound(100).val();
 ```
 
+* To generate a random integer bounded by 100 and then multiply it by 13
+
+```java
+Function<Integer, Integer> multiplyBy13 = (x) -> 13 * x;
+Integer multiplied = mock.ints().bound(100).map(multiplyBy13).val();
+```
+Or in short:
+```java
+Integer multiplied2 = mock.ints().bound(100).map(x -> x * 13).val();
+```
+
 * To generate a random int value in certain range [lowerBound, upperBound):
 
 ```java
