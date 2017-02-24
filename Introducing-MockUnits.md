@@ -285,7 +285,7 @@ Additionally it has some methods of it's own.
 
 ### The `intStream()` method
 
-Returns an IntStream instead of a Stream<Integer>.
+Returns an `IntStream` instead of a `Stream<Integer>`.
 
 ### The `arrayPrimitve()` method
 
