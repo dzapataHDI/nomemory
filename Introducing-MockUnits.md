@@ -159,7 +159,7 @@ Possible output:
 
 Note that this time the keys are in ordered of their iteration: 
 
-```
+```java
 Iterable<Double> iterable = unmodifiableList(asList(0.1, 0.2, 0.3, 0.4, 0.5));
 Map<Double, Boolean> map = mock.bools().mapKeys(LinkedHashMap.class, iterable).val();
 ```
