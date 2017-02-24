@@ -12,7 +12,7 @@ This is the generic interface that contains useful methods to manipulate data. I
 
 To better understand the power the MockUnits let's follow a simple example. Let's say we want to generate `Boolean` values with a 35.25% probability of obtaining `true`.
 
-For this we will create first a `MockUnit<Boolean>` object by calling the `bools()`:
+For this we will create first a `MockUnit<Boolean>` object by calling the `bools()` method:
 
 ```java
 // Re-using a pre-existent ThreadLocl MockNeat Object
