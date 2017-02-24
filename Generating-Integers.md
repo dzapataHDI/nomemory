@@ -17,9 +17,8 @@ Integer boundInt = mock.ints().bound(100).val();
 ```java
 Function<Integer, Integer> multiplyBy13 = (x) -> 13 * x;
 Integer multiplied = mock.ints().bound(100).map(multiplyBy13).val();
-```
-Or in short:
-```java
+
+// Shorter version
 Integer multiplied2 = mock.ints().bound(100).map(x -> x * 13).val();
 ```
 
