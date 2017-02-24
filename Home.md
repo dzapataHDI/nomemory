@@ -2,7 +2,7 @@
 
 MockNeat is a **Java 8+** library that facilitates the generation of random test data for your application(s). 
 
-With **MockNeat** you helps you to create: 
+**MockNeat** helps you create: 
 
 - random values for the basic java types; 
 
@@ -18,5 +18,10 @@ With **MockNeat** you helps you to create:
 
 - random geographical data: country names, cities, etc.
 
+- construct complex collections structures and fill them with random values;
+
+- instantiate java objects with random values (based on a set of conditions);
+
+- *and much-much more.
 
 __NOTICE__: The library is still under heavy development, and there are no stable releases. 
