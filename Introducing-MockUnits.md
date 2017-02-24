@@ -245,8 +245,17 @@ MockUnitInt mockInt = mock.bools().mapToInt(b -> (b) ? 1 : 0);
 List<Integer> listInt = mockInt.list(10).val();
 ```
 
+Or the shorter version of it (without keeping the intermediary reference):
+```java
+List<Integer> listInt = mock.bools()
+                            .mapToInt(b -> b ? 1 : 0)
+                            .list(10)
+                            .val();
+```
+
 A possible output:
 ```
 [1, 0, 0, 1, 0, 0, 0, 0, 0, 0]
 ```
+
 
