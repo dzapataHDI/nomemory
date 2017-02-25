@@ -26,5 +26,3 @@ MockNeat mock = MockNeat.old();
 Long seed = 123l;
 MockNeat mock = new MockNeat(RandomType.SECURE, seed);
 ```
-
-
