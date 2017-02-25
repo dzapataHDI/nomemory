@@ -1,6 +1,6 @@
-In order to start creating random data for your application the first thing is to create or to obtain an existing instance of the ``MockNeat`` class. This is the main class of the library and the source of *all evil*. 
+`MockNeat` is the main class of the library and the source of *all evil*.
 
-There are a few ways you can obtain this:
+To obtain a `MockNeat` instance:
 
 *  Re-use the default instance of a ```MockNeat``` class that internally uses a [ThreadLocalRandom](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ThreadLocalRandom.html) implementation from the Java library.
 
@@ -20,7 +20,7 @@ MockNeat mock = MockNeat.secure();
 MockNeat mock = MockNeat.old();
 ```
 
-* Create a new instance of the ```MockNeat``` class using a predefined RandomType and a seed:
+* Call the constructor:
 
 ```java
 Long seed = 123l;
