@@ -1,6 +1,6 @@
 1. [Home](https://github.com/nomemory/mockneat/wiki)
 * [Creating a MockNeat Object](https://github.com/nomemory/mockneat/wiki/Creating--a-MockNeat-object)
 * [Introducing MockUnits](https://github.com/nomemory/mockneat/wiki/mockunits)
-      * [Generic Mock Units](https://github.com/nomemory/mockneat/wiki/mock-unit-gen)
+      * [Generic Mock Units](https://github.com/nomemory/mockneat/wiki/Generic-Mock-Units)
       * [MockUnitInt](https://github.com/nomemory/mockneat/wiki/mock-unit-int)
       * [Custom MockUnit(s)](https://github.com/nomemory/mockneat/wiki/Custom-MockUnit(s))
