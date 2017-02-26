@@ -32,7 +32,7 @@ At this point we have created the "generation unit" of Booleans and all we need 
 
 | Method        | Description     | 
 | ------------- | -------------:| 
-| val()         |  Returns a <T> value. |
+| [[val()|val]]         |  Returns a <T> value. |
 | col 2 is      | centered      | 
 | zebra stripes | are neat      | 
 
