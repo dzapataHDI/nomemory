@@ -1,3 +1,5 @@
+# Generic Mock Units
+
 ```java
 @FunctionalInterface
 public interface MockUnit<T> {
@@ -30,14 +32,7 @@ MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
 
 At this point we have created the "generation unit" of Booleans and all we need to do is make use of it. 
 
-| Method        | Description     | 
-| ------------- | -------------:| 
-| [[val()|val]]         |  Returns a <T> value. |
-| col 2 is      | centered      | 
-| zebra stripes | are neat      | 
-
-
-### `val()`
+## `val()`
 
 If we want to obtain a Boolean we will call the val() method on the `MockUnit` instance:
 
@@ -54,11 +49,11 @@ Boolean val = mock.bools().probability(35.50).val();
 
 Think of the `val()` method as the final step we doing before obtaining our values. This represents the "EXIT POINT" of a `MockUnit` chain. 
 
-### [`valStr()`](#mockunit-t-valStr)
+## `valStr()`
 
 This method works exactly like `val()` but instead of returning directly it's value, it first calls `toString` on the object. If the generated object is `null`, it should return an empty String.
 
-### [`list()`](#mockunit-t-valStr)
+## `list()`
 
 Let's say we want to re-use the same MockUnit<Boolean> but this time we generate a `List<Boolean>` values, while keeping the same constraints. The List implementation is `LinkedList`, and it's size is `100`:
 
@@ -99,7 +94,7 @@ List<List<List<Boolean>>> listListList = mock.bools().probability(35.50).list(10
 
 _Note: If we don't specify the implementing List type, by default we will return an `ArrayList.class`_
 
-### [`set()`](#mockunit-t-set)
+## `set()`
 
 This method works like the `list` one, with one exception: given the nature of `Set` we cannot guarantee a fixed size. We will generate `N` elements and add them into the `Set`, but if the elements are not unique, the `Set` will only keep what's possible. Duplicates won't be permitted.
 
@@ -122,7 +117,7 @@ for(int i = 0 ;; i++) {
 
 After running the snippet the value obtained was `9`.
 
-### [`collection()`](#mockunit-t-collection)
+### `collection()`
 
 ```java
 Collection<Boolean> vector = mock.bools()
@@ -131,7 +126,7 @@ Collection<Boolean> vector = mock.bools()
                                  .val();
 ```
 
-### [`mapKeys()`](#mockunit-t-mapKeys)
+## `mapKeys()`
 
 This allows us to build `Map<T,R>`s, mapping our MockUnit generated values with a Set of keys.
 
@@ -174,7 +169,7 @@ Possible output:
 {0.1=true, 0.2=true, 0.3=false, 0.4=false, 0.5=true}
 ```
 
-### [`mapVals()`](#mockunit-t-mapVals)
+## `mapVals()`
 
 This allows us to build `Map<T,R>`s, mapping our MockUnit generated as keys for a given set of values.
 
@@ -215,7 +210,7 @@ Possible output:
 {false=1487951761873, true=1487951761873}
 ```
 
-### [`stream()`](#mockunit-t-stream)
+## `stream()`
 
 Instead of obtaining a `Collection`, `List`, `Set` or a `Map` we can use the `MockUnit<Boolean>` to generate a `Stream<Boolean>`:
 
@@ -225,7 +220,7 @@ Stream<Boolean> stream = mock.bools().stream().val();
 
 The Stream is infinite. 
 
-### [`map()`](#mockunit-t-map)
+## `map()`
 
 This method allows us to do pre-processing on the values before they are actually generated.
 
