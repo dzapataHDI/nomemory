@@ -36,7 +36,7 @@ MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
 At this point we have created the "generation unit" of Booleans and all we need to do is make use of it.
 
 
-### The `val()` method
+### [The `val()` method](#mockunit-t-val)
 
 If we want to obtain a Boolean we will call the val() method on the `MockUnit` instance:
 
