@@ -1,13 +1,18 @@
-## MockUnit<T>
+```java
+@FunctionalInterface
+public interface MockUnit<T> {
+...
+}
+```
 
-This is the generic interface that contains useful methods to manipulate data. It allows us to generate not only  individual values but also collections (list, sets), maps, streams and arrays. 
+is the generic interface that contains useful methods to manipulate data. It allows us to generate not only  individual values but also collections (list, sets), maps, streams and arrays. 
 
 To better understand the power the MockUnits let's follow a simple example in which we want to generate `Boolean` values with a 35.25% probability of obtaining `true`.
 
 For this we will create first a `MockUnit<Boolean>` object by calling the `bools()` method on `MockNeat`:
 
 ```java
-// Re-using a pre-existent ThreadLocl MockNeat Object
+// Re-using a pre-existent ThreadLocal MockNeat Object
 MockNeat mock = MockNeat.threadLocal();
 // Creating our first MockUnit<Boolean>
 MockUnit<Boolean> boolUnit = mock.bools();
@@ -23,10 +28,16 @@ This methods "recursively" returns a new instance of `MockUnit<Boolean>` but int
 MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
 ```
 
-At this point we have created the "generation unit" of Booleans and all we need to do is make use of it.
+At this point we have created the "generation unit" of Booleans and all we need to do is make use of it. 
+
+| Method        | Description     | 
+| ------------- | -------------:| 
+| val()         |  Returns a <T> value. |
+| col 2 is      | centered      | 
+| zebra stripes | are neat      | 
 
 
-### [`val()`](#mockunit-t-val)
+### `val()`
 
 If we want to obtain a Boolean we will call the val() method on the `MockUnit` instance:
 
