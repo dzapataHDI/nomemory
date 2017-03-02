@@ -1,5 +1,3 @@
-### Welcome to the **MockNeat** wiki!
-
 MockNeat is a **Java 8+** library that facilitates the generation of random test data for your application(s). 
 
 **MockNeat** helps you create: 
@@ -27,15 +25,15 @@ MockNeat is a **Java 8+** library that facilitates the generation of random test
 
 ### Example
 
-Scenario: Generate a list of 1000 random employees of a fictional company "company.com":
+Scenario: 
+
+> Generate a list of 1000 random employees of a fictional company "company.com":
 
 ```java
 // Creates a MockNeat object that internally uses
 // a ThreadLocalRandom.
 MockNeat m = MockNeat.threadLocal();
 
-// Generates the list of employees for
-// an imaginary comapny "company.com"
 List<Employee> companyEmployees =
                 m.objs(Employee.class)
                  .field("uniqueId",
