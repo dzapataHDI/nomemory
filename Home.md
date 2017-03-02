@@ -27,7 +27,7 @@ MockNeat is a **Java 8+** library that facilitates the generation of random test
 
 Scenario: 
 
-> Generate a list of 1000 random employees of a fictional company "company.com":
+> Generate a List<Employee> of 1000 random employees of a fictional company "company.com":
 
 ```java
 // Creates a MockNeat object that internally uses
