@@ -30,47 +30,47 @@ MockNeat is a **Java 8+** library that facilitates the generation of random test
 Scenario: Generate a list of 1000 random employees of a fictional company "company.com":
 
 ```java
- // Creates a MockNeat object that internally uses
-        // a ThreadLocalRandom.
-        MockNeat m = MockNeat.threadLocal();
+// Creates a MockNeat object that internally uses
+// a ThreadLocalRandom.
+MockNeat m = MockNeat.threadLocal();
 
-        // Generates the list of employees for
-        // an imaginary comapny "company.com"
-        List<Employee> companyEmployees =
+// Generates the list of employees for
+// an imaginary comapny "company.com"
+List<Employee> companyEmployees =
                 m.objs(Employee.class)
-                    .field("uniqueId",
-                            m.uuids())
-                    .field("id",
-                            m.longSeq())
-                    .field("fullName",
-                            m.names().full())
-                    .field("companyEmail",
-                            m.emails().domain("company.com"))
-                    .field("personalEmail",
-                            m.emails())
-                    .field("salaryCreditCard",
-                            m.creditCards().types(AMERICAN_EXPRESS, MASTERCARD))
-                    .field("external",
-                            m.bools().probability(20.0))
-                    .field("hireDate",
-                            m.localDates().past(of(1999, 1, 1)))
-                    .field("birthDate",
-                            m.localDates().between(of(1950, 1, 1), of(1994, 1, 1)))
-                    .field("pcs",
-                            m.objs(EmployeePC.class)
-                                .field("uuid",
-                                     m.uuids())
-                                .field("username",
-                                     m.users())
-                                .field("operatingSystem",
-                                     m.from(new String[]{"Linux", "Windows 10", "Windows 8"}))
-                                .field("ipAddress",
-                                        m.ipv4s().type(CLASS_B))
-                                .field("macAddress",
-                                        m.macs())
-                                .list(2))
-                    .list(1000)
-                    .val();
+                 .field("uniqueId",
+                        m.uuids())
+                 .field("id",
+                        m.longSeq())
+                 .field("fullName",
+                        m.names().full())
+                 .field("companyEmail",
+                        m.emails().domain("company.com"))
+                 .field("personalEmail",
+                        m.emails())
+                 .field("salaryCreditCard",
+                        m.creditCards().types(AMERICAN_EXPRESS, MASTERCARD))
+                 .field("external",
+                        m.bools().probability(20.0))
+                 .field("hireDate",
+                        m.localDates().past(of(1999, 1, 1)))
+                 .field("birthDate",
+                        m.localDates().between(of(1950, 1, 1), of(1994, 1, 1)))
+                 .field("pcs",
+                        m.objs(EmployeePC.class)
+                         .field("uuid",
+                                m.uuids())
+                         .field("username",
+                                m.users())
+                         .field("operatingSystem",
+                                m.from(new String[]{"Linux", "Windows 10", "Windows 8"}))
+                         .field("ipAddress",
+                                m.ipv4s().type(CLASS_B))
+                         .field("macAddress",
+                                m.macs())
+                         .list(2))
+                 .list(1000)
+                 .val();
 ```
 
 Possible Output:
