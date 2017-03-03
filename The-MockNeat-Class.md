@@ -2,14 +2,14 @@ The `MockNeat` is composed by a set of objects that help us generate arbitrary d
 
 Each of those objects is an implementation of the interface `MockUnit<T>` which is described in great detail in the section ["Introducing Mock Units"](https://github.com/nomemory/mockneat/wiki/mockunits). 
 
-Composing Objects:
+The most important methods that can be accessed on the `MockNeat` object are:
 
 | Method | Return Object Type | Description |
 |:------ |:------ |:----------- |
 | [`mock.bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
 | [`mock.chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
 | [`mock.creditCards()`](#creditCards) | CreditCards | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`mock.creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
-| [`mock.currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`mock.currencies().name()`](#currencies().name()), [`mock.currencies().symbol()`](#currencies().symbol()), [`mock.currencies().code()`](1), [`mock.currencies().forexPair()`](2) |
+| [`mock.currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`mock.currencies().name()`](#currenciesname), [`mock.currencies().symbol()`](#currenciessymbol), [`mock.currencies().code()`](#currenciescode), [`mock.currencies().forexPair()`](#currenciesforexPair) |
 | [`mock.cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
 | [`mock.dicts()`](#dicts) | `Dicts` | The `Dicts` class is used as a an utility class that facilitates generating random lines from the internal library dictionaries. The internal dictionaries are collections of data grouped into files. The enum `DictType` maps all those files. |
 | [`mock.days()`](#days) | `Days` | This `Days` class implements `MockUnitDays`. It is used to generate days of the week.|
@@ -116,3 +116,91 @@ Example:
 ```java
 String ccName = m.creditCards().names().val();
 ```
+
+### `currencies()`
+
+This method is only used to create an instance of the `Currencies` object. 
+
+The most important methods attached to the `Currencies` object are:
+
+- [`mock.currencies().name()`](#currenciesname);
+- [`mock.currencies().symbol()`](#currenciessymbol);
+- [`mock.currencies().code()`](#currenciescode), 
+- [`mock.currencies().forexPair()`](#currenciesforexPair)
+
+### `currencies().name()`
+
+This method returns currency names from around the world. Some of the possible outputs: "Leu", "Krona", "Pound", etc.
+
+Example:
+
+```java
+String currencyName = mock.currencies().name().val()
+```
+
+### `currencies().symbol()`
+
+This method returns currency symbols from around the world. Some of the possible outputs: "Lek", "£", "Ls", "$", etc.
+
+Example:
+
+```java
+String currencySymbol = mock.currencies().symbol().val()
+```
+
+### `currencies().code()`
+
+This method returns currency codes from around the world. Some of the possible outputs: "CZK", "JPY", "SVC", "ANG", etc.
+
+Example:
+
+```java
+String currencyCode = mock.currencies().code().val();
+```
+
+### `currencies().forexPair()`
+
+This method returns the most common [Forex Pairs](https://en.wikipedia.org/wiki/Currency_pair). Some of the possible outputs: "EUR/GBP", "USD/ZAR", "EUR/GBP", "EUR/HUF", etc.
+
+Example:
+
+```java
+String forexPair = mock.currencies().forexPair().val();
+```
+
+### `cvvs()`
+
+This method helps us generate [CVV](https://en.wikipedia.org/wiki/Card_security_code) codes. Currently it supports only two types of CVV. Those types are defined into the enum called `CVVType`. For the moment there are only two types defined: 
+- `CVV3` - Represents a 3 digits random String.
+- `CVV4` - Represents a 4 digits random String.
+
+By default the type we use is: `CVV3`.
+
+Example generating a 3-digit CVV:
+
+```java
+String cvv = mock.cvvs().val();
+```
+
+Example generating a 4-digit CVV:
+
+```java
+String cvv4 = mock.cvvs().type(CVV4).val();
+```
+
+### `dicts()`
+
+The library comes with a set of internal dictionaries. Basically those dictionaries are plain-text files that are included in the `.jar` file. 
+
+Each of these files are mapped through an enum called `DictType`.
+
+The current list of `DictType` is:
+
+| Enum Value | Contents |
+|:---------- |:---------|
+|`COUNTRY_NAME`| Contains an exhaustive list of country names. Possible values: "Chile", "Saudi Arabia", etc.|
+|`COUNTRY_ISO_CODE_2` | Contains an exhaustive list of country iso codes. Possible values: "AM", "UK", etc. |
+|`DOMAIN_EMAIL` | Contains a list of possible email domains. This dictionary is by the `emails()` method to generate emails. Possible values: "gmail.com", "msn.com", etc. |
+|`DOMAIN_TOP_LEVEL_ALL`| Contains an exhaustive list of possible URL domains (suffixes). This dictionary is used to generate URL values. Possible values: "com", "comcast", "ml", etc. |
+|`DOMAIN_TOP_LEVEL_POPULAR`| Contains a list of the most popular URL domains (suffixes). This dictionary is used to generate URL values. Possible values: "com", "org", "net", etc. |
+|`FOREX_PAIRS`| Contains a list of the most popular Forex Currency Pairs. This dictionary is used for the `currencies().forexPair()` method. Possible values: "USD/MXN", "USD/NOK", "USD/PLN", etc. |
