@@ -24,7 +24,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
 | [`mock.ipv6()`](#ipv6s) | `IPv6s` | The `IPv6s` class implements `MockUnitString`. It is used to generate arbitrary IPv6 addresses. |
-| [`mock.localDates()`](#localDates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
+| [`mock.localDates()`](#localdates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
 | [`mock.longs()`](#longs) | `Longs` | The `Longs` class implements `MockUnitLong`. It is used to generate random long numbers. |
 | [`mock.longSeq()`](#lonSeq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
 | [`mock.macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
@@ -468,3 +468,40 @@ Example:
 String ipv6 = mock.iPv6s().val();
 // Possible Output: 35f1:b02f:8843:9abb:82bf:967a:34f5:ed8b
 ```
+
+### `localDates()` 
+
+This method is used to generate arbitrary `LocalDate` objects.
+
+Example of generating a random date in the past between: [1970, now()):
+
+```java
+LocalDate localDate = mock.localDates().val();
+// Possible Output: 1984-05-10
+```
+
+Example of generating a random date in the past between: [1987-1-30, now()):
+
+```java
+LocalDate min = LocalDate.of(1987, 1, 30);
+LocalDate past = mock.localDates().past(min).val();
+// Possible Output: 2014-05-30
+```
+
+Example of generating a random date in the future between: [now(), 2020-1-1);
+
+```java
+LocalDate max = LocalDate.of(2020, 1, 1);
+LocalDate future = mock.localDates().future(max).val();
+// At this moment this is the possible output: 2019-08-03
+```
+
+Example of generating a random date between [1989-1-1, 1993-1-1):
+
+```java
+LocalDate start = LocalDate.of(1989, 1, 1);
+LocalDate stop = LocalDate.of(1993, 1, 1);
+LocalDate between = mock.localDates().between(start, stop).val();
+// Possible Output: 1989-02-04
+```
+
