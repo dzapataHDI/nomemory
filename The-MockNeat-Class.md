@@ -285,7 +285,7 @@ Example to generate a domain `String`:
 ```java
 String domain = mock.domains().val();
 // Possible Output: "io"
-``
+```
 
 Example to generate a domain `String` giving the type:
 ```java
