@@ -8,8 +8,8 @@ The most important methods that can be accessed on the `MockNeat` object are:
 |:------ |:------ |:----------- |
 | [`mock.bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
 | [`mock.chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
-| [`mock.creditCards()`](#creditCards) | CreditCards | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`mock.creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
-| [`mock.currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`mock.currencies().name()`](#currenciesname), [`mock.currencies().symbol()`](#currenciessymbol), [`mock.currencies().code()`](#currenciescode), [`mock.currencies().forexPair()`](#currenciesforexPair) |
+| [`mock.creditCards()`](#creditcards) | CreditCards | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`mock.creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
+| [`mock.currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`mock.currencies().name()`](#currenciesname), [`mock.currencies().symbol()`](#currenciessymbol), [`mock.currencies().code()`](#currenciescode), [`mock.currencies().forexPair()`](#currenciesforexpair) |
 | [`mock.cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
 | [`mock.dicts()`](#dicts) | `Dicts` | The `Dicts` class is used as a an utility class that facilitates generating random lines from the internal library dictionaries. The internal dictionaries are collections of data grouped into files. The enum `DictType` maps all those files. |
 | [`mock.days()`](#days) | `Days` | This `Days` class implements `MockUnitDays`. It is used to generate days of the week.|
@@ -126,7 +126,7 @@ The most important methods attached to the `Currencies` object are:
 - [`mock.currencies().name()`](#currenciesname);
 - [`mock.currencies().symbol()`](#currenciessymbol);
 - [`mock.currencies().code()`](#currenciescode), 
-- [`mock.currencies().forexPair()`](#currenciesforexPair)
+- [`mock.currencies().forexPair()`](#currenciesforexpair)
 
 ### `currencies().name()`
 
@@ -263,8 +263,18 @@ DayOfWeek weekEnd = mock.days().rangeClosed(SATURDAY, SUNDAY).val();
 
 Note: There is also the `range()` method, that uses an open interval.
 
-### `departments`
+### `departments()`
 
 This method is used to generate department names from a company.
 
+```java
+String dept = mock.departments().val();
+// Possible Output: "Insurance"
+```
+
+### `domains()`
+
+This method is used to generate domains for URLs. 
+
+Example to generate a domain `String`:
 
