@@ -278,3 +278,8 @@ This method is used to generate domains for URLs.
 
 Example to generate a domain `String`:
 
+```java
+String domain = mock.domains().val();
+// Possible Output: "io"
+```
+
