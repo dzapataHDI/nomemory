@@ -200,7 +200,71 @@ The current list of `DictType` is:
 |:---------- |:---------|
 |`COUNTRY_NAME`| Contains an exhaustive list of country names. Possible values: "Chile", "Saudi Arabia", etc.|
 |`COUNTRY_ISO_CODE_2` | Contains an exhaustive list of country iso codes. Possible values: "AM", "UK", etc. |
-|`DOMAIN_EMAIL` | Contains a list of possible email domains. This dictionary is by the `emails()` method to generate emails. Possible values: "gmail.com", "msn.com", etc. |
-|`DOMAIN_TOP_LEVEL_ALL`| Contains an exhaustive list of possible URL domains (suffixes). This dictionary is used to generate URL values. Possible values: "com", "comcast", "ml", etc. |
-|`DOMAIN_TOP_LEVEL_POPULAR`| Contains a list of the most popular URL domains (suffixes). This dictionary is used to generate URL values. Possible values: "com", "org", "net", etc. |
-|`FOREX_PAIRS`| Contains a list of the most popular Forex Currency Pairs. This dictionary is used for the `currencies().forexPair()` method. Possible values: "USD/MXN", "USD/NOK", "USD/PLN", etc. |
+|`DOMAIN_EMAIL` | Contains a list of possible email domains. This dictionary is used internally by [`emails()`](#emails). Possible values: "gmail.com", "msn.com", etc. |
+|`DOMAIN_TOP_LEVEL_ALL`| Contains an exhaustive list of possible URL domains (suffixes). This dictionary is used internally by [`urls()`](#urls). Possible values: "com", "comcast", "ml", etc. |
+|`DOMAIN_TOP_LEVEL_POPULAR`| Contains a list of the most popular URL domains (suffixes). This dictionary is used internally by [`urls()`](#urls). Possible values: "com", "org", "net", etc. |
+|`FOREX_PAIRS`| Contains a list of the most popular Forex Currency Pairs. This dictionary is used internally by [`currencies().forexPair()`](#currenciesPair). Possible values: "USD/MXN", "USD/NOK", "USD/PLN", etc. |
+|`CREDIT_CARD_NAMES`| Contains a list of the most popular credit card names. This dictionary is used internally by [`creditCards().names()`](#creditCardsnaems). Possible values: "Visa", "Mastercard", etc. |
+|`FIRST_NAME_MALE_AMERICAN`| Contains the most common first names for males in the US. |
+|`FIRST_NAME_FEMALE_AMERICAN` | Contains the most common first names for females in the US. |
+|`LAST_NAME_AMERICAN`| Contains the most common last names in the US. |
+|`EN_ADJECTIVE_1SYLL`| Contains a list of 1-Syllable English adjectives. |
+|`EN_ADJECTIVE_2SYLL`| Contains a list of 2-Syllable English adjectives. |
+|`EN_ADJECTIVE_3SYLL`| Contains a list of 3-Syllable English adjectives. |
+|`EN_ADJECTIVE_4SYLL`| Contains a list of 4-Syllable English adjectives. |
+|`EN_ADVERB_1SYLL`| Contains a list of 1-Syllable English adverbs. |
+|`EN_ADVERB_2SYLL`| Contains a list of 2-Syllable English adverbs. |
+|`EN_ADVERB_3SYLL`| Contains a list of 3-Syllable English adverbs. |
+|`EN_ADVERB_4SYLL`| Contains a list of 4-Syllable English adverbs. |
+|`DEPARTMENTS`| Contains a list of possible department names from a company. Possible values: "Insurance", "Inventory", "Licenses" |
+
+Example for generating a country name directly from the dictionary:
+
+```java
+String countryName = mock.dicts().type(COUNTRY_NAME).val()
+```
+
+### `days()`
+
+This method helps us generate name of the Days of the week.
+
+Example to generate an arbitrary day of the week:
+
+```java
+DayOfWeek day = mock.days().val();
+// Possible Output: SUNDAY
+```
+
+Example to generate an arbitrary day of the week as `String` using `display()`:
+
+```java
+String dayStr = mock.days().display(TextStyle.SHORT).val();
+// Possible Output: "Tue"
+```
+
+Example to generate an arbitrary day of week after "Thursday" using `after()`:
+
+```java
+DayOfWeek dayAfterThursday = mock.days().after(THURSDAY).val();
+// Possible Output: "FRIDAY"
+```
+
+Example to generate an arbitrary day of the week before "Thursday" using `before`:
+
+```java
+DayOfWeek dayBeforeThursday = mock.days().before(THURSDAY).val();
+// Possible Output: "MONDAY"
+```
+
+Example to generate an arbitrary day of the week between [Sunday, Saturday] using `rangeClosed()`:
+```java
+DayOfWeek weekEnd = mock.days().rangeClosed(SATURDAY, SUNDAY).val();
+```
+
+Note: There is also the `range()` method, that uses an open interval.
+
+### `departments`
+
+This method is used to generate department names from a company.
+
+
