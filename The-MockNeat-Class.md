@@ -26,9 +26,9 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.ipv6()`](#ipv6s) | `IPv6s` | The `IPv6s` class implements `MockUnitString`. It is used to generate arbitrary IPv6 addresses. |
 | [`mock.localDates()`](#localdates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
 | [`mock.longs()`](#longs) | `Longs` | The `Longs` class implements `MockUnitLong`. It is used to generate random long numbers. |
-| [`mock.longSeq()`](#lonseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
+| [`mock.longSeq()`](#longseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
 | [`mock.macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
-| [`mock.markovs`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
+| [`mock.markovs()`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
 | [`mock.objs(Class<T>)`](#objs) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
 | [`mock.months()`](#months) | `Months` | The `Months` class implements `MockUnitMonth`. It is used to generate month names. |
 | [`mock.money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
@@ -584,3 +584,47 @@ for(int i = 0; i < 50; i++) {
 ```
 
 Negative increments work, but instead of setting a `max()` value a `min()` needs to be set, otherwise it will default to `Long.MIN_VALUE`.
+
+### `macs()`
+
+This method is used to generate arbitrary MAC addresses.
+
+The MAC address can be formatted in a few ways. Each of these ways is mapped in the enum `MACAddressFormatType`: `DASH_EVERY_2_DIGITS`, `COLON_EVERY_2_DIGITS`, `DOT_EVERY_2_DIGITS`, `DOT_EVERY_4_DIGITS`.
+
+Example of generating a MAC addresses and showing it in the format `DOT_EVERY_4_DIGITS`:
+```java
+String mac = mock.macs().type(DOT_EVERY_4_DIGITS).val();
+// Possible Output: 9a25.aa24.df7c
+```
+
+### `markovs()`
+
+This method is used to generate Markov Text.
+
+For the moment this feature is not: 
+- very memory efficient;
+- there aren't many options, but to generate text from Kafka's Metamorphosis.
+
+Example in generating a 512 characters text:
+
+```java
+String text = mock.markovs().size(512).type(KAFKA).val();
+//Possible Output: In his efforts to muster all the things that concerned him. This meant not only in secret. For two whole days, all the harder. Across the room came in early in the doorway with a knife, he thought it was easy to see him. He had forgotten, but instead of being afraid, the charwoman stood in the direction of the bedrooms: come and give me a bit of him and seemed, at first, that was quite incapable of going backwards in a nice, gilded frame. It showed a lady fitted out with a few raisins and almonds; some chee
+```
+
+### `objs()`
+
+This method is used to mock instances of concrete classes.
+
+The class fields are being set through reflection directly, and not through setter(s). This means that private fields are also accessible.
+
+There's another method on [`objs().constructor()`](#objsconstructor) that uses a public constructor for generating the object. 
+
+Example of mocking a Custom class `Test` that has 3 fields:
+- String x;
+- Integer y;
+- Boolean z;
+
+```java
+
+```
