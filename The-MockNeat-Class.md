@@ -19,7 +19,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.emails()`](#emails) | `Emails` | The `Emails` class implements `MockUnitString`. It is used to generate emails. |
 | [`mock.files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
 | [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
-| [`mock.formatter()`](#formatter) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
+| [`mock.fmt()`](#formatter) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
 | [`mock.ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
 | [`mock.intSeq()`](#intSeq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
@@ -303,7 +303,7 @@ Double val = mock.doubles().val();
 // Possible Output: 0.26378031782078615
 ```
 
-Example to generate a single double value bounded - in interval [0.0, bound)
+Example to generate a single double value in interval [0.0, bound)
 
 ```java
 Double bound = 10.0;
@@ -317,3 +317,105 @@ Example to generate a single double value in a given range [100.0, 200.0)
 Double valInRange = mock.doubles().range(100.0, 200.0).val();
 // Possible Output: 194.88613464097585
 ```
+
+### `emails()`
+
+This method is used to generate emails. 
+
+Example to generate a random email address:
+
+```java
+String email = mock.emails().val();
+// Possible Output: icedvida@yahoo.com
+```
+
+Example to generate a random email with a fixed "domain". This is useful when generating emails for a specific "company".
+
+```java
+String corpEmail = mock.emails().domain("startup.io").val();
+// Possible Output: tiptoplunge@startup.io
+```
+
+Example to generate an email with fixed "domains":
+
+```java
+String domsEmail = mock.emails().domains("abc.com", "corp.org").val();
+// Possible Output: funjulius@corp.org
+```
+
+### `files()`
+
+This method is useful to generate random lines from a given file. 
+The file is loaded in memory only once, so the recommendation is to avoid keeping large files into memory.
+
+Example to generate a random line from a file '/Users/nomemory/Desktop/test.txt'. The file contents are:
+
+```
+text1
+text2
+text3
+text4
+```
+
+```java
+String line = mock.files().from("/Users/andreinicolinciobanu/Desktop/test.txt").val();
+// Possible Output: text2
+```
+
+### `floats()`
+
+This method is used to generate float numbers.
+
+Example to generate a single float value in the interval [0.0f, 1.0f):
+
+```java
+Float val = mock.floats().val();
+// Possible Output: 0.414554
+```
+
+Example to generate a single float value in interval [0.0f, bound), where bound=10.0f:
+
+```java
+Float boundVal = mock.floats().bound(10f).val();
+// Possible Output: 2.0780544
+```
+
+Example to generate a single double value in a given range [100.0f, 200.0f)
+
+```java
+Float rangeVal = mock.floats().range(100.0f, 200.0f).val();
+// Possible Output: 163.93002
+```
+
+### `fmt()` 
+
+This method is used to generate formatted `String` values. Each specified param is a named one `#{param1}`.
+
+Example of generating a random string in the form: `#{digit1}#{digit2}#{letter}#{specialChar}` (eg.: `"12a@"`):
+
+```java
+String result = mock.fmt(templ)
+                    .param("d1", mock.chars().digits())
+                    .param("d2", mock.chars().digits())
+                    .param("l1", mock.chars().letters())
+                    .param("sc", mock.from(SPECIAL_CHARACTERS))
+                    .val();
+// Possible Output: 45q'
+```
+
+### `intSeq()`
+
+This method is used to generate sequence of numbers (integers). 
+
+Example generate a seq of integers starting with 0, incrementing each time with 1.
+
+```java
+IntSeq seq = mock.intSeq();
+for(int i = 0; i < 20; i++) {
+      System.out.print(seq.val() + " ");
+}
+// Output: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
+```
+
+Example generate a seq of integers starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
+
