@@ -303,10 +303,17 @@ Double val = mock.doubles().val();
 // Possible Output: 0.26378031782078615
 ```
 
-Example to generate a single double value bounded, in interval [0.0, bound)
+Example to generate a single double value bounded - in interval [0.0, bound)
+
 ```java
 Double bound = 10.0;
 Double boundedVal = mock.doubles().bound(bound).val();
 // Possible Output: 7.9842438463207905
 ```
 
+Example to generate a single double value in a given range [100.0, 200.0)
+
+```java
+Double valInRange = mock.doubles().range(100.0, 200.0).val();
+// Possible Output: 194.88613464097585
+```
