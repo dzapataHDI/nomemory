@@ -276,10 +276,37 @@ String dept = mock.departments().val();
 
 This method is used to generate domains for URLs. 
 
+There are two types of domains that can be generated:
+- `DomainSuffixType.ALL` - This contains an exhaustive of possible domains;
+- `DomainSuffixType.POPULAR` - This is a shorter list of domains, containing only the most popular: "com", "net", "org", etc. If not type is specified this is picked by default.
+
 Example to generate a domain `String`:
 
 ```java
 String domain = mock.domains().val();
 // Possible Output: "io"
+``
+
+Example to generate a domain `String` giving the type:
+```java
+String all = mock.domains().type(ALL).val();
+// Possible Output: "analytics"
+```
+### `doubles()`
+
+This method is used to generate double values.
+
+Example to generate a single double value in the interval [0.0, 1.0):
+
+```java
+Double val = mock.doubles().val();
+// Possible Output: 0.26378031782078615
+```
+
+Example to generate a single double value bounded, in interval [0.0, bound)
+```java
+Double bound = 10.0;
+Double boundedVal = mock.doubles().bound(bound).val();
+// Possible Output: 7.9842438463207905
 ```
 
