@@ -203,7 +203,7 @@ The current list of `DictType` is:
 |`DOMAIN_EMAIL` | Contains a list of possible email domains. This dictionary is used internally by [`emails()`](#emails). Possible values: "gmail.com", "msn.com", etc. |
 |`DOMAIN_TOP_LEVEL_ALL`| Contains an exhaustive list of possible URL domains (suffixes). This dictionary is used internally by [`urls()`](#urls). Possible values: "com", "comcast", "ml", etc. |
 |`DOMAIN_TOP_LEVEL_POPULAR`| Contains a list of the most popular URL domains (suffixes). This dictionary is used internally by [`urls()`](#urls). Possible values: "com", "org", "net", etc. |
-|`FOREX_PAIRS`| Contains a list of the most popular Forex Currency Pairs. This dictionary is used internally by [`currencies().forexPair()`](#currenciesPair). Possible values: "USD/MXN", "USD/NOK", "USD/PLN", etc. |
+|`FOREX_PAIRS`| Contains a list of the most popular Forex Currency Pairs. This dictionary is used internally by [`currencies().forexPair()`](#currenciesforexpair). Possible values: "USD/MXN", "USD/NOK", "USD/PLN", etc. |
 |`CREDIT_CARD_NAMES`| Contains a list of the most popular credit card names. This dictionary is used internally by [`creditCards().names()`](#creditCardsnaems). Possible values: "Visa", "Mastercard", etc. |
 |`FIRST_NAME_MALE_AMERICAN`| Contains the most common first names for males in the US. |
 |`FIRST_NAME_FEMALE_AMERICAN` | Contains the most common first names for females in the US. |
