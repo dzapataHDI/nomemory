@@ -557,4 +557,30 @@ Long ranged = mock.longs().range(10, 20).val();
 
 ### `longSeq()`
 
+This method is used to generate sequence of numbers (longs). 
 
+Example of generating a seq of integers starting with 0l, incrementing each time with 1l.
+
+```java
+LongSeq seq = mock.longSeq();
+for(int i = 0; i < 20; i++) {
+    System.out.print(seq.val() + " ");
+}
+// Output: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
+```
+
+Example of generating a sequence of longs starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
+
+```java
+LongSeq seq2 = mock.longSeq()
+                   .start(5)
+                   .increment(2)
+                   .max(20)
+                   .cycle(true);
+for(int i = 0; i < 50; i++) {
+    System.out.print(seq2.val() + " ");
+}
+// Output: 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 
+```
+
+Negative increments work, but instead of setting a `max()` value a `min()` needs to be set, otherwise it will default to `Long.MIN_VALUE`.
