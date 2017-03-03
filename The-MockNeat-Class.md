@@ -1,0 +1,1 @@
+After obtaining an instance of the `MockNeat` class
