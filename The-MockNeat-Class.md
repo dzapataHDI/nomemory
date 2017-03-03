@@ -21,7 +21,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
 | [`mock.fmt()`](#formatter) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
 | [`mock.ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
-| [`mock.intSeq()`](#intSeq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
+| [`mock.intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
 | [`mock.ipv6()`](#ipv6s) | `IPv6s` | The `IPv6s` class implements `MockUnitString`. It is used to generate arbitrary IPv6 addresses. |
 | [`mock.localDates()`](#localDates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
@@ -407,7 +407,7 @@ String result = mock.fmt(templ)
 
 This method is used to generate sequence of numbers (integers). 
 
-Example generate a seq of integers starting with 0, incrementing each time with 1.
+Example of generating a seq of integers starting with 0, incrementing each time with 1.
 
 ```java
 IntSeq seq = mock.intSeq();
@@ -417,5 +417,54 @@ for(int i = 0; i < 20; i++) {
 // Output: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
 ```
 
-Example generate a seq of integers starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
+Example of generating a sequence of integers starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
 
+```java
+IntSeq seq2 = mock.intSeq()
+                  .start(5)
+                  .increment(2)
+                  .max(20)
+                  .cycle(true);
+for(int i = 0; i < 50; i++) {
+    System.out.print(seq2.val() + " ");
+}
+// Output: 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 9 11 13 15 17 19 5 7 
+```
+
+Negative increments work, but instead of setting a `max()` value a `min()` needs to be set, otherwise it will default to `Integer.MIN_VALUE`.
+
+### `ipv4s()`
+
+This method is used to generate arbitrary IPv4 addresses.
+
+An enum `IPv4Type` exists and it describes each possible IPv4 classes: `CLASS_A`, `CLASS_A_LOOPBACK`, `CLASS_A_PRIVATE`, `CLASS_B`, `CLASS_B_PRIVATE`, `CLASS_C`, `CLASS_C_PRIVATE`, `CLASS_D`, `CLASS_E`, `NO_CONSTRAINT`.
+
+Example of generating an IPv4 address that has no class constraint:
+
+```java
+String ipv4 = mock.ipv4s().val();
+// Possible Output: 192.21.139.180
+```
+
+Example of generating an IPv4 address from Class A:
+```java
+String ipClassA = mock.ipv4s().type(CLASS_A).val();
+// Possible Output: 57.253.133.154
+```
+
+Example of generating an IPv4 address from Class A or Class B:
+```java
+String classAorB = mock.ipv4s().types(CLASS_A, CLASS_B).val();
+// Possible Output: 119.110.27.146
+```
+
+### `ipv6s()`
+
+This method is used to generate an arbitrary IPv6 address.
+
+Example:
+
+```java
+String ipv6 = mock.iPv6s().val();
+// Possible Output: 35f1:b02f:8843:9abb:82bf:967a:34f5:ed8b
+```
