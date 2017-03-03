@@ -19,14 +19,14 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.emails()`](#emails) | `Emails` | The `Emails` class implements `MockUnitString`. It is used to generate emails. |
 | [`mock.files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
 | [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
-| [`mock.fmt()`](#formatter) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
+| [`mock.fmt()`](#fmt) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
 | [`mock.ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
 | [`mock.intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
 | [`mock.ipv6()`](#ipv6s) | `IPv6s` | The `IPv6s` class implements `MockUnitString`. It is used to generate arbitrary IPv6 addresses. |
 | [`mock.localDates()`](#localdates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
 | [`mock.longs()`](#longs) | `Longs` | The `Longs` class implements `MockUnitLong`. It is used to generate random long numbers. |
-| [`mock.longSeq()`](#lonSeq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
+| [`mock.longSeq()`](#lonseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
 | [`mock.macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
 | [`mock.markovs`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
 | [`mock.objs(Class<T>)`](#objs) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
@@ -403,6 +403,31 @@ String result = mock.fmt(templ)
 // Possible Output: 45q'
 ```
 
+### `ints()`
+
+This method is used to generate int numbers.
+
+Example of generating int numbers (negative or positive):
+
+```java
+Integer i1 = mock.ints().val();
+// Possible Output :1952620297
+```
+
+Example of generating int numbers bounded by a certain value: [0, bound), where bound = 10:
+
+```java
+Integer bounded = mock.ints().bound(10).val();
+// Possible Output: 4
+```
+
+Example of generating int numbers in a certain open range: [10, 20):
+
+```java
+Integer ranged = mock.ints().range(10, 20).val();
+// Possible Output: 19
+```
+
 ### `intSeq()`
 
 This method is used to generate sequence of numbers (integers). 
@@ -504,4 +529,32 @@ LocalDate stop = LocalDate.of(1993, 1, 1);
 LocalDate between = mock.localDates().between(start, stop).val();
 // Possible Output: 1989-02-04
 ```
+
+### `longs()`
+
+This method is used to generate int numbers.
+
+Example of generating long numbers (negative or positive):
+
+```java
+Long i1 = mock.longs().val();
+// Possible Output : -2445487402940283422
+```
+
+Example of generating long numbers bounded by a certain value: [0, bound), where bound = 10:
+
+```java
+Long bounded = mock.longs().bound(10).val();
+// Possible Output: 8
+```
+
+Example of generating long numbers in a certain open range: [10, 20):
+
+```java
+Long ranged = mock.longs().range(10, 20).val();
+// Possible Output: 19
+```
+
+### `longSeq()`
+
 
