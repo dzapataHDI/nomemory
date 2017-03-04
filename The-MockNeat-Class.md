@@ -395,6 +395,7 @@ This method is used to generate formatted `String` values. Each specified param 
 Example of generating a random string in the form: `#{digit1}#{digit2}#{letter}#{specialChar}` (eg.: `"12a@"`):
 
 ```java
+String temp = "{#{d1}#{d2}#{l1}#{sc}";
 String result = mock.fmt(templ)
                     .param("d1", mock.chars().digits())
                     .param("d2", mock.chars().digits())
@@ -759,4 +760,29 @@ String medium = mock.passwords().type(MEDIUM).val();
 // Possible Output: cent>ilLion
 ```
 
-###
+### `strings()`
+
+This method is used to generate random String(s).
+
+Additionally the size of the resulting `String` can be controlled using `size()`.
+
+Also the types of `String` objects we can use are mapped in the `StringType` enum: 
+- `NUMBERS`;
+- `ALPHA_NUMBERIC`;
+- `LETTERS`;
+- `HEX`;
+- `SPECIAL_CHARACTERS`;
+
+Example to generate a random string with a fixed-size of 15:
+
+```java
+String str1 = mock.strings().size(15).val();
+// Possible Output: 6GFLyfFRXjgC6wZ
+```
+
+Example to generate a `String` that only contains letters (no numbers or special characters) and it has a size of 5:
+
+```java
+String onlyLetters = mock.strings().size(5).type(LETTERS).val();
+// Possible Output: "P7S9ojfEyJ47ohy"
+```
