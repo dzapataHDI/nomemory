@@ -671,6 +671,8 @@ Month summer = mock.months().rangeClosed(JUNE, AUGUST).val();
 // Possible Output: August
 ```
 
+Note: You can use the `range()` method for an open-interval.
+
 Example to generate a month before the start of the summer, in range [January, June)
 
 ```java
