@@ -652,3 +652,28 @@ Test t2 = mock.objs(Test.class)
                 .val();
 // Possible Output: Test{x='BfMT25Glvu', y=4, z=false}
 ```
+
+### months()
+
+This method is used to generate Months names. It is used to return `Month` objects.
+
+Exmaple to generate a `Month`:
+
+```java
+Month m = mock.months().val();
+// Possible Output: FEBRUARY
+```
+
+Example to generate a month in the range `[June, August]` (summer):
+
+```java
+Month summer = mock.months().rangeClosed(JUNE, AUGUST).val();
+// Possible Output: August
+```
+
+Example to generate a month before the start of the summer, in range [January, June)
+
+```java
+Month beforeSummer = mock.months().before(JUNE).val();
+// Possible Output: APRIL
+```
