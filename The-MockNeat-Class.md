@@ -743,5 +743,20 @@ Example for generating a full name that has a 90% chance to contain an "initial"
 
 ```java
 String withInitial = mock.names().full(90).val();
-Possible Output: Bryce I. Hibma
+// Possible Output: Bryce I. Hibma
 ```
+
+### `passwords()`
+
+This method is used to generate passwords.
+
+Different types of password strengths can be generated, all strengths are mapped into the enum `PassStrengthType`: `WEAK`, `MEDIUM`, `STRONG`.
+
+Example on how to generate a medium-strength password:
+
+```java
+String medium = mock.passwords().type(MEDIUM).val();
+// Possible Output: cent>ilLion
+```
+
+###
