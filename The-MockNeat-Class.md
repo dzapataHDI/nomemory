@@ -29,8 +29,8 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.longSeq()`](#longseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
 | [`mock.macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
 | [`mock.markovs()`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
-| [`mock.objs(Class<T>)`](#objs) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
-| [`mock.objs(Class<T>).constructor()`](#objsconstructor) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
+| [`mock.objs()`](#objs) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
+| [`mock.objs().constructor()`](#objsconstructor) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
 | [`mock.months()`](#months) | `Months` | The `Months` class implements `MockUnitMonth`. It is used to generate month names. |
 | [`mock.money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
 | [`mock.names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
@@ -702,4 +702,46 @@ String millions  = mockNeat.money()
                            .range(1000000, 10000000)
                            .val();
 Possible Output: 1.604.518,56 €
+```
+
+### `names()`
+
+This method is used to generate both first names and last names.
+
+There is an enum class `NameType` that maps names into several categories:
+- `NameType.FIRST_NAME` : Contains both female and male first names;
+- `NameType.FIRST_NAME_MALE` : Contains only male first names;
+- `NameType.FIRST_NAME_FEMALE` : Contains only female first names;
+- `NameType.FIRST_NAME_MALE_AMERICAN` : Contains only male first names that are popular in the US;
+- `NameType.FIRST_NAME_FEMALE_AMERICAN` : Contains only female first names that are popular in the US;
+- `NameType.LAST_NAME` : Contains only last names;
+
+To use those classifications the `names()` method must be used in conjunction with `type()`.
+
+Example to generate name of type `FIRST_NAME_FEMALE` :
+
+```java
+String firstName = mock.names().type(FIRST_NAME_FEMALE).val();
+// Possible Output: Allie
+```
+
+There are also shortcuts for generating first names, last names and full names with optional initials:
+
+Example for generating an arbitrary first name (male or female):
+
+```java
+String first = mock.names().first().val();
+```
+
+Example for generating an arbitrary last name:
+
+```java
+String last = mock.names().last().val();
+```
+
+Example for generating a full name that has a 90% chance to contain an "initial":
+
+```java
+String withInitial = mock.names().full(90).val();
+Possible Output: Bryce I. Hibma
 ```
