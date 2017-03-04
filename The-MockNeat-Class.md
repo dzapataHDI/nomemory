@@ -679,3 +679,27 @@ Example to generate a month before the start of the summer, in range [January, J
 Month beforeSummer = mock.months().before(JUNE).val();
 // Possible Output: APRIL
 ```
+
+### money()
+
+This method is used to generate money amounts as Strings (Money Symbol + Sum of Money).
+
+Example to generate a "fortune" in Japan. By fortune I mean a value in [100, 200) interval (YEN):
+
+```java
+String japanFortune = mockNeat.money()
+                                .locale(JAPAN)
+                                .range(100, 200)
+                                .val();
+// Possible Output: ￥138
+```
+
+Example to generate millions of Euros:
+
+```java
+String millions  = mockNeat.money()
+                           .locale(GERMANY)
+                           .range(1000000, 10000000)
+                           .val();
+Possible Output: 1.604.518,56 €
+```
