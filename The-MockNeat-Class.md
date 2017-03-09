@@ -50,7 +50,7 @@ MockNeat m = MockNeat.threadLocal();
 boolean b = m.bools().val();
 ```
 
-Example generating a boolean value that has 99.99% of being `true`:
+Example for generating a boolean value that has 99.99% of being `true`:
 ```java
 boolean almostAlwaysTrue = m.bools().probability(99.99).val();
 ```
@@ -59,22 +59,22 @@ boolean almostAlwaysTrue = m.bools().probability(99.99).val();
 
 This method helps us generate `Character` values.
 
-Example generating a lower letter (eg: 'a', 'b', ..., 'z'):
+Example for generating a lower letter (eg: 'a', 'b', ..., 'z'):
 ```java
 Character lowerLetter = mock.chars().lowerLetters().val();
 ```
 
-Example generating an upper letter (eg.: 'A', 'B', ... , 'Z'):
+Example for generating an upper letter (eg.: 'A', 'B', ... , 'Z'):
 ```java
 Character upperLetter = mock.chars().upperLetters().val();
 ```
 
-Example generating a digit (eg: '1', '2', ... , '0'):
+Example for generating a digit (eg: '1', '2', ... , '0'):
 ```java
 Character digit = mock.chars().digits().val();
 ```
 
-Example generating a hex value:
+Example for generating a hex value:
 ```java
 Character hex = mock.chars().hex().val();
 ```
@@ -85,7 +85,7 @@ This class is used to generate / mock objects by calling the constructor of the 
 
 The method signature is: `<T> Constructor<T> constructor(Class<T> cls)`.
 
-Example of generating `Test` mock objects:
+Example for generating `Test` mock objects:
 
 ```java
 public class Test {
@@ -94,7 +94,8 @@ public class Test {
     private Boolean z;
 
     public Test() {}
-
+    
+    // This is the constructor that is going to be called
     public Test(String x, Integer y, Boolean z) {
         this.x = x;
         this.y = y;
@@ -116,21 +117,21 @@ Test t = mock.reflect(Test.class)
 
 This method help us generate Credit Cards.
 
-There a few supported types of Credit Cards defined in the `CreditCardType` enum. 
+All the supported credit cards types are defined in the `CreditCardType` enum. 
 
-Example generating a credit card, by default the `CreditCardType` is `AMERICAN_EXPRESS`:
+Example for generating a valid credit card number (by default the `CreditCardType` is `AMERICAN_EXPRESS`):
 
 ```java
 String amex = m.creditCards().val()
 ```
 
-Example generating a 16 digits VISA:
+Example for generating a 16 digits VISA:
 
 ```java
 String visa16 = m.creditCards().type(VISA_16).val();
 ```
 
-Example generating an arbitrary credit card that can be `VISA_16` or `MASTERCARD`. 
+Example for generating an arbitrary credit card that can be `VISA_16` or `MASTERCARD`. 
 
 ```
 String visaOrMastercard = m.creditCards()
@@ -209,13 +210,13 @@ This method helps us generate [CVV](https://en.wikipedia.org/wiki/Card_security_
 
 By default the type we use is: `CVV3`.
 
-Example generating a 3-digit CVV:
+Example for generating a 3-digit CVV:
 
 ```java
 String cvv = mock.cvvs().val();
 ```
 
-Example generating a 4-digit CVV:
+Example for generating a 4-digit CVV:
 
 ```java
 String cvv4 = mock.cvvs().type(CVV4).val();
@@ -223,7 +224,9 @@ String cvv4 = mock.cvvs().type(CVV4).val();
 
 ### `dicts()`
 
-The library comes with a set of internal dictionaries. Basically those dictionaries are plain-text files that are included in the `.jar` file. 
+The library includes a set of internal dictionaries. 
+
+The dictionaries are plain-text files that are included in the `.jar` file. 
 
 Each of these files are mapped through an enum called `DictType`.
 
@@ -261,35 +264,35 @@ String countryName = mock.dicts().type(COUNTRY_NAME).val()
 
 This method helps us generate name of the Days of the week.
 
-Example to generate an arbitrary day of the week:
+Example for generating an arbitrary day of the week:
 
 ```java
 DayOfWeek day = mock.days().val();
 // Possible Output: SUNDAY
 ```
 
-Example to generate an arbitrary day of the week as `String` using `display()`:
+Example for generating an arbitrary day of the week as `String` using `display()`:
 
 ```java
 String dayStr = mock.days().display(TextStyle.SHORT).val();
 // Possible Output: "Tue"
 ```
 
-Example to generate an arbitrary day of week after "Thursday" using `after()`:
+Example for generating an arbitrary day of week after "Thursday" using `after()`:
 
 ```java
 DayOfWeek dayAfterThursday = mock.days().after(THURSDAY).val();
 // Possible Output: "FRIDAY"
 ```
 
-Example to generate an arbitrary day of the week before "Thursday" using `before`:
+Example for generating an arbitrary day of the week before "Thursday" using `before`:
 
 ```java
 DayOfWeek dayBeforeThursday = mock.days().before(THURSDAY).val();
 // Possible Output: "MONDAY"
 ```
 
-Example to generate an arbitrary day of the week between [Sunday, Saturday] using `rangeClosed()`:
+Example for generating an arbitrary day of the week between [Sunday, Saturday] using `rangeClosed()`:
 ```java
 DayOfWeek weekEnd = mock.days().rangeClosed(SATURDAY, SUNDAY).val();
 ```
@@ -307,20 +310,20 @@ String dept = mock.departments().val();
 
 ### `domains()`
 
-This method is used to generate domains for URLs. 
+This method is used to generate domains suffixes for URLs. 
 
-There are two types of domains that can be generated:
-- `DomainSuffixType.ALL` - This contains an exhaustive of possible domains;
-- `DomainSuffixType.POPULAR` - This is a shorter list of domains, containing only the most popular: "com", "net", "org", etc. If not type is specified this is picked by default.
+There are two types of domain suffixes that can be generated:
+- `DomainSuffixType.ALL` - This contains an exhaustive list of domain suffixes;
+- `DomainSuffixType.POPULAR` - This is a shorter list of domain suffixes (the most popular ones): "com", "net", "org", etc. If not type is specified this is picked by default.
 
-Example to generate a domain `String`:
+Example for generating a domain suffix `String`:
 
 ```java
 String domain = mock.domains().val();
 // Possible Output: "io"
 ```
 
-Example to generate a domain `String` giving the type:
+Example for generating a domain suffix `String` giving the type:
 ```java
 String all = mock.domains().type(ALL).val();
 // Possible Output: "analytics"
@@ -329,14 +332,14 @@ String all = mock.domains().type(ALL).val();
 
 This method is used to generate double values.
 
-Example to generate a single double value in the interval [0.0, 1.0):
+Example for generating a single double value in the interval [0.0, 1.0):
 
 ```java
 Double val = mock.doubles().val();
 // Possible Output: 0.26378031782078615
 ```
 
-Example to generate a single double value in interval [0.0, bound)
+Example for generating a single double value in interval [0.0, bound)
 
 ```java
 Double bound = 10.0;
@@ -344,7 +347,7 @@ Double boundedVal = mock.doubles().bound(bound).val();
 // Possible Output: 7.9842438463207905
 ```
 
-Example to generate a single double value in a given range [100.0, 200.0)
+Example for generating a single double value in a given range [100.0, 200.0)
 
 ```java
 Double valInRange = mock.doubles().range(100.0, 200.0).val();
@@ -355,21 +358,21 @@ Double valInRange = mock.doubles().range(100.0, 200.0).val();
 
 This method is used to generate emails. 
 
-Example to generate a random email address:
+Example for generating a random email address:
 
 ```java
 String email = mock.emails().val();
 // Possible Output: icedvida@yahoo.com
 ```
 
-Example to generate a random email with a fixed "domain". This is useful when generating emails for a specific "company".
+Example for generating a random email with a fixed "domain". This is useful when generating emails for a specific "company".
 
 ```java
 String corpEmail = mock.emails().domain("startup.io").val();
 // Possible Output: tiptoplunge@startup.io
 ```
 
-Example to generate an email with fixed "domains":
+Example for generating an email with fixed "domains":
 
 ```java
 String domsEmail = mock.emails().domains("abc.com", "corp.org").val();
@@ -424,7 +427,7 @@ Float rangeVal = mock.floats().range(100.0f, 200.0f).val();
 
 This method is used to generate formatted `String` values. Each specified param is a named one `#{param1}`.
 
-Example of generating a random string in the form: `#{digit1}#{digit2}#{letter}#{specialChar}` (eg.: `"12a@"`):
+Example for generating a random string in the form: `#{digit1}#{digit2}#{letter}#{specialChar}` (eg.: `"12a@"`):
 
 ```java
 String temp = "{#{d1}#{d2}#{l1}#{sc}";
@@ -441,21 +444,21 @@ String result = mock.fmt(templ)
 
 This method is used to generate int numbers.
 
-Example of generating int numbers (negative or positive):
+Example for generating int numbers (negative or positive):
 
 ```java
 Integer i1 = mock.ints().val();
 // Possible Output :1952620297
 ```
 
-Example of generating int numbers bounded by a certain value: [0, bound), where bound = 10:
+Example for generating int numbers bounded by a certain value: [0, bound), where bound = 10:
 
 ```java
 Integer bounded = mock.ints().bound(10).val();
 // Possible Output: 4
 ```
 
-Example of generating int numbers in a certain open range: [10, 20):
+Example for generating int numbers in a certain open range: [10, 20):
 
 ```java
 Integer ranged = mock.ints().range(10, 20).val();
@@ -466,7 +469,7 @@ Integer ranged = mock.ints().range(10, 20).val();
 
 This method is used to generate sequence of numbers (integers). 
 
-Example of generating a seq of integers starting with 0, incrementing each time with 1.
+Example for generating a sequence of integers starting with 0, incrementing each time with 1.
 
 ```java
 IntSeq seq = mock.intSeq();
@@ -476,7 +479,7 @@ for(int i = 0; i < 20; i++) {
 // Output: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
 ```
 
-Example of generating a sequence of integers starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
+Example for generating a sequence of integers starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
 
 ```java
 IntSeq seq2 = mock.intSeq()
@@ -498,20 +501,20 @@ This method is used to generate arbitrary IPv4 addresses.
 
 An enum `IPv4Type` exists and it describes each possible IPv4 classes: `CLASS_A`, `CLASS_A_LOOPBACK`, `CLASS_A_PRIVATE`, `CLASS_B`, `CLASS_B_PRIVATE`, `CLASS_C`, `CLASS_C_PRIVATE`, `CLASS_D`, `CLASS_E`, `NO_CONSTRAINT`.
 
-Example of generating an IPv4 address that has no class constraint:
+Example for generating an IPv4 address that has no class constraint:
 
 ```java
 String ipv4 = mock.ipv4s().val();
 // Possible Output: 192.21.139.180
 ```
 
-Example of generating an IPv4 address from Class A:
+Example for generating an IPv4 address from Class A:
 ```java
 String ipClassA = mock.ipv4s().type(CLASS_A).val();
 // Possible Output: 57.253.133.154
 ```
 
-Example of generating an IPv4 address from Class A or Class B:
+Example for generating an IPv4 address from Class A or Class B:
 ```java
 String classAorB = mock.ipv4s().types(CLASS_A, CLASS_B).val();
 // Possible Output: 119.110.27.146
@@ -539,7 +542,7 @@ LocalDate localDate = mock.localDates().val();
 // Possible Output: 1984-05-10
 ```
 
-Example of generating a random date in the past between: [1987-1-30, now()):
+Example for generating a random date in the past between: [1987-1-30, now()):
 
 ```java
 LocalDate min = LocalDate.of(1987, 1, 30);
@@ -547,7 +550,7 @@ LocalDate past = mock.localDates().past(min).val();
 // Possible Output: 2014-05-30
 ```
 
-Example of generating a random date in the future between: [now(), 2020-1-1);
+Example for generating a random date in the future between: [now(), 2020-1-1);
 
 ```java
 LocalDate max = LocalDate.of(2020, 1, 1);
@@ -555,7 +558,7 @@ LocalDate future = mock.localDates().future(max).val();
 // At this moment this is the possible output: 2019-08-03
 ```
 
-Example of generating a random date between [1989-1-1, 1993-1-1):
+Example for generating a random date between [1989-1-1, 1993-1-1):
 
 ```java
 LocalDate start = LocalDate.of(1989, 1, 1);
@@ -568,21 +571,21 @@ LocalDate between = mock.localDates().between(start, stop).val();
 
 This method is used to generate int numbers.
 
-Example of generating long numbers (negative or positive):
+Example for generating long numbers (negative or positive):
 
 ```java
 Long i1 = mock.longs().val();
 // Possible Output : -2445487402940283422
 ```
 
-Example of generating long numbers bounded by a certain value: [0, bound), where bound = 10:
+Example for generating long numbers bounded by a certain value: [0, bound), where bound = 10:
 
 ```java
 Long bounded = mock.longs().bound(10).val();
 // Possible Output: 8
 ```
 
-Example of generating long numbers in a certain open range: [10, 20):
+Example for generating long numbers in a certain open range: [10, 20):
 
 ```java
 Long ranged = mock.longs().range(10, 20).val();
@@ -593,7 +596,7 @@ Long ranged = mock.longs().range(10, 20).val();
 
 This method is used to generate sequence of numbers (longs). 
 
-Example of generating a seq of integers starting with 0l, incrementing each time with 1l.
+Example for generating a sequence of longs starting with 0l, incrementing each time with 1l.
 
 ```java
 LongSeq seq = mock.longSeq();
@@ -603,7 +606,7 @@ for(int i = 0; i < 20; i++) {
 // Output: 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 
 ```
 
-Example of generating a sequence of longs starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
+Example for generating a sequence of longs starting with 5, incrementing with 2, and if it reaches a value bigger than 20 it resets back to 5:
 
 ```java
 LongSeq seq2 = mock.longSeq()
@@ -625,7 +628,7 @@ This method is used to generate arbitrary MAC addresses.
 
 The MAC address can be formatted in a few ways. Each of these ways is mapped in the enum `MACAddressFormatType`: `DASH_EVERY_2_DIGITS`, `COLON_EVERY_2_DIGITS`, `DOT_EVERY_2_DIGITS`, `DOT_EVERY_4_DIGITS`.
 
-Example of generating a MAC addresses and showing it in the format `DOT_EVERY_4_DIGITS`:
+Example for generating a MAC addresses and showing it in the format `DOT_EVERY_4_DIGITS`:
 ```java
 String mac = mock.macs().type(DOT_EVERY_4_DIGITS).val();
 // Possible Output: 9a25.aa24.df7c
@@ -639,7 +642,7 @@ For the moment this feature is not:
 - very memory efficient;
 - there aren't many options, but to generate text from Kafka's Metamorphosis.
 
-Example in generating a 512 characters text:
+Example for generating a 512 characters text:
 
 ```java
 String text = mock.markovs().size(512).type(KAFKA).val();
