@@ -34,6 +34,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
 | [`mock.names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
 | [`mock.passwords()`](#passwords) | `Passwords` | The `Passwords` class implements `MockUnitString`. It is used to generate random passwords. |
+| [`mock.reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
 | [`mock.strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
 | [`mock.urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
 | [`mock.uuids()`](#uuids) | `UUIDs` | The `UIDs` class implements `MockUnitString`. It is used to generate unique identifiers. |
@@ -754,6 +755,29 @@ Example on how to generate a medium-strength password:
 String medium = mock.passwords().type(MEDIUM).val();
 // Possible Output: cent>ilLion
 ```
+
+### `reflect()`
+
+This method is used to generate mock objects through reflection.
+
+The full method signature is: `<T> Reflect<T> reflect(Class<T> cls)` where the input parameter `cls` represents the target class.
+
+In order for this method to work the `NO_ARG Constructor` must exist and must be accessible.
+
+The fields that are modified through reflection can be private, but cannot be final.
+
+Example:
+
+```java
+Test t = mock.reflect(Test.class)
+             .field("x", mock.strings().size(10))
+             .field("y", mock.ints().range(100, 200))
+             .field("z", mock.bools())
+             .val();
+// Possible Output: Test{x='QeBhNPZNhK', y=2, z=false}
+```
+
+Note: The fields are modified directly and not through getter and setters. 
 
 ### `strings()`
 
