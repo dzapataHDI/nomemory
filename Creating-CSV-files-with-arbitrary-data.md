@@ -17,7 +17,7 @@ We will use:
 
 To group everything in a line we can use the `fmt()` function. This works similar with `String.format()` but enable developers to specify named parameters. It's also more efficient.
 
-To generate exactly 1000 lines we can keep everything in a List<String> with the `list()` method.
+To generate exactly 1000 lines we can keep everything in a `List<String>` with the `list()` method.
 
 The list will be then written in a file with the `consume()` method.
 
