@@ -18,6 +18,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.domains()`](#domains) | `Domains` | The `Domains` class implements `MockUnitString`. It is used to generate web domains like 'com', 'net', 'org' and so on. |
 | [`mock.doubles()`](#doubles) | `Doubles` | The `Doubles` class implements `MockUnitDouble`. It is used to generate double numbers. |
 | [`mock.emails()`](#emails) | `Emails` | The `Emails` class implements `MockUnitString`. It is used to generate emails. |
+| [`mock.factory()`](#factory) | `Factory` | The `Factory` class implements `MockUnit<T>`. It is used to generate mock instances using static factory methods. |
 | [`mock.files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
 | [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
 | [`mock.fmt()`](#fmt) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
@@ -378,6 +379,50 @@ Example for generating an email with fixed "domains":
 ```java
 String domsEmail = mock.emails().domains("abc.com", "corp.org").val();
 // Possible Output: funjulius@corp.org
+```
+
+### factory() 
+
+This method is used to generate mock objects using static factory methods.
+
+Example:
+
+`Test.java` class:
+
+```java
+public class Test {
+    private String x;
+    private Integer y;
+    private Boolean z;
+
+    public Test() {}
+
+    public Test(String x, Integer y, Boolean z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+//....
+```
+
+`TestFactory.class` is a class that contains static methods used to create `Test` instances.
+
+```java
+public class TestFactory {
+    public static Test buildTest(String x, Integer y, Boolean z) {
+        return new Test(x, y, z);
+    }
+// ..,
+```
+
+The `buildTest` method can be used to instantiate mock Test objects like this:
+
+```java
+Test t3 = mock.factory(Test.class, TestFactory.class)
+              .method("buildTest")
+              .params(mock.strings(), 1, true)
+              .val();
+// Possible Output: Test{x='6pmmWFiAEPW35dUj9sjcnOaglfXO7hIoyu38UK395pZ8Ns1dPJSkpz0Sg0C4IVVA', y=1, z=true}
 ```
 
 ### `files()`
