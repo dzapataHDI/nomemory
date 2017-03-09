@@ -8,6 +8,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 |:------ |:------ |:----------- |
 | [`mock.bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
 | [`mock.chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
+| [`mock.constructor()`](#constructor) | `Constructor` | The `Constructor` class implements `MockUnit<T>`. It is used to generate / mock objects by calling constructors. |
 | [`mock.creditCards()`](#creditcards) | CreditCards | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`mock.creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
 | [`mock.currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`mock.currencies().name()`](#currenciesname), [`mock.currencies().symbol()`](#currenciessymbol), [`mock.currencies().code()`](#currenciescode), [`mock.currencies().forexPair()`](#currenciesforexpair) |
 | [`mock.cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
@@ -76,6 +77,39 @@ Character digit = mock.chars().digits().val();
 Example generating a hex value:
 ```java
 Character hex = mock.chars().hex().val();
+```
+
+### `constructor()`
+
+This class is used to generate / mock objects by calling the constructor of the target class.
+
+The method signature is: `<T> Constructor<T> constructor(Class<T> cls)`.
+
+Example of generating `Test` mock objects:
+
+```java
+public class Test {
+    private String x;
+    private Integer y;
+    private Boolean z;
+
+    public Test() {}
+
+    public Test(String x, Integer y, Boolean z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+//...
+```
+
+```java
+Test t = mock.reflect(Test.class)
+             .field("x", mock.strings().size(10))
+             .field("y", mock.ints().range(100, 200))
+             .field("z", mock.bools())
+             .val();
+// Possible Output: Test{x='g4bk67PxlT', y=185, z=false}
 ```
 
 ### `creditCards()`
