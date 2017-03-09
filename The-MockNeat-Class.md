@@ -29,8 +29,6 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.longSeq()`](#longseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
 | [`mock.macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
 | [`mock.markovs()`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
-| [`mock.objs()`](#objs) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
-| [`mock.objs().constructor()`](#objsconstructor) | `Objs<T>` | The `Objs<T>` class implements `MockUnit<T>`. It is used to generate instances of class `T`. |
 | [`mock.months()`](#months) | `Months` | The `Months` class implements `MockUnitMonth`. It is used to generate month names. |
 | [`mock.money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
 | [`mock.names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
@@ -612,46 +610,6 @@ Example in generating a 512 characters text:
 ```java
 String text = mock.markovs().size(512).type(KAFKA).val();
 //Possible Output: In his efforts to muster all the things that concerned him. This meant not only in secret. For two whole days, all the harder. Across the room came in early in the doorway with a knife, he thought it was easy to see him. He had forgotten, but instead of being afraid, the charwoman stood in the direction of the bedrooms: come and give me a bit of him and seemed, at first, that was quite incapable of going backwards in a nice, gilded frame. It showed a lady fitted out with a few raisins and almonds; some chee
-```
-
-### `objs()`
-
-This method is used to mock instantiate objects.
-
-The class fields are being set through reflection directly, and not through setter(s). This means that private fields are also accessible. The instantiation of the object is done through the `NO_ARGS` constructor.
-
-There's another method on [`objs().constructor()`](#objsconstructor) that uses a public constructor for generating the object. 
-
-Example of mocking a custom class `Test` that has 3 fields:
-- String x;
-- Integer y;
-- Boolean z;
-
-```java
-Test t = mock.objs(Test.class)
-             .field("x", mock.strings().size(10))
-             .field("y", mock.ints().range(100, 200))
-             .field("z", mock.bools())
-             .val();
-// Possible Output: Test{x='Y9mGANWaY1', y=185, z=true}
-```
-
-### `objs().constructor()`
-
-This method is used to instantiate objects through public constructors.
-
-The constructor that is going to be used is going to be inferred based on the list of arguments supplied to the method.
-
-Example of mocking a custom class `Test` that has a public constructor `public Test(String x, Integer y, Boolean z)`:
-
-```java
-Test t2 = mock.objs(Test.class)
-                .constructor(
-                    mock.strings().size(10),
-                    mock.ints().range(0, 10),
-                    mock.bools())
-                .val();
-// Possible Output: Test{x='BfMT25Glvu', y=4, z=false}
 ```
 
 ### months()
