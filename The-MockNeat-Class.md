@@ -22,6 +22,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
 | [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
 | [`mock.fmt()`](#fmt) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
+| [`mock.from()`](#from) | MockUnit<T> | This method is used to return random values from a `List<T>`, `T[]` and `Class<T extends Enum<?>>`. |
 | [`mock.ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
 | [`mock.intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
@@ -484,6 +485,36 @@ String result = mock.fmt(templ)
                     .param("sc", mock.from(SPECIAL_CHARACTERS))
                     .val();
 // Possible Output: 45q'
+```
+
+### `from()`
+
+This method is used to return a random value from a pre-existing `List<T>`, `T[]` or `Class<T extends Enum<?>>`.
+The method directly returns a `MockUnit<T>`.   
+
+Example for obtaining a random value from a List<Double>:
+
+```java
+List<Double> list = asList(0.0, 0.1, 0.5, 0.6);
+Double x = m.from(list).val();
+// Possible Output: 0.5
+```
+
+Note: If the `List` is implemented as an `ArrayList` the complexity of the algorithm will be `O(1)`. If it's a `LinkedList` the complexity will be `O(n)`.
+
+Example for obtaining a random value from a String[]:
+
+```java
+String[] arr = {"abc", "acd", "adf" };
+String s = m.from(arr).val();
+// Possible Output: "adf"
+```
+
+Example for obtaining a random value from an Enum:
+
+```java
+DayOfWeek d = m.from(DayOfWeek.class).val();
+// Possible Output: d
 ```
 
 ### `ints()`
