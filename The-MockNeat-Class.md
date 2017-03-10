@@ -4,7 +4,7 @@ Each of those objects is an implementation of the interface `MockUnit<T>` which 
 
 The most important methods that can be accessed on the `MockNeat` object are:
 
-| Method | Return Object Type | Description |
+| Method | Returning Type | Description |
 |:------ |:------ |:----------- |
 | [`mock.bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
 | [`mock.chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
@@ -22,7 +22,9 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`mock.files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
 | [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
 | [`mock.fmt()`](#fmt) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
-| [`mock.from()`](#from) | MockUnit<T> | This method is used to return random values from a `List<T>`, `T[]` and `Class<T extends Enum<?>>`. |
+| [`mock.from()`](#from) | `MockUnit<T>` | This method is used to return random values from a `List<T>`, `T[]` and `Class<T extends Enum<?>>`. |
+| [`mock.fromKeys()`](#fromkeys) | `MockUnit<T>` | This method is used to return a random key from a `Map<T, ?>`. |
+| [`mock.fromValues()`](#fromvalues) | `MockUnit<T>` | This method is used to return a random value from a `Map<T, ?>`. |
 | [`mock.ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
 | [`mock.intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
@@ -516,6 +518,18 @@ Example for obtaining a random value from an Enum:
 DayOfWeek d = m.from(DayOfWeek.class).val();
 // Possible Output: d
 ```
+
+### `fromKeys()`
+
+This method is used to return a random key from a `Map`. The keys of the map are copied internally into an array, and afterwards the next key is randomly picked from there. 
+
+The copying of the key elements is an expensive operation so it's not recommended to use this method, especially for large Maps.
+
+### `fromValues()`
+
+This method is used to return a random value from a `Map`. The values of the map are copied internally into an array, and afterwards the next value is randomly picked from there.
+
+The copying of the value elements is an expensive operation so it's not recommended to use this method, especially for large Maps.
 
 ### `ints()`
 
