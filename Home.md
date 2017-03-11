@@ -2,7 +2,7 @@ MockNeat is a **Java 8+** library that facilitates the generation of arbitrary t
 
 **MockNeat** helps you create: 
 
-- arbitrary values for the basic java types (*see*: [`ints()`](MockNeat#ints), [`longs()`](MockNeat#longs), [`doubles()`](MockNeat#doubles), [`floats()`](MockNeat#floats), [`chars()`](MockNeat#chars), [`bools()`](MockNeat#bools), [`strings()`](MockNeat#strings)); 
+- arbitrary values for the basic java types: [`ints()`](MockNeat#ints), [`longs()`](MockNeat#longs), [`doubles()`](MockNeat#doubles), [`floats()`](MockNeat#floats), [`chars()`](MockNeat#chars), [`bools()`](MockNeat#bools), [`strings()`](MockNeat#strings); 
 
 - arbitrary time related information (*see*: [`days()`](MockNeat#days), [`months()`](MockNeat#months), [`localDates()`](MockNeat#localdates));
 
