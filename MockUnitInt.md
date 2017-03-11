@@ -48,4 +48,4 @@ int[] array = mock.ints()
 
 ### `intStream()` 
 
-Can be used to obtain a more specific`IntStream` instead of a `Stream<Integer>`, which normally can be obtain with the [`stream()`](MockUnit#stream) from `MockUnit<Integer>`.
+Can be used to obtain a more specific `IntStream` instead of a `Stream<Integer>`, which normally can be obtain with the [`stream()`](MockUnit#stream) from `MockUnit<Integer>`.
