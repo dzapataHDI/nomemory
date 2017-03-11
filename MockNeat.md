@@ -2,7 +2,7 @@
 
 The `MockNeat` is composed by a set of objects that help us generate arbitrary data.
 
-Each of those objects is an implementation of the interface [`MockUnit<T>`](#MockUnit) which is described in great detail in the next section. 
+Each of those objects is an implementation of the interface [`MockUnit<T>`](MockUnits) which is described in great detail in the next section. 
 
 The most important methods that can be accessed on the `MockNeat` object are:
 
