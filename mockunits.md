@@ -30,7 +30,7 @@ int integer = intMockUnit.val();
 int integer2 = intMockUnit.val()
 ```
 
-In the same time each `MockUnit<T>` is "smart" enough to generate "children" MockUnits that inherit the behaviour of their parent, but adding some particular behaviour or their own. 
+In the same time each `MockUnit<T>` is "smart" enough to generate "children" units that inherit the "inner" behaviour of their parent, but adding some particular behaviour or their own. 
 
 With the `intMockUnit` from the previous example we can "generate" another `MockUnit` that has the ability to generate lists of integers (`List<Integer>`) in the same interval [0, 100):
 
