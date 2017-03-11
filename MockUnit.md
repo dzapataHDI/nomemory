@@ -1,34 +1,76 @@
-# Generic Mock Units
+## Generic `MockUnit<T>`
+
+This is the main interface. There are also type-specific interfaces that extends `MockUnit<T>` but contain more useful methods for processing their internal types: `MockUnitString`, `MockUnitInt`, `MockUnitDouble`, etc.
+
+The interface contains useful methods to manipulate and obtain data:
+
+| Method | Return | Description |
+|:-------|:-------|:------------|
+| [`array()`](#array) | `MockUnit<T[]>` | This method is used to return an array of arbitrary values of type `T`.|
+| [`collection()`](#collection) | `MockUnit<Collection<T>>` | This method is used to return an arbitrary `Collection<T>`.|
+| [`consume()`](#consume) | `void` | This method is used to consume the results of a MockUnit<T>. |
+| [`list()`](#list) | `MockUnit<List<T>>` | This method is used to generate a `MockUnit<List<T>>`. |
+| [`map()`](#map) | `MockUnit<R>` | This method is used to translate a `MockUnit<T>` into a `MockUnit<R>`.|
+| [`mapKeys()`](#mapkeys) | `MockUnit<T, R>` | This method is used to generate a `MockUnit<Map<T, R>>` from a `MockUnit<T>`.|
+| [`mapToDouble()`](#maptodouble) | `MockUnitDouble` | This method is used to translate a `MockUnit<T>` into a `MockUnitDouble`. |
+| [`mapToInt()`](#maptoint) | `MockUnitInt` | This method is used to translate a `MockUnit<T>` into a `MockUnitInt`.|
+| [`mapToLong()`](#maptolong) | `MockUnitLong` | This method is used to translate a `MockUnit<T>` into a `MockUnitLong`.|
+| [`mapToString()`](#maptostring) | `MockUnitString` | This method is used to translate a `MockUnit<T>` into a MockUnitString. |
+| [`mapVals()`](#mapvals) | `MockUnit<Map<R, T>>` | This method is used to generate a `MockUnit<Map<R, T>>` from a `MockUnit<T>`.|
+| [`set()`](#set) | `MockUnit<Set<T>>` | This method is used to generate a `MockUnit<Set<T>>`.|
+| [`stream()`](#stream) | `MockUnit<Stream<T>> | This method is sued to generate a `MockUnit<Stream<T>>`.|
+| [`val()`](#val) | `T` | This method is used to obtain an individual value `T` from a `MockUnit<T>`.|
+| [`valStr()`](#valstr) | `String` | This method is used to generate a String from the `MockUnit<T>`.| 
 
 
-is the generic interface that contains useful methods to manipulate data. It allows us to generate not only  individual values but also collections (list, sets), maps, streams and arrays. 
+### `array()`
 
-To better understand the power the MockUnits let's follow a simple example in which we want to generate `Boolean` values with a 35.25% probability of obtaining `true`.
+This method is used to generate a generic array `T[]` from a `MockUnit<T>`.
 
-For this we will create first a `MockUnit<Boolean>` object by calling the `bools()` method on `MockNeat`:
+Example generating a `String[]` with size 100, where each `String` value is a first name:
 
 ```java
-// Re-using a pre-existent ThreadLocal MockNeat Object
-MockNeat mock = MockNeat.threadLocal();
-// Creating our first MockUnit<Boolean>
-MockUnit<Boolean> boolUnit = mock.bools();
+String[] names = m.names()
+                    .first()
+                    .array(String.class, 100)
+                    .val();
 ```
 
-We will want to go further and put a constraint on our `MockUnit<Boolean>` object. 
 
-We will add a new condition on our object by calling the `probability(double)` method. 
+### `collection()`
 
-This methods "recursively" returns a new instance of `MockUnit<Boolean>` but internally the boolean generating method will behave accordingly to our constraint.
+This method is used to generate a `Collection<T>` from a `MockUnit<T>`.
+
+The collection needs to have a public NO_ARGS constructor.
+
+Example for generating a `Vector<Boolean>` with size 100, where each `Boolean` value has a 35.5% probability of being true:
 
 ```java
-MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
+Collection<Boolean> vector = mock.bools()
+                                 .probability(35.50)
+                                 .collection(Vector.class, 100)
+                                 .val();
 ```
 
-At this point we have created the "generation unit" of Booleans and all we need to do is make use of it, by calling the default `MockUnit<T>` methods:
+### `consume()`
 
-## `val()`
+This method is used to "consume" the values that are generated from a `MockUnit<T>`:
 
-This method returns a single `<T>` value.
+Example of printing to `stdout` a `List<String>` where each entry is an URL:
+```java
+m.urls().list(100).consume(System.out::println);
+// Possible Output: 
+// [http://www.frenziedchi.io, http://www.eyelinersbarry.gov, ..., http://www.sphygmicmillard.com]
+```
+
+### `list()`
+
+
+### `val()`
+
+This method is used to return a single `<T>` value from the `MockUnit<T>`.
+
+Example for generating a single boolean value that has a 35.5% probability of being true:
 
 ```java
 MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
@@ -41,84 +83,24 @@ We can write all of the above simpler without keeping the reference:
 Boolean val = mock.bools().probability(35.50).val();
 ```
 
-Think of the `val()` method as the final step we doing before obtaining our values. This represents the "EXIT POINT" of a `MockUnit` chain. 
+### `valStr()`
 
-## `valStr()`
+This method works exactly like `val()` but instead of returning directly it's value, it first calls `toString` on the object. 
 
-This method works exactly like `val()` but instead of returning directly it's value, it first calls `toString` on the object. If the generated object is `null`, it should return an empty String.
-
-## `list()`
-
-Let's say we want to re-use the same MockUnit<Boolean> but this time we generate a `List<Boolean>` values, while keeping the same constraints. The List implementation is `LinkedList`, and it's size is `100`:
+By default, if the generated object is `null`, it should return an empty String.
 
 ```java
-MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
-List<Boolean> list = boolUnit.list(LinkedList.class, 100).val();
-``` 
-
-The `list` method will return a new `RandUnit` but this time the returning type will be `RandUnit<List<Boolean>>`. 
-It might look a little bit confusing but we can re-write the above code like this:
-
-```java
-MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
-MockUnit<List<Boolean>> listBoolUnit = boolUnit.list(LinkedList.class, 100);
-List<Boolean> list = listBoolUnit.val();
+String alwaysTrue = m.bools().probability(100.0).valStr();
+// Possible Output: "true"
 ```
 
-If we stretch our minds even further we can generate a `List<List<Boolean>>` by creating the associated `MockUnit<List<List<Boolean>>>`. 
+If the generated object is `null`, we can't specify an alternative `String` value in this case:
 
 ```java
-MockUnit<Boolean> boolUnit = mock.bools().probability(35.50);
-MockUnit<List<Boolean>> listBoolUnit = boolUnit.list(LinkedList.class, 100);
-MockUnit<List<List<Boolean>>> listListBoolUnit = listBoolUnit.list(LinkedList.class, 100);
-List<List<Boolean>> list = listListBoolUnit.val();
-```
-
-And we can go like this forever... well not exactly because after a few thousand `List<List<List....<Boolean>..>`  we will eventually receive a `StackOverFlow` exception.
-
-For making the code look more clean, there's no reason why we should keep references of `MockUnit`s all the time.  
-We can simply start chaining our methods.
-
-```java
-List<Boolean> list = mock.bools().probability(35.50).list(100).val();
-List<List<Boolean>> listList = mock.bools().probability(35.50).list(100).list(100).val();
-List<List<List<Boolean>>> listListList = mock.bools().probability(35.50).list(100).list(100).list(100).val();
-// Show can go on (if there's a good reason...)
-```
-
-_Note: If we don't specify the implementing List type, by default we will return an `ArrayList.class`_
-
-## `set()`
-
-This method works like the `list` one, with one exception: given the nature of `Set` we cannot guarantee a fixed size. We will generate `N` elements and add them into the `Set`, but if the elements are not unique, the `Set` will only keep what's possible. Duplicates won't be permitted.
-
-Let's do a small exercise for fun. 
-
-> We will generate 3 Booleans with a probability of returning `true` being 5%, and afterwards we put all the values a HashSet. 
-
-> Let's see how many iterations we are going to have before we obtaining a Set with both `true` and `false` in it.
-
-```java
-Set<Boolean> set;
-for(int i = 0 ;; i++) {
-    set = mock.bools().probability(5.0).set(3).val();
-    if (set.size()==2) {
-        System.out.println("Number of iterations: " + i);
-        break;
-    }
-}
-```
-
-After running the snippet the value obtained was `9`.
-
-### `collection()`
-
-```java
-Collection<Boolean> vector = mock.bools()
-                                 .probability(35.50)
-                                 .collection(Vector.class, 100)
-                                 .val();
-```
+String nullll = m.from(new String[]{ null, null, null})
+                 .valStr("NULLLL");
+// Output: "NULLLL"
+````
 
 ## `mapKeys()`
 
