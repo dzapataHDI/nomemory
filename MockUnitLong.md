@@ -46,6 +46,6 @@ long[] array = mock.longs()
                    .val();
 ```
 
-### `intStream()` 
+### `longStream()` 
 
 Can be used to obtain a more specific `LongStream` instead of a `Stream<Long>`, which normally can be obtain with the [`stream()`](MockUnit#stream) from `MockUnit<Long>`.
