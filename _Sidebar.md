@@ -1,8 +1,8 @@
 1. [Home](https://github.com/nomemory/mockneat/wiki)
-* [Creating a MockNeat Objects](https://github.com/nomemory/mockneat/wiki/Creating--a-MockNeat-object)
-* [The MockNeat Class](https://github.com/nomemory/mockneat/wiki/The-MockNeat-Class)
-* [Introducing MockUnits](https://github.com/nomemory/mockneat/wiki/mockunits)
-      * [MockUnit](https://github.com/nomemory/mockneat/wiki/MockUnit)
+* [Creating a MockNeat Objects](Creating--a-MockNeat-object)
+* [The MockNeat Class](The-MockNeat-Class)
+* [Introducing MockUnits](mockunits)
+      * [MockUnit](MockUnit)
       * [MockUnitInt](MockUnitInt)
       * [Custom MockUnit(s)](https://github.com/nomemory/mockneat/wiki/Custom-MockUnit(s))
 * Real World Examples
