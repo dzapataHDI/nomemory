@@ -1,4 +1,4 @@
-# Introducing MockUnits
+# Introducing `MockUnit<T>`s.
 
 `MockUnit<T>` is a `@FunctionalInterface` that has exactly one non-default abstract method:
 
