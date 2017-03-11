@@ -19,10 +19,10 @@ For the moment there are 8 `MockUnit` types including the generic `MockUnit<T>`:
 
 | `MockUnit` Type | Description |
 |:----------------|:------------|
-|[`MockUnit<T>`](https://github.com/nomemory/mockneat/wiki/MockUnit)| This is the generic interface. It contains most of the common methods for data manipulation. |
+|[`MockUnit<T>`](MockUnit)| This is the generic interface. It contains most of the common methods for data manipulation. |
 |[`MoclUnitDays`](none) | This interface extends `MockUnit<DayOfWeek>` and it contains additional methods for processing `java.time.DayOfWeek` objects. |
 |[`MockUnitDouble`](none) | This interface extends `MockUnit<Double>` and it contains additional methods for manipulating `java.lang.Double` objects. |
-|[`MockUnitInt`](https://github.com/nomemory/mockneat/wiki/MockUnitInt) | This interface extends `MockUnit<Integer>` and it contains additional methods for manipulating `java.lang.Integer` objects. |
+|[`MockUnitInt`](MockUnitInt) | This interface extends `MockUnit<Integer>` and it contains additional methods for manipulating `java.lang.Integer` objects. |
 |[`MockUnitLocalDate`](none) | This interface extends `MockUnit<LocalDate>` and it contains additional methods for manipulating `java.time.LocalDate` objects. |
 |[`MockUnitLong`](none) | This interface extends `MockUnit<Long>` and it contains additional methods for manipulating `java.lang.Long` objects. |
 |[`MockUnitMonth`](none) | This interface extends `MockUnit<Month>` and it contains additional methods for manipulating `java.time.Month` objects. |
@@ -77,8 +77,8 @@ Breaking the previous example:
 
 | Step | Description |
 |:-------- |:------- |
-| `ints()` | Returns a "dumb" `MockUnit<Integer>` that has the ability to generate integers (with no constraint). |
-|`range()` | Returns a newer & smarter `MockUnit`, that just like the previous works with Integers. The only difference is that this time the generated values are in the interval `[0, 100)` |
-|`array()` | Returns a `MockUnit<Integer[]>` that will be able to generate arrays of integers in the interval `[0, 100)` |
-|`list()` | Returns a `MockUnit<List<Integer[]>>` that will be able to generate lists of arrays of integers in the interval `[0, 100)` |
-|`val()` | Closes the cycle and gets the actual value, which is a `List<Integer[]>` |
+| `[ints()](MockNeat#ints)` | Returns a "dumb" `MockUnit<Integer>` that has the ability to generate integers (with no constraint). |
+|`range()(MockNeat#ints)` | Returns a newer & smarter `MockUnit`, that just like the previous works with Integers. The only difference is that this time the generated values are in the interval `[0, 100)` |
+|`array()(MockUnit#array)` | Returns a `MockUnit<Integer[]>` that will be able to generate arrays of integers in the interval `[0, 100)` |
+|`list()(MockUnit#list)` | Returns a `MockUnit<List<Integer[]>>` that will be able to generate lists of arrays of integers in the interval `[0, 100)` |
+|`val()(MockUnit#val)` | Closes the cycle and gets the actual value, which is a `List<Integer[]>` |
