@@ -5,6 +5,6 @@
       * [MockUnit](MockUnit)
       * [MockUnitDays](MockUnitDays)
       * [MockUnitInt](MockUnitInt)
-* [Creating Custom MockUnit(s)](https://github.com/nomemory/mockneat/wiki/Custom-MockUnit(s))
+* [Creating Custom MockUnit(s)](CustomMockUnits)
 * Real World Examples
       * [Creating CSV files with arbitrary data](https://github.com/nomemory/mockneat/wiki/Creating-CSV-files-with-arbitrary-data)
