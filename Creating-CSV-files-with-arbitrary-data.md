@@ -9,13 +9,13 @@ The file should contain 1000 lines.
 *Solution:*
 
 We will use:
-- `longSeq()` for generating line ids;
-- `names().first()` for generating first names;
-- `names().last()` for generating last names;
-- `emails()` for generating emails;
-- `money()` for generating salaries in EURO;
+- [`longSeq()`](MockNeat#longseq) for generating line ids;
+- [`names().first()`](MockNeat#names) for generating first names;
+- [`names().last()`](MockNeat#names) for generating last names;
+- [`emails()`](MockNeat#emails) for generating emails;
+- [`money()`](MockNeat#money) for generating salaries in EURO;
 
-To group everything in a line we can use the `fmt()` function. This works similar with `String.format()` but enable developers to specify named parameters. It's also more efficient.
+To group everything in a line we can use the [`fmt()`](MockNeat#fmt) function. This works similar with `String.format()` but enable developers to specify named parameters. It's also more efficient.
 
 To generate exactly 1000 lines we can keep everything in a `List<String>` with the `list()` method.
 
@@ -75,4 +75,4 @@ The result:
 999,Autumn,Urso,unpraisedsoots@msn.com,4.701,16 €
 ```
 
-Note: You can additionaly use the `escapeCsv()` method from the `MockUnitString` functional interface to be 100% sure your strings are correctly escaped for the CSV format.
+Note: You can additionaly use the [`escapeCsv()`](MockUnitString#escapeCsv) method from the [`MockUnitString`](MockUnitString) functional interface to be 100% sure your strings are correctly escaped for the CSV format.
