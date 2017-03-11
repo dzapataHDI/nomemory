@@ -22,7 +22,7 @@ For the moment there are 8 `MockUnit` types including the generic `MockUnit<T>`:
 |[`MockUnit<T>`](https://github.com/nomemory/mockneat/wiki/MockUnit)| This is the generic interface. It contains most of the common methods for data manipulation. |
 |[`MoclUnitDays`](none) | This interface extends `MockUnit<DayOfWeek>` and it contains additional methods for processing `java.time.DayOfWeek` objects. |
 |[`MockUnitDouble`](none) | This interface extends `MockUnit<Double>` and it contains additional methods for manipulating `java.lang.Double` objects. |
-|[`MockUnitInt`](none) | This interface extends `MockUnit<Integer>` and it contains additional methods for manipulating `java.lang.Integer` objects. |
+|[`MockUnitInt`](https://github.com/nomemory/mockneat/wiki/MockUnitInt) | This interface extends `MockUnit<Integer>` and it contains additional methods for manipulating `java.lang.Integer` objects. |
 |[`MockUnitLocalDate`](none) | This interface extends `MockUnit<LocalDate>` and it contains additional methods for manipulating `java.time.LocalDate` objects. |
 |[`MockUnitLong`](none) | This interface extends `MockUnit<Long>` and it contains additional methods for manipulating `java.lang.Long` objects. |
 |[`MockUnitMonth`](none) | This interface extends `MockUnit<Month>` and it contains additional methods for manipulating `java.time.Month` objects. |
