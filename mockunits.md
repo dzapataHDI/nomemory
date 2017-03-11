@@ -45,7 +45,9 @@ List<Integer> list = listMockUnit.val();
 List<Integer> list2 = listMockUnit.val();
 ```
 
-Without keeping the intermediary references we can have "incremental chains" of MockUnits that are passing their behaviour further and further. Usually (with some exceptions) a chain like this is "lazy", and no value is generated until calling a "closing" method, like `val()` example:
+Without keeping the intermediary references we can write "incremental chains" of MockUnits that are passing their behaviour further and further. 
+
+Usually (with some exceptions) a chain like this is "lazy", and no value is generated until calling a "closing" method, like `val()`:
 
 ```java
 List<Integer[]> listArray = m.ints() 
@@ -60,7 +62,7 @@ Breaking the previous example:
 | Step | Description |
 |:-------- |:------- |
 | `ints()` | Returns a "dumb" `MockUnit<Integer>` that has the ability to generate integers (with no constraint). |
-|`range()` | Returns a newer&smarter `MockUnit`, that just like the previous works with Integers, but with the constraint that the values generated are in the interval `[0, 100)` |
+|`range()` | Returns a newer & smarter `MockUnit`, that just like the previous works with Integers. The only difference is that this time the generated values are in the interval `[0, 100)` |
 |`array()` | Returns a `MockUnit<Integer[]>` that will be able to generate arrays of integers in the interval `[0, 100)` |
 |`list()` | Returns a `MockUnit<List<Integer[]>>` that will be able to generate lists of arrays of integers in the interval `[0, 100)` |
 |`val()` | Closes the cycle and gets the actual value, which is a `List<Integer[]>` |
