@@ -16,7 +16,7 @@ Methods that are particular to `MockUnitInt`:
 |:-------|:------------|
 | [`arrayPrimitive()`](#arrayprimitive) | Generates a `MockUnit<int[]>` from a `MockUnitInt`. |
 | [`array()`](#array) | Generates a `MockUnit<Integer[]>` from a `MockUnitInt`. |
-| [`intStream()`](#instream) | Generates a `MockUnit<IntStream>` from a `MockUnitInt`. |
+| [`intStream()`](#intstream) | Generates a `MockUnit<IntStream>` from a `MockUnitInt`. |
 
 ## `array()`
 
@@ -33,7 +33,7 @@ Integer[] array = mock.ints()
                       .val();
 ````
 
-### `arrayPrimitve()`
+### `arrayPrimitive()`
 
 This method is used to generate a `MockUnit<int[]>` from a `MockUnitInt`.
 
