@@ -17,7 +17,7 @@ The methods of the interface are:
 | [`mapVals()`](#mapvals) | `MockUnit<Map<R, T>>` | This method is used to generate a `MockUnit<Map<R, T>>` from a `MockUnit<T>`.|
 | [`set()`](#set) | `MockUnit<Set<T>>` | This method is used to generate a `MockUnit<Set<T>>` from a `MockUnit<T>`.|
 | [`stream()`](#stream) | `MockUnit<Stream<T>>` | This method is sued to generate a `MockUnit<Stream<T>>`.|
-| `supplier()` | This is the abstract, non-default method of the interface. |
+| `supplier()` | `Supplier<T>` | This is the abstract, non-default method of the interface. Once it's implemented it's being called by the rest of the methods to generate data. |
 | [`val()`](#val) | `T` | This method is used to obtain an individual value `T` from a `MockUnit<T>`.|
 | [`valStr()`](#valstr) | `String` | This method is used to generate a String from the `MockUnit<T>`.| 
 
