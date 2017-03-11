@@ -181,7 +181,53 @@ Long sum = muList.mapToLong(list -> list.stream()
 
 This method is used to translate a `MockUnit<T>` into a more specific `MockUnitString`.
 
+If we use `mapToString()` without any parameter then `toString()` gets called directly on the generated object.
 
+Otherwise we can use `mapToString(Function<T, String>)` and perform additional processing in the function.
+
+Example for generating integer values as Strings:
+
+```java
+MockUnitString mus = m.ints().mapToString();
+String integer = mus.val();
+```
+
+Example for generating a `MockUnitString` from a `MockUnitInt` that returns "odd" or "even" depending on the numbers generated:
+
+```java
+MockUnitString oddOrEven = m.ints().mapToString(i -> i%2==0 ? "even" : "odd");
+List<String> oddOrEvenList = oddOrEven.list(10).val();
+// Possible Output: [odd, even, even, odd, odd, even, even, odd, odd, odd]
+```
+
+### `mapVals()`
+
+This method allows us to translate a `MockUnit<T>` into a `MockUnit<Map<T, R>>`.
+
+The values can be obtained from:
+- Another `MockUnit`;
+- From a `Supplier<K>`;
+- From an `Iterable<K>`;
+- From an generic array `K[]`;
+- From primitives arrays: `int[]`, `double[]`, `long[]`;
+
+Example for generating a `Map<Boolean, Integer>` from an array of `int[]`:
+
+```java
+int[] values = { 100, 200, 300, 400, 500, 600 };
+Map<Boolean, Integer> map = mock.bools().mapKeys(keys).val();
+// Possible Output: {false=500, true=600}
+``` 
+
+Because the `Map` cannot have duplicate keys, the result will always contain 2 keys (true, false).
+
+Example for generating a `Map<Boolean, Long>` from `Supplier<Long>`
+
+```java
+Supplier<Long> longSupplier = () -> System.currentTimeMillis();
+Map<Boolean, Long> map = mock.bools().mapVals(10, longSupplier).val();
+// Possible Output: {false=1487951761873, true=1487951761873}
+```
 
 ### `val()`
 
@@ -219,54 +265,13 @@ String nullll = m.from(new String[]{ null, null, null})
 // Output: "NULLLL"
 ````
 
-## `mapVals()`
+### `stream()`
 
-This allows us to build `Map<T,R>`s, mapping our MockUnit generated as keys for a given set of values.
+This method is used to obtain a `MockUnit<Stream<T>>` from a `MockUnit<T>`.
 
-The method allow us to:
-- specify the number of elements in the map;
-- specify the map implementation;
-
-The values can be obtained from:
-- Another `MockUnit`;
-- From a `Supplier<K>`;
-- From an `Iterable<K>`;
-- From an generic array `K[]`;
-- From primitives arrays: `int[]`, `double[]`, `long[]`;
-
-**Example 1** Obtaining a `Map<Boolean, Integer>` from an array of `int[]`:
-
-```java
-int[] values = { 100, 200, 300, 400, 500, 600 };
-Map<Boolean, Integer> map = mock.bools().mapKeys(keys).val();
-``` 
-
-Possible output:
-```
-{false=500, true=600}
-```
-
-PS: It's normal to have only two keys `false`/`true`.
-
-**Example 2** Obtaining a `Map<Boolean, Long>` from another `Supplier<Long>`
-
-```java
-Supplier<Long> longSupplier = () -> System.currentTimeMillis();
-Map<Boolean, Long> map = mock.bools().mapVals(10, longSupplier).val();
-```
-
-Possible output:
-```
-{false=1487951761873, true=1487951761873}
-```
-
-## `stream()`
-
-Instead of obtaining a `Collection`, `List`, `Set` or a `Map` we can use the `MockUnit<Boolean>` to generate a `Stream<Boolean>`:
+Example for generating an infinite `Stream<Boolean>`:
 
 ```java
 Stream<Boolean> stream = mock.bools().stream().val();
 ```
-
-The Stream is infinite. 
 
