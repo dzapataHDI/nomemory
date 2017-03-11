@@ -1,3 +1,5 @@
+# The `MockNeat` class
+
 The `MockNeat` is composed by a set of objects that help us generate arbitrary data.
 
 Each of those objects is an implementation of the interface `MockUnit<T>` which is described in great detail in the next section. 
