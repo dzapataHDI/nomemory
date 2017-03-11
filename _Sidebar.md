@@ -3,6 +3,7 @@
 * [The MockNeat Class](MockNeat)
 * [Introducing MockUnits](MockUnits)
       * [MockUnit](MockUnit)
+      * [MockUnitDays](MockUnitDays)
       * [MockUnitInt](MockUnitInt)
       * [Custom MockUnit(s)](https://github.com/nomemory/mockneat/wiki/Custom-MockUnit(s))
 * Real World Examples
