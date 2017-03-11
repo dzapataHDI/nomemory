@@ -1,4 +1,4 @@
-# [MockUnitInt](#mockunitint)
+# MockUnitInt
 
 The `MockUnitInt` interface extends `MockUnit<Integer>`. 
 
@@ -6,9 +6,9 @@ The `MockUnitInt` interface extends `MockUnit<Integer>`.
 public interface `MockUnitInt` extends MockUnit<Integer>
 ```
 
-This means that it "inherits" all the methods from `MockUnit<Integer>`.
+This means that it "inherits" all the methods from [`MockUnit<Integer>`](MockUnit)
 
-The easiest way to obtain a `MockUnitInt` is to call the `ints()` method from `MockNeat` or to call the `mapToInt()` method documented above on an existing `MockUnit<T>`.
+The easiest way to obtain a `MockUnitInt` is to call the [`ints()`](MockNeat#ints) method from `MockNeat` or to call the [`mapToInt()`](MockUnit#maptoint) method.
 
 **Example:** 
 ```java
