@@ -1,11 +1,5 @@
 # Generic Mock Units
 
-```java
-@FunctionalInterface
-public interface MockUnit<T> {
-...
-}
-```
 
 is the generic interface that contains useful methods to manipulate data. It allows us to generate not only  individual values but also collections (list, sets), maps, streams and arrays. 
 
