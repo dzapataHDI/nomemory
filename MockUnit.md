@@ -14,8 +14,8 @@
 | [`mapToLong()`](#maptolong) | `MockUnitLong` | This method is used to translate a `MockUnit<T>` into a `MockUnitLong`.|
 | [`mapToString()`](#maptostring) | `MockUnitString` | This method is used to translate a `MockUnit<T>` into a MockUnitString. |
 | [`mapVals()`](#mapvals) | `MockUnit<Map<R, T>>` | This method is used to generate a `MockUnit<Map<R, T>>` from a `MockUnit<T>`.|
-| [`set()`](#set) | `MockUnit<Set<T>>` | This method is used to generate a `MockUnit<Set<T>>`.|
-| [`stream()`](#stream) | `MockUnit<Stream<T>> | This method is sued to generate a `MockUnit<Stream<T>>`.|
+| [`set()`](#set) | `MockUnit<Set<T>>` | This method is used to generate a `MockUnit<Set<T>>` from a `MockUnit<T>`.|
+| [`stream()`](#stream) | `MockUnit<Stream<T>>` | This method is sued to generate a `MockUnit<Stream<T>>`.|
 | [`val()`](#val) | `T` | This method is used to obtain an individual value `T` from a `MockUnit<T>`.|
 | [`valStr()`](#valstr) | `String` | This method is used to generate a String from the `MockUnit<T>`.| 
 
@@ -264,6 +264,18 @@ String nullll = m.from(new String[]{ null, null, null})
                  .valStr("NULLLL");
 // Output: "NULLLL"
 ````
+
+### `set()`
+
+This method is used to obtain a `MockUnit<Set<T>>` from a `MockUnit<T>`.
+
+Example for generating a `Set<Integer>`:
+
+```java
+Set<Integer> setInt = m.ints().set(100).val();
+```
+
+*Note:* 100 in our case doesn't necessarily represents the size of the `Set`. If the random numbers are not unique the `Set` may have less than 100 elements.
 
 ### `stream()`
 
