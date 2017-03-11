@@ -53,9 +53,12 @@ Collection<Boolean> vector = mock.bools()
 
 ### `consume()`
 
-This method is used to "consume" the values that are generated from a `MockUnit<T>`:
+This method is used to "consume" the values that are generated from a `MockUnit<T>`.
 
-Example of printing to `stdout` a `List<String>` where each entry is an URL:
+The input parameter of `consume()` is a `Consumer<T>`.
+
+Example for printing to `stdout` a `List<String>` where each entry is an URL:
+
 ```java
 m.urls().list(100).consume(System.out::println);
 // Possible Output: 
