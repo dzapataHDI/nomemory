@@ -20,13 +20,13 @@ For the moment there are 8 `MockUnit` types including the generic `MockUnit<T>`:
 | `MockUnit` Type | Description |
 |:----------------|:------------|
 |[`MockUnit<T>`](MockUnit)| This is the generic interface. It contains most of the common methods for data manipulation. |
-|[`MoclUnitDays`](none) | This interface extends `MockUnit<DayOfWeek>` and it contains additional methods for processing `java.time.DayOfWeek` objects. |
-|[`MockUnitDouble`](none) | This interface extends `MockUnit<Double>` and it contains additional methods for manipulating `java.lang.Double` objects. |
+|[`MockUnitDays`](MockUnitDays) | This interface extends `MockUnit<DayOfWeek>` and it contains additional methods for processing `java.time.DayOfWeek` objects. |
+|[`MockUnitDouble`](MockUnitDouble) | This interface extends `MockUnit<Double>` and it contains additional methods for manipulating `java.lang.Double` objects. |
 |[`MockUnitInt`](MockUnitInt) | This interface extends `MockUnit<Integer>` and it contains additional methods for manipulating `java.lang.Integer` objects. |
-|[`MockUnitLocalDate`](none) | This interface extends `MockUnit<LocalDate>` and it contains additional methods for manipulating `java.time.LocalDate` objects. |
-|[`MockUnitLong`](none) | This interface extends `MockUnit<Long>` and it contains additional methods for manipulating `java.lang.Long` objects. |
-|[`MockUnitMonth`](none) | This interface extends `MockUnit<Month>` and it contains additional methods for manipulating `java.time.Month` objects. |
-|[`MockUnitString`](none) | This interface extends `MockUnit<String>` and it contains additional methods for manipulating `java.lang.String` objects. |
+|[`MockUnitLocalDate`](MockUnitLocalDate) | This interface extends `MockUnit<LocalDate>` and it contains additional methods for manipulating `java.time.LocalDate` objects. |
+|[`MockUnitLong`](MockUnitLong) | This interface extends `MockUnit<Long>` and it contains additional methods for manipulating `java.lang.Long` objects. |
+|[`MockUnitMonth`](MockUnitMonth) | This interface extends `MockUnit<Month>` and it contains additional methods for manipulating `java.time.Month` objects. |
+|[`MockUnitString`](MockUnitString) | This interface extends `MockUnit<String>` and it contains additional methods for manipulating `java.lang.String` objects. |
 
 
 # Don't forget - Everything is a `MockUnit`
