@@ -1,8 +1,5 @@
 ## Generic `MockUnit<T>`
 
-This is the main interface. There are also type-specific interfaces that extends `MockUnit<T>` but contain more useful methods for processing their internal types: `MockUnitString`, `MockUnitInt`, `MockUnitDouble`, etc.
-
-The interface contains useful methods to manipulate and obtain data:
 
 | Method | Return | Description |
 |:-------|:-------|:------------|
