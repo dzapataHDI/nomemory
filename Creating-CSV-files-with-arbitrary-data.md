@@ -1,4 +1,4 @@
-*Scenario:* 
+## Scenario 
 
 Create a CVS file with arbitrary data that has the following structure:
 
@@ -6,7 +6,7 @@ Create a CVS file with arbitrary data that has the following structure:
 
 The file should contain 1000 lines.
 
-*Solution:*
+## Solution
 
 We will use:
 - [`longSeq()`](MockNeat#longseq) for generating line ids;
