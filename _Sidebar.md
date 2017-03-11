@@ -4,6 +4,7 @@
 * [Introducing MockUnits](MockUnits)
       * [MockUnit](MockUnit)
       * [MockUnitDays](MockUnitDays)
+      * [MockUnitDouble](MockUnitDouble)
       * [MockUnitInt](MockUnitInt)
 * [Creating Custom MockUnit(s)](CustomMockUnits)
 * Real World Examples
