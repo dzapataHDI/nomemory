@@ -3,7 +3,7 @@
 The `MockUnitLong` interface extends `MockUnit<Long>`. 
 
 ```java
-public interface `MockUnitLong` extends MockUnit<Long>
+public interface MockUnitLong extends MockUnit<Long>
 ```
 
 This means that it "inherits" all the methods from [`MockUnit<Long>`](MockUnit)
