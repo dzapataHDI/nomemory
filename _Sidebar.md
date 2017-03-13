@@ -1,7 +1,7 @@
 1. [Home](https://github.com/nomemory/mockneat/wiki)
 * [Creating a MockNeat Objects](Creating--a-MockNeat-object)
 * [The MockNeat Class](MockNeat)
-* [Introducing MockUnits](MockUnits)
+* [The MockUnit Interface](MockUnits)
       * [MockUnit](MockUnit)
       * [MockUnitDays](MockUnitDays)
       * [MockUnitDouble](MockUnitDouble)
