@@ -8,43 +8,44 @@ The most important methods that can be accessed on the `MockNeat` object are:
 
 | Method | Returning Type | Description |
 |:------ |:------ |:----------- |
-| [`mock.bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
-| [`mock.chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
-| [`mock.constructor()`](#constructor) | `Constructor` | The `Constructor` class implements `MockUnit<T>`. It is used to generate / mock objects by calling constructors. |
-| [`mock.creditCards()`](#creditcards) | `CreditCards` | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`mock.creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
-| [`mock.currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`mock.currencies().name()`](#currenciesname), [`mock.currencies().symbol()`](#currenciessymbol), [`mock.currencies().code()`](#currenciescode), [`mock.currencies().forexPair()`](#currenciesforexpair) |
-| [`mock.cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
-| [`mock.dicts()`](#dicts) | `Dicts` | The `Dicts` class is used as a an utility class that facilitates generating random lines from the internal library dictionaries. The internal dictionaries are collections of data grouped into files. The enum `DictType` maps all those files. |
-| [`mock.days()`](#days) | `Days` | This `Days` class implements `MockUnitDays`. It is used to generate days of the week.|
-| [`mock.departments()`](#departments) | `Departments` | The `Departments` class implements `MockUnitString`. It is used to generate arbitrary department names from company. |
-| [`mock.domains()`](#domains) | `Domains` | The `Domains` class implements `MockUnitString`. It is used to generate web domains like 'com', 'net', 'org' and so on. |
-| [`mock.doubles()`](#doubles) | `Doubles` | The `Doubles` class implements `MockUnitDouble`. It is used to generate double numbers. |
-| [`mock.emails()`](#emails) | `Emails` | The `Emails` class implements `MockUnitString`. It is used to generate emails. |
-| [`mock.factory()`](#factory) | `Factory` | The `Factory` class implements `MockUnit<T>`. It is used to generate mock instances using static factory methods. |
-| [`mock.files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
-| [`mock.floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
-| [`mock.fmt()`](#fmt) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
-| [`mock.from()`](#from) | `MockUnit<T>` | This method is used to return random values from a `List<T>`, `T[]` and `Class<T extends Enum<?>>`. |
-| [`mock.fromKeys()`](#fromkeys) | `MockUnit<T>` | This method is used to return a random key from a `Map<T, ?>`. |
-| [`mock.fromValues()`](#fromvalues) | `MockUnit<T>` | This method is used to return a random value from a `Map<T, ?>`. |
-| [`mock.ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
-| [`mock.intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
-| [`mock.ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
-| [`mock.ipv6()`](#ipv6s) | `IPv6s` | The `IPv6s` class implements `MockUnitString`. It is used to generate arbitrary IPv6 addresses. |
-| [`mock.localDates()`](#localdates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
-| [`mock.longs()`](#longs) | `Longs` | The `Longs` class implements `MockUnitLong`. It is used to generate random long numbers. |
-| [`mock.longSeq()`](#longseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
-| [`mock.macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
-| [`mock.markovs()`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
-| [`mock.months()`](#months) | `Months` | The `Months` class implements `MockUnitMonth`. It is used to generate month names. |
-| [`mock.money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
-| [`mock.names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
-| [`mock.passwords()`](#passwords) | `Passwords` | The `Passwords` class implements `MockUnitString`. It is used to generate random passwords. |
-| [`mock.reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
-| [`mock.strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
-| [`mock.urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
-| [`mock.uuids()`](#uuids) | `UUIDs` | The `UIDs` class implements `MockUnitString`. It is used to generate unique identifiers. |
-| [`mock.users()`](#users) | `Users` | The `Users` class implements `MockUnitString`. It is used to generate random usernames. |
+| [`bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
+| [`chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
+| [`constructor()`](#constructor) | `Constructor` | The `Constructor` class implements `MockUnit<T>`. It is used to generate / mock objects by calling constructors. |
+| [`creditCards()`](#creditcards) | `CreditCards` | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
+| [`currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`currencies().name()`](#currenciesname), [`currencies().symbol()`](#currenciessymbol), [`currencies().code()`](#currenciescode), [`currencies().forexPair()`](#currenciesforexpair) |
+| [`cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
+| [`dicts()`](#dicts) | `Dicts` | The `Dicts` class is used as a an utility class that facilitates generating random lines from the internal library dictionaries. The internal dictionaries are collections of data grouped into files. The enum `DictType` maps all those files. |
+| [`days()`](#days) | `Days` | This `Days` class implements `MockUnitDays`. It is used to generate days of the week.|
+| [`departments()`](#departments) | `Departments` | The `Departments` class implements `MockUnitString`. It is used to generate arbitrary department names from company. |
+| [`domains()`](#domains) | `Domains` | The `Domains` class implements `MockUnitString`. It is used to generate web domains like 'com', 'net', 'org' and so on. |
+| [`doubles()`](#doubles) | `Doubles` | The `Doubles` class implements `MockUnitDouble`. It is used to generate double numbers. |
+| [`emails()`](#emails) | `Emails` | The `Emails` class implements `MockUnitString`. It is used to generate emails. |
+| [`factory()`](#factory) | `Factory` | The `Factory` class implements `MockUnit<T>`. It is used to generate mock instances using static factory methods. |
+| [`files()`](#files) | `Files` | The `Files` class implements `MockUnitString`. It is used to read random lines from "external" files that are loaded in memory. |
+| [`floats()`](#floats) | `Floats` | The `Floats` class implements `MockUnit<Float>`. It is used to generate float numbers. |
+| [`fmt()`](#fmt) | `Formatter` | The `Formatter` class implements `MockUnitString`. It is used to generate formatted Strings. |
+| [`from()`](#from) | `MockUnit<T>` | This method is used to return random values from a `List<T>`, `T[]` and `Class<T extends Enum<?>>`. |
+| [`fromKeys()`](#fromkeys) | `MockUnit<T>` | This method is used to return a random key from a `Map<T, ?>`. |
+| [`fromValues()`](#fromvalues) | `MockUnit<T>` | This method is used to return a random value from a `Map<T, ?>`. |
+| [`ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
+| [`intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
+| [`ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
+| [`ipv6()`](#ipv6s) | `IPv6s` | The `IPv6s` class implements `MockUnitString`. It is used to generate arbitrary IPv6 addresses. |
+| [`localDates()`](#localdates) | `LocalDates` | The `LocalDates` class implements `MockUnitLocalDate`. It is used to generate random date objects. |
+| [`longs()`](#longs) | `Longs` | The `Longs` class implements `MockUnitLong`. It is used to generate random long numbers. |
+| [`longSeq()`](#longseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
+| [`macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
+| [`markovs()`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
+| [`months()`](#months) | `Months` | The `Months` class implements `MockUnitMonth`. It is used to generate month names. |
+| [`money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
+| [`names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
+| [`passwords()`](#passwords) | `Passwords` | The `Passwords` class implements `MockUnitString`. It is used to generate random passwords. |
+| [`probabilities()`](#probabilities) | | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
+| [`reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
+| [`strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
+| [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
+| [`uuids()`](#uuids) | `UUIDs` | The `UIDs` class implements `MockUnitString`. It is used to generate unique identifiers. |
+| [`users()`](#users) | `Users` | The `Users` class implements `MockUnitString`. It is used to generate random usernames. |
 
 
 #### `bools()`
@@ -833,6 +834,38 @@ Example for generating a full name that has a 90% chance to contain an "initial"
 ```java
 String withInitial = mock.names().full(90).val();
 // Possible Output: Bryce I. Hibma
+```
+
+### `probabilities()` 
+
+This method is used to generate objects based on associated probabilities.
+
+Example for generating letters with the following probabilities: A - 10%, B - 20%, C - 50%, D - 20%:
+
+```java
+String s = mockNeat.probabilites(String.class)
+                    .add(0.1, "A")
+                    .add(0.2, "B")
+                    .add(0.5, "C")
+                    .add(0.2, "D")
+                    .val();
+```
+
+Note: The sum of the probabilities must exactly 1.0 when calling val. 
+
+Instead of constants, it's also possible to use any [MockUnit](#MockUnits) as parameter.
+
+Example for generating numbers in intervals based on probabilities: 
+- Generating a number in interval [0, 100) - 20% chances;
+- Generating a number in interval [100, 200) - 50% chances;
+- Generating a number in interval [200, 300) - 30% chances;
+
+```java
+Integer x = m.probabilites(Integer.class)
+             .add(0.2, m.ints().range(0, 100))
+             .add(0.5, m.ints().range(100, 200))
+             .add(0.3, m.ints().range(200, 300))
+             .val();
 ```
 
 ### `passwords()`
