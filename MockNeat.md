@@ -853,7 +853,7 @@ String s = mockNeat.probabilites(String.class)
 
 Note: The sum of the probabilities must exactly 1.0 when calling val. 
 
-Instead of constants, it's also possible to use any [MockUnit](#MockUnits) as parameter.
+Instead of constants, it's also possible to use any [MockUnit](MockUnits) as parameter.
 
 Example for generating numbers in intervals based on probabilities: 
 - Generating a number in interval [0, 100) - 20% chance;
