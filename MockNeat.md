@@ -40,7 +40,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
 | [`names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
 | [`passwords()`](#passwords) | `Passwords` | The `Passwords` class implements `MockUnitString`. It is used to generate random passwords. |
-| [`probabilities()`](#probabilities) | | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
+| [`probabilities()`](#probabilities) | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
 | [`reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
 | [`strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
 | [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
