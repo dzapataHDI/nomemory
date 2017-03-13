@@ -856,9 +856,9 @@ Note: The sum of the probabilities must exactly 1.0 when calling val.
 Instead of constants, it's also possible to use any [MockUnit](#MockUnits) as parameter.
 
 Example for generating numbers in intervals based on probabilities: 
-- Generating a number in interval [0, 100) - 20% chances;
-- Generating a number in interval [100, 200) - 50% chances;
-- Generating a number in interval [200, 300) - 30% chances;
+- Generating a number in interval [0, 100) - 20% chance;
+- Generating a number in interval [100, 200) - 50% chance;
+- Generating a number in interval [200, 300) - 30% chance;
 
 ```java
 Integer x = m.probabilites(Integer.class)
