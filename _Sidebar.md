@@ -1,7 +1,13 @@
-1. [Home](https://github.com/nomemory/mockneat/wiki)
-2. [Creating a MockNeat Objects](Creating--a-MockNeat-object)
-3. [The MockNeat Class](MockNeat)
-4. [The MockUnit Interface](MockUnits)
+**[Home](https://github.com/nomemory/mockneat/wiki)**
+
+**[Installing The library](Installing)**
+
+<hr/> 
+
+**Using the library:**
+* [Creating a MockNeat Objects](Creating--a-MockNeat-object)
+* [The MockNeat Class](MockNeat)
+* [The MockUnit Interface](MockUnits)
     * [MockUnit](MockUnit)
     * [MockUnitDays](MockUnitDays)
     * [MockUnitDouble](MockUnitDouble)
@@ -10,6 +16,9 @@
     * [MockUnitLong](MockUnitLong)
     * [MockUnitMonth - TODO](MockUnitMonth)
     * [MockUnitString - TODO](MockUnitString)
-9. [Creating Custom MockUnit(s)](CustomMockUnits)
-10. Real World Examples
-    * [Creating CSV files with arbitrary data](https://github.com/nomemory/mockneat/wiki/Creating-CSV-files-with-arbitrary-data)
+* [Creating Custom MockUnit(s)](CustomMockUnits)
+
+<hr/> 
+
+**Real World Examples:**
+* [Creating CSV files with arbitrary data](https://github.com/nomemory/mockneat/wiki/Creating-CSV-files-with-arbitrary-data)
