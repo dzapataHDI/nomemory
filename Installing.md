@@ -38,4 +38,19 @@ dependencies {
 }
 ```
 
+## With Maven
 
+To check the latest version please check the library's [jcenter page](https://bintray.com/nomemory/maven/mockneat).
+
+Add `jcenter` as a repository.
+
+pom.xml dependency:
+
+```xml
+<dependency>
+  <groupId>net.andreinc.mockneat</groupId>
+  <artifactId>mockneat</artifactId>
+  <version>0.0.1</version>
+  <type>pom</type>
+</dependency>
+```
