@@ -1,6 +1,9 @@
 **[Home](https://github.com/nomemory/mockneat/wiki)**
 
-**[Installing The library](Installing)**
+**[Installing The library](Installing):**
+* [From Sources](Installing#from-sources)
+* [With Gradle](Installing#with-gradle)
+* [With Maven](Installing#with-maven)
 
 <hr/> 
 
