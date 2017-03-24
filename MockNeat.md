@@ -42,6 +42,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`passwords()`](#passwords) | `Passwords` | The `Passwords` class implements `MockUnitString`. It is used to generate random passwords. |
 | [`probabilities()`](#probabilities) | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
 | [`reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
+| [`sscs()`](#sscs) | `SSCs` | The `SSCs` class implements `MockUnitString`. It is used to generate US Social Security Numbers. |
 | [`strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
 | [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
 | [`uuids()`](#uuids) | `UUIDs` | The `UIDs` class implements `MockUnitString`. It is used to generate unique identifiers. |
@@ -903,6 +904,16 @@ Test t = mock.reflect(Test.class)
 ```
 
 Note: The fields are modified directly and not through getter and setters. 
+
+### `sscs()`
+
+This method is used to generate random Social Security Numbers.
+
+Example:
+```java
+String ssc = mock.sscs().val();
+// Possible Output: 776-32-8981
+```
 
 ### `strings()`
 
