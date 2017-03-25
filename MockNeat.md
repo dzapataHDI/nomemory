@@ -27,6 +27,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`from()`](#from) | `MockUnit<T>` | This method is used to return random values from a `List<T>`, `T[]` and `Class<T extends Enum<?>>`. |
 | [`fromKeys()`](#fromkeys) | `MockUnit<T>` | This method is used to return a random key from a `Map<T, ?>`. |
 | [`fromValues()`](#fromvalues) | `MockUnit<T>` | This method is used to return a random value from a `Map<T, ?>`. |
+| [`genders()`](#genders) | `Genders` | This class implements `MockUnitString`. It is used to generate (`"M"`, `"F"`) or (`"Male"`, `"Female"`) values. |
 | [`hashes()`](#hashes) | `Hashes` | This is a helper method that groups the following methods for generating hex hashes using different algorithms: [`hashes().md2()`](#hashesmd2), [`hashes().md5()`](#hashesmd5), [`hashes().sha1()`](#hashessha1), [`hashes().sha256()`](#hashessha256), [`hashes().sha384()`](#hashessha384), [`hashes().sha512()`](#hashessha512). | 
 | [`ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
 | [`intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
@@ -544,6 +545,22 @@ This is a helper method that groups the following methods for generating hex has
 * [`hashes().sha256()`](#hashessha256);
 * [`hashes().sha384()`](#hashessha384);
 * [`hashes().sha512()`](#hashessha512).
+
+### `genders()`
+
+This `Gender` class implements `MockUnitString`. It is used to generate (`"Male"`, `"Female"`) values:
+
+```java
+String gender = mock.genders().val();
+// Possible Output: "Female"
+```
+
+Or shortcut letters:
+
+```java
+String shortGender = mock.genders().letter().val();
+// Possible Output: "M"
+```
 
 ### `hashes().md2()`
 
