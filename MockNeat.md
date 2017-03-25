@@ -44,6 +44,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`passwords()`](#passwords) | `Passwords` | The `Passwords` class implements `MockUnitString`. It is used to generate random passwords. |
 | [`probabilities()`](#probabilities) | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
 | [`reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
+| [`regex()`](#regex) | `Regex` | The `Regex` class implements `MockUnitString`. It is used to generate a random string that matches a given regex. |
 | [`sscs()`](#sscs) | `SSCs` | The `SSCs` class implements `MockUnitString`. It is used to generate US Social Security Numbers. |
 | [`strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
 | [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
@@ -116,11 +117,13 @@ public class Test {
 ```
 
 ```java
-Test t = mock.reflect(Test.class)
-             .field("x", mock.strings().size(10))
-             .field("y", mock.ints().range(100, 200))
-             .field("z", mock.bools())
-             .val();
+Test t2 = mock.constructor(Test.class)
+              .params(
+                 mock.strings().size(10),
+                 mock.ints().range(0, 10),
+                 mock.bools()
+              )
+              .val();
 // Possible Output: Test{x='g4bk67PxlT', y=185, z=false}
 ```
 
@@ -979,6 +982,35 @@ Test t = mock.reflect(Test.class)
 ```
 
 Note: The fields are modified directly and not through getter and setters. 
+
+### `regex()`
+
+The `Regex` class implements `MockUnitString` and it is used to generate random strings that match a given regex.
+
+This feature is based on the [Generex library](https://github.com/mifmif/Generex).
+
+Only a small subset of regular expressions work. Any non-trivial regex might fail.
+
+Example for generating a `"Lol"` string:
+```java
+String lolRegex = "LOo{3}L{10,15}!";
+String lol = mock.regex(lolRegex).val();
+// Possible Output: LOoooLLLLLLLLLLLLL!
+```
+
+Example for generating a number that has between 3 and 10 digits:
+```java
+String numberRegex = "\\d{3,10}";
+String number = mock.regex(numberRegex).val();
+// Possible Output: 8296331806
+```
+
+Example for generating a code with a format: `XX-nnnnn-xxxxx`:
+```java
+String codeRegex = "[A-Z]{2}-\\d{5}-[a-z]{5}";
+String code = mock.regex(codeRegex).val();
+// Possible Output: EI-54105-tjfdk
+```
 
 ### `sscs()`
 
