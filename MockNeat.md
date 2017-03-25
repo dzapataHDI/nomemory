@@ -36,6 +36,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`longSeq()`](#longseq) | `LongSeq` | The `LongSeq` class implements `MockUnitLong`. It is used to generate long numbers in a sequence. |
 | [`macs()`](#macs) | `Macs` | The `Macs` class implements `MockUnitString`. It is used to generate MAC addresses. |
 | [`markovs()`](#markovs) | `Markovs` | The `Markovs` class implements `MockUnitString`. It is used to generate Markov Text. |
+| [`md5s()`](#md5s) | `MD5s` | The `MD5s` class implements `MockUnitString`. It is used to generate hexadecimal representations of MD5 hashes. |
 | [`months()`](#months) | `Months` | The `Months` class implements `MockUnitMonth`. It is used to generate month names. |
 | [`money()`](#money) | `Money` | The `Money` class implements `MockUnitString`. It used to generate random sums of money for a certain `Locale`. |
 | [`names()`](#names) | `Names` | The `Names` class implements  `MockUnitString`. It is used to generate random names. |
@@ -742,6 +743,15 @@ Example for generating a 512 characters text:
 ```java
 String text = mock.markovs().size(512).type(KAFKA).val();
 //Possible Output: In his efforts to muster all the things that concerned him. This meant not only in secret. For two whole days, all the harder. Across the room came in early in the doorway with a knife, he thought it was easy to see him. He had forgotten, but instead of being afraid, the charwoman stood in the direction of the bedrooms: come and give me a bit of him and seemed, at first, that was quite incapable of going backwards in a nice, gilded frame. It showed a lady fitted out with a few raisins and almonds; some chee
+```
+
+### md5s()
+
+This method is used to generate MD5s hashes (hex string):
+
+```java
+String md5 = mock.md5s().val();
+// POSSIBLE OUTPUT: 34339de373470d27cadc7808a2cba1f8
 ```
 
 ### months()
