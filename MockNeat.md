@@ -128,6 +128,23 @@ Test t2 = mock.constructor(Test.class)
 // Possible Output: Test{x='g4bk67PxlT', y=185, z=false}
 ```
 
+### `countries()`
+
+This method help us generate Country names (eg.: "Romania", "Israel", "France") or ISO2 codes for countries (eg.: "RO").
+
+Example for generating a country name:
+
+```java
+String countryName = m.countries().names().val();
+// Possible Output: Lithuania
+```
+
+Example for generating a country ispo2() code.
+```java
+String iso2 = m.countries().iso2().val()
+// Possible Output: MR
+```
+
 ### `creditCards()`
 
 This method help us generate Credit Cards.
