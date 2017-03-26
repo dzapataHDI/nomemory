@@ -8,9 +8,10 @@ The most important methods that can be accessed on the `MockNeat` object are:
 
 | Method | Returning Type | Description |
 |:------ |:------ |:----------- |
-| [`bools()`](#bools) | `Bools` | The `Bools` class implements `MockUnit<Boolean>`. It is used to generate arbitrary `Boolean` values. |
+| [`bools()`](#bools) | `Bools` | The `Bools` class implements [`MockUnit<Boolean>`](MockUnit). It is used to generate arbitrary `Boolean` values. |
 | [`chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
 | [`constructor()`](#constructor) | `Constructor` | The `Constructor` class implements `MockUnit<T>`. It is used to generate / mock objects by calling constructors. |
+| [`countries()`](#countries) | `Countries` | The `Countries` class implements `MockUnitString`. It is used to generate country names or their corresponding ISO2 code. |
 | [`creditCards()`](#creditcards) | `CreditCards` | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
 | [`currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`currencies().name()`](#currenciesname), [`currencies().symbol()`](#currenciessymbol), [`currencies().code()`](#currenciescode), [`currencies().forexPair()`](#currenciesforexpair) |
 | [`cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
