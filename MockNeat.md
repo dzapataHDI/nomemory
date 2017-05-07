@@ -999,6 +999,48 @@ Test t = mock.reflect(Test.class)
 // Possible Output: Test{x='QeBhNPZNhK', y=2, z=false}
 ```
 
+Instead of specifying a `MockUnit` (or constants) for every field the developer can call `useDefaults(true)`. Doing this will activate a fallback mechanism that will populate each `char`, `Character`, `short`, `Short`, `int`, `Integer`, `long`, `Long`, `float`, `Float`, `double`, `Double`, `String` fields by default. 
+
+So for example if the `Test` class has 3 fields: 
+* `x` -> `String`;
+* `y` -> `Integer`;
+* `z` -> `Boolean`.
+
+We can use the default mechanism by doing this:
+
+```
+java
+
+Test tR = mock.reflect(Test.class)
+                        .useDefaults(true)
+                        .val();
+
+System.out.println("tR: " + tR);
+
+// Possible Output: 
+//         tR: Test{x='KksOzDmsy8kxCYxJs7aU5db4l255E4BC', y=57, z=false}
+```
+
+If you want to override the default mechanism you can use the `type(Class<?>, MockUnit|Constant)` method.
+
+So let's take for example a class `Test2` with 5 fields:
+
+```
+java
+public class Test2 {
+    private int x;
+    private int y;
+    private short z;
+    private String w1;
+    private String w2;
+```
+
+We can override the default for all String fields by doing the following:
+
+```java
+
+```
+
 Note: The fields are modified directly and not through getter and setters. 
 
 ### `regex()`
