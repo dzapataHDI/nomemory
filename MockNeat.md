@@ -1035,11 +1035,25 @@ public class Test2 {
     private String w2;
 ```
 
-We can override the default for all String fields by doing the following:
+We can:
+* override the default fallback random generator for all String fields (random string of size 5);
+* override the default fallback random generator for all `short` fields (with a constant value of 5);
+by doing the following:
 
 ```java
+Test2 t4 = mock.reflect(Test2.class)
+                        .useDefaults(true)
+                        .type(String.class, mock.strings().size(5))
+                        .type(Short.class, (short) 5)
+                        .val();
 
+System.out.println(t4);
+
+//Possible Output:
+// Test2{x=78, y=68, z=5, w1='1rlW5', w2='9aO3O'}
 ```
+
+As you can see in the above example, all `String` fields have now a size of 5, while the `short` field `z` will always be the constant `5`.
 
 Note: The fields are modified directly and not through getter and setters. 
 
