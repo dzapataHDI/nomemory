@@ -30,6 +30,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`fromValues()`](#fromvalues) | `MockUnit<T>` | This method is used to return a random value from a `Map<T, ?>`. |
 | [`genders()`](#genders) | `Genders` | This class implements `MockUnitString`. It is used to generate (`"M"`, `"F"`) or (`"Male"`, `"Female"`) values. |
 | [`hashes()`](#hashes) | `Hashes` | This is a helper method that groups the following methods for generating hex hashes using different algorithms: [`hashes().md2()`](#hashesmd2), [`hashes().md5()`](#hashesmd5), [`hashes().sha1()`](#hashessha1), [`hashes().sha256()`](#hashessha256), [`hashes().sha384()`](#hashessha384), [`hashes().sha512()`](#hashessha512). | 
+| [`ibans()`](#ibans) | `IBANs` | The `IBANs` class implements `MockUnitString`. It is used to generate arbitrary IBAN strings that have a correct check digit. The implementation is quite naive because it doesn't take in consideration National Bank Code, Balance Account Number, Branch Code, etc.`
 | [`ints()`](#ints) | `Ints` | The `Ints` class implements `MockUnitInt`. It used to generate integer numbers. |
 | [`intSeq()`](#intseq) | `IntSeq` | The `IntSeq` class implements `MockUnitInt`. It used to generate integer numbers in a sequence. |
 | [`ipv4s()`](#ipv4s) | `IPv4s` | The `IPv4s` class implements `MockUnitString`. It is used to generate arbitrary IPv4 addresses. |
@@ -629,6 +630,16 @@ This method generates a SHA512 Hash from a random String:
 
 ```java
 String str = mock.hashes().sha512().val();
+```
+
+### `ibans()`
+
+This method is used to generate possible IBAN codes. The implementation is quite naive because it doesn't take in consideration information like Branch Code Number, Account Number, National Bank Code, etc.
+
+It only matches the country's prefix, character configuration as defined in the standard, plus the correct length.
+
+```java
+String iban = mock.ibans().type(GERMANY).val();
 ```
 
 ### `ints()`
