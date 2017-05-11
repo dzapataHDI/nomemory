@@ -47,6 +47,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`probabilities()`](#probabilities) | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
 | [`reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
 | [`regex()`](#regex) | `Regex` | The `Regex` class implements `MockUnitString`. It is used to generate a random string that matches a given regex. |
+| [`shufflers()`](#shufflers) | `Shufflers` | This `Shufflers` is a class that contains useful methods to create new arrays and lists that are shuffled version of a "source" one |
 | [`sscs()`](#sscs) | `SSCs` | The `SSCs` class implements `MockUnitString`. It is used to generate US Social Security Numbers. |
 | [`strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
 | [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
@@ -1095,6 +1096,30 @@ Example for generating a code with a format: `XX-nnnnn-xxxxx`:
 String codeRegex = "[A-Z]{2}-\\d{5}-[a-z]{5}";
 String code = mock.regex(codeRegex).val();
 // Possible Output: EI-54105-tjfdk
+```
+
+### `shufflers()` 
+
+The `Shufflers` class contain useful methods to create new shuffled strings, arrays or list from a source:
+|Method|Description|
+|:-|:-|
+| `T array(T[] source)` | Generic method to shuffle an array of Objects. |
+| `double[] arrayDouble(double[] source)` | Method to shuffle an array of double primitive values. |
+| `float[] arrayFloat(float[] source)` | Method to shuffle an array of float primitive values. |
+| `int[] arrayInt(int[] source)` | Method to shuffle an array of int primitive values. |
+| `long[] arrayLong(long[] source)` | Method to shuffle an array of long primitive values. |
+| `String string(String source)` | Method to shuffle a String. |
+
+```
+java
+MockNeat mockNeat = MockNeat.threadLocal();
+int[] x = { 1, 2, 3, 4, 5, 6 };
+
+mockNeat.shufflers()
+        .arrayInt(x)
+        .stream().val()
+        .limit(5)
+        .forEach(arr -> System.out.println(Arrays.toString(arr)));
 ```
 
 ### `sscs()`
