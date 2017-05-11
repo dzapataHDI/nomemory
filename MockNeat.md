@@ -1101,8 +1101,9 @@ String code = mock.regex(codeRegex).val();
 ### `shufflers()` 
 
 The `Shufflers` class contain useful methods to create new shuffled strings, arrays or list from a source:
-|Method|Description|
-|:-|:-|
+
+| Method | Description |
+|:------ |:----------- |
 | `T array(T[] source)` | Generic method to shuffle an array of Objects. |
 | `double[] arrayDouble(double[] source)` | Method to shuffle an array of double primitive values. |
 | `float[] arrayFloat(float[] source)` | Method to shuffle an array of float primitive values. |
