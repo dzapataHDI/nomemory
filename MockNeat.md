@@ -1111,6 +1111,9 @@ The `Shufflers` class contain useful methods to create new shuffled strings, arr
 | `long[] arrayLong(long[] source)` | Method to shuffle an array of long primitive values. |
 | `String string(String source)` | Method to shuffle a String. |
 
+
+Example for generating 5 random permutation of a given `int[]` array:
+
 ```
 java
 MockNeat mockNeat = MockNeat.threadLocal();
