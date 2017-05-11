@@ -34,7 +34,7 @@ Add the following line a dependency:
 ```
 dependencies {
       // something else
-     compile 'net.andreinc.mockneat:mockneat:0.0.5'
+     compile 'net.andreinc.mockneat:mockneat:0.0.6'
 }
 ```
 
@@ -50,7 +50,7 @@ pom.xml dependency:
 <dependency>
   <groupId>net.andreinc.mockneat</groupId>
   <artifactId>mockneat</artifactId>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
   <type>pom</type>
 </dependency>
 ```
