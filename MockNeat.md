@@ -99,8 +99,7 @@ Character hex = mock.chars().hex().val();
 
 This method helps us generate arbitrary city names:
 
-```
-java
+```java
 // Generate a city in the us
 String city = mockNeat.cities().us().val();
 System.out.println(city);
