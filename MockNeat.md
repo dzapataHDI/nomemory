@@ -48,6 +48,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`probabilities()`](#probabilities) | `Probabilities` | The `Probabilities` class implements `MockUnit<T>`. It is used to generate arbitrary values based on probabilities. |
 | [`reflect()`](#reflect) | `Reflect` | The `Reflect` class implements `MockUnit<T>`. It is used to generate mock objects through reflection. |
 | [`regex()`](#regex) | `Regex` | The `Regex` class implements `MockUnitString`. It is used to generate a random string that matches a given regex. |
+| [`seq()`](#seq) | `Seq<T>` | The `Seq<T>` class implements `MockUnit<T>`. It is used to cycle through an existing pre-defined dictionary or an `Iterable<T>`. |
 | [`shufflers()`](#shufflers) | `Shufflers` | This `Shufflers` is a class that contains useful methods to create new arrays and lists that are shuffled version of a "source" one |
 | [`sscs()`](#sscs) | `SSCs` | The `SSCs` class implements `MockUnitString`. It is used to generate US Social Security Numbers. |
 | [`strings()`](#strings) | `Strings` | The `Strings` class implements `MockUnitString`. It is used to generate random strings. |
@@ -1111,6 +1112,25 @@ Example for generating a code with a format: `XX-nnnnn-xxxxx`:
 String codeRegex = "[A-Z]{2}-\\d{5}-[a-z]{5}";
 String code = mock.regex(codeRegex).val();
 // Possible Output: EI-54105-tjfdk
+```
+
+### `seq()`
+
+The `Seq<T>` is used to get values by iterating to an existing dictionary (`DictType`) or an `Iterable<T>`.
+
+Iterating through the list. When we reach the "end" we start iterating again.
+Take care of concurrency issues:
+
+```java
+List<String> list = Arrays.asList("a", "b", "c", "d");
+mock.seq(list).cycle(true).list(100).consume(System.out::println);
+// Prints ["a", "b", "c", "d", "a", "b"....]
+```
+
+Iterating through the list. When we reach the "end" a default value "X".
+```java
+mock.seq(list).after("X").list(100).consume(System.out::println);
+// Prints ["a", "b", "c", "d", "X", "X"...."X"]
 ```
 
 ### `shufflers()` 
