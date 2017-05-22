@@ -10,6 +10,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 |:------ |:------ |:----------- |
 | [`bools()`](#bools) | `Bools` | The `Bools` class implements [`MockUnit<Boolean>`](MockUnit). It is used to generate arbitrary `Boolean` values. |
 | [`chars()`](#chars) | `Chars` | The `Chars` class implements `MockUnit<Character>`. It is used to generate arbitrary character values (letters, digits, special characters, etc.). |
+| [`cities()`](#cities) | `Cities` | The `Cities` class implements `MockUnit<String>`. It is used to generate arbitrary city names. |
 | [`constructor()`](#constructor) | `Constructor` | The `Constructor` class implements `MockUnit<T>`. It is used to generate / mock objects by calling constructors. |
 | [`countries()`](#countries) | `Countries` | The `Countries` class implements `MockUnitString`. It is used to generate country names or their corresponding ISO2 code. |
 | [`creditCards()`](#creditcards) | `CreditCards` | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
@@ -94,9 +95,24 @@ Example for generating a hex value:
 Character hex = mock.chars().hex().val();
 ```
 
+### `cities()`
+
+This method helps us generate arbitrary city names:
+
+```
+java
+// Generate a city in the us
+String city = mockNeat.cities().us().val();
+System.out.println(city);
+
+// Generate a world capital
+String worldCapital = mockNeat.cities().capitals().val();
+System.out.println(worldCapital);
+```
+
 ### `constructor()`
 
-This class is used to generate / mock objects by calling the constructor of the target class.
+This method is used to generate / mock objects by calling the constructor of the target class.
 
 The method signature is: `<T> Constructor<T> constructor(Class<T> cls)`.
 
