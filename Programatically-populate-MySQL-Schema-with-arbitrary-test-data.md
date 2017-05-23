@@ -88,7 +88,7 @@ The full DDL script to create the MySQL Schema can be found [here](https://githu
 
 Before continue reading it's good that you have a general knowledge of the [MockNeat](MockNeat) methods and how a [MockUnit](MockUnits) works.
 
-## Generating `Regions`
+## Generating Regions
 
 The `regions` table is mapped to the [`Region.class`](https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Region.java).
 
