@@ -24,4 +24,5 @@
 <hr/> 
 
 **Real World Examples:**
-* [Creating CSV files with arbitrary data](https://github.com/nomemory/mockneat/wiki/Creating-CSV-files-with-arbitrary-data)
+* [Creating CSV files with arbitrary data](Creating-CSV-files-with-arbitrary-data)
+* [Populating MySQL Schema with arbitrary test data](Programatically-populate-MySQL-Schema-with-arbitrary-test-data)
