@@ -300,3 +300,80 @@ MockUnit<Long> managersIdSeq = m.seq(managersIds);
 departments.forEach(d -> d.setManagerId(managersIdSeq.val()));
 ```
 
+## Printing the INSERTS for the Schema
+
+```java
+        // Print everything
+        System.out.println("SET FOREIGN_KEY_CHECKS = 0;");
+        printSql("INSERT INTO regions VALUE (#{region.id}, '#{region.name}');", "region", regions);
+        printSql("INSERT INTO countries VALUES('#{country.id}', '#{country.name}', #{country.regionId});", "country", countries);
+        printSql("INSERT INTO locations VALUES(#{l.id}, '#{l.street}', '#{l.postalCode}', '#{l.city}', #{l.state}, '#{l.countryId}');", "l", locations);
+        printSql("INSERT INTO departments VALUES(#{dep.id}, '#{dep.depName}', #{dep.managerId}, #{dep.locationId});","dep", departments);
+        printSql("INSERT INTO employees VALUES(#{e.id}, '#{e.firstName}', '#{e.lastName}', '#{e.email}', '#{e.phoneNumber}', #{e.hireDateStr}, #{e.salary}, #{e.managerId}, #{e.depId});", "e", employees);
+        System.out.println("SET FOREIGN_KEY_CHECKS = 1;");
+        System.out.println("COMMIT;");
+```
+
+The `printSql()` makes use of the [AlephFormatter](https://github.com/nomemory/aleph-formatter) library. `AlephFormatter` is by default a dependency of MockNeat and the code should work by default. 
+
+The method is implemented as this:
+```java
+/**
+* Prints a list of objects as a SQL INSERT Statement.
+* @param template The template of the SQL INSERT Statement
+* @param param The name of the parameter used in the template
+* @param list The list of objects we are going to use for the INSERT
+*/
+private static <T> void printSql(String template, String param, List<T> list) {
+        list.forEach(obj -> System.out.println(
+            template(template)
+                    .arg(param, obj)
+                    .fmt()));
+}
+````
+
+## Running the example.
+
+The full code can be found [here](https://github.com/nomemory/mockneat/tree/master/examples/net/andreinc/mockneat/github/hr).
+
+Sample output:
+```sql
+INSERT INTO regions VALUE (0, 'Europe');
+INSERT INTO regions VALUE (1, 'Americas');
+INSERT INTO regions VALUE (2, 'Middle East and Africa');
+INSERT INTO regions VALUE (3, 'Asia');
+/* ... */
+INSERT INTO countries VALUES('AW', 'Aruba', 2);
+INSERT INTO countries VALUES('AU', 'Australia', 1);
+INSERT INTO countries VALUES('AT', 'Austria', 2);
+INSERT INTO countries VALUES('AZ', 'Azerbaijan', 1);
+INSERT INTO countries VALUES('BS', 'Bahamas', 3);
+INSERT INTO countries VALUES('BH', 'Bahrain', 3);
+/* .... */
+NSERT INTO locations VALUES(1000, '2175 Wows Str', 'YI9K4927', 'Bangkok HM', null, 'HM');
+INSERT INTO locations VALUES(1100, '2662 Rowan Rd', 'YU41L132', 'Copenhagen IN', null, 'IN');
+INSERT INTO locations VALUES(1200, '2362 Pashas Rd', 'J79M112', 'Bern CN', null, 'CN');
+INSERT INTO locations VALUES(1300, '9392 Silenced Healds Rd', 'QFT35P855', 'Copenhagen BE', null, 'BE');
+INSERT INTO locations VALUES(1400, '5011 Shoal Depressants Str', 'XZN97P378', 'Manama SH', null, 'SH');
+INSERT INTO locations VALUES(1500, '3704 Like Infections Blvd', 'P56P23632', 'Moscow ET', null, 'ET');
+INSERT INTO locations VALUES(1600, '6706 Turnstone Rd', 'JP50M342', 'Tunis GD', null, 'GD');
+INSERT INTO locations VALUES(1700, '3418 Moot Alewife Rd', 'VQ50JU943', 'Bucharest SH', null, 'SH');
+/* ... */
+INSERT INTO departments VALUES(10, 'Customer Service', 598, 20100);
+INSERT INTO departments VALUES(20, 'Customers', 912, 10900);
+INSERT INTO departments VALUES(30, 'Financial', 293, 9700);
+INSERT INTO departments VALUES(40, 'Human Resources', 721, 10700);
+INSERT INTO departments VALUES(50, 'IT', 1148, 17400);
+INSERT INTO departments VALUES(60, 'Insurance', 1210, 6800);
+INSERT INTO departments VALUES(70, 'Inventory', 988, 17400);
+INSERT INTO departments VALUES(80, 'Licenses', 828, 5400);
+/* ... */
+INSERT INTO employees VALUES(1, 'Rosaria', 'Pawluk', 'scorethu@gmail.com', '798 6709073976', STR_TO_DATE('24-Sep-1995', '%d-%M-%Y'), 4768.751828039507, 1232, 120);
+INSERT INTO employees VALUES(2, 'Lucie', 'Monton', 'plusedmund@mac.com', '451 2596002039', STR_TO_DATE('05-Apr-1999', '%d-%M-%Y'), 4211.7941129205365, 229, 130);
+INSERT INTO employees VALUES(3, 'Bonita', 'Wiederholt', 'gummedgrasps@comcast.net', '020 6345639483', STR_TO_DATE('30-Jan-1995', '%d-%M-%Y'), 6745.4866164397035, 1106, 40);
+INSERT INTO employees VALUES(4, 'Tomika', 'Grimwood', 'blacklysquid@hotmail.co.uk', '192 5722857827', STR_TO_DATE('20-Aug-1995', '%d-%M-%Y'), 5727.020908520373, 392, 70);
+INSERT INTO employees VALUES(5, 'Dina', 'Shekarchi', 'keptmoure@email.com', '840 5515414920', STR_TO_DATE('10-Nov-1997', '%d-%M-%Y'), 7745.181343097232, 531, 110);
+INSERT INTO employees VALUES(6, 'Mark', 'Gramolini', 'lowsetamatha@yahoo.co.uk', '076 2244937530', STR_TO_DATE('05-May-2001', '%d-%M-%Y'), 2569.3379470850327, 499, 120);
+INSERT INTO employees VALUES(7, 'Kimberley', 'Heckart', 'saidjoey@msn.com', '008 4299154405', STR_TO_DATE('29-Jun-2011', '%d-%M-%Y'), 7389.820579285557, 293, 30);
+INSERT INTO employees VALUES(8, 'Marguerita', 'Hao', 'hecticmosque@verizon.net', '217 1857306714', STR_TO_DATE('21-May-1995', '%d-%M-%Y'), 2103.5185502411355, 460, 100);
+```
