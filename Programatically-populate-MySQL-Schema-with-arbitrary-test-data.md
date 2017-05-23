@@ -303,15 +303,15 @@ departments.forEach(d -> d.setManagerId(managersIdSeq.val()));
 ## Printing the INSERTS for the Schema
 
 ```java
-        // Print everything
-        System.out.println("SET FOREIGN_KEY_CHECKS = 0;");
-        printSql("INSERT INTO regions VALUE (#{region.id}, '#{region.name}');", "region", regions);
-        printSql("INSERT INTO countries VALUES('#{country.id}', '#{country.name}', #{country.regionId});", "country", countries);
-        printSql("INSERT INTO locations VALUES(#{l.id}, '#{l.street}', '#{l.postalCode}', '#{l.city}', #{l.state}, '#{l.countryId}');", "l", locations);
-        printSql("INSERT INTO departments VALUES(#{dep.id}, '#{dep.depName}', #{dep.managerId}, #{dep.locationId});","dep", departments);
-        printSql("INSERT INTO employees VALUES(#{e.id}, '#{e.firstName}', '#{e.lastName}', '#{e.email}', '#{e.phoneNumber}', #{e.hireDateStr}, #{e.salary}, #{e.managerId}, #{e.depId});", "e", employees);
-        System.out.println("SET FOREIGN_KEY_CHECKS = 1;");
-        System.out.println("COMMIT;");
+// Print everything
+System.out.println("SET FOREIGN_KEY_CHECKS = 0;");
+printSql("INSERT INTO regions VALUE (#{region.id}, '#{region.name}');", "region", regions);
+printSql("INSERT INTO countries VALUES('#{country.id}', '#{country.name}', #{country.regionId});", "country", countries);
+printSql("INSERT INTO locations VALUES(#{l.id}, '#{l.street}', '#{l.postalCode}', '#{l.city}', #{l.state}, '#{l.countryId}');", "l", locations);
+printSql("INSERT INTO departments VALUES(#{dep.id}, '#{dep.depName}', #{dep.managerId}, #{dep.locationId});","dep", departments);
+printSql("INSERT INTO employees VALUES(#{e.id}, '#{e.firstName}', '#{e.lastName}', '#{e.email}', '#{e.phoneNumber}', #{e.hireDateStr}, #{e.salary}, #{e.managerId}, #{e.depId});", "e", employees);
+System.out.println("SET FOREIGN_KEY_CHECKS = 1;");
+System.out.println("COMMIT;");
 ```
 
 The `printSql()` makes use of the [AlephFormatter](https://github.com/nomemory/aleph-formatter) library. `AlephFormatter` is by default a dependency of MockNeat and the code should work by default. 
