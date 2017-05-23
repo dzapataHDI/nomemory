@@ -123,6 +123,8 @@ The `countries` table is mapped by the [`Country.class`](https://github.com/nome
 
 All 241 the countries and their ISO2 codes are defined into two dictionaries: `DictType.COUNTRY_ISO_CODE_2` and `DictType.COUNTRY_NAME`.
 
+In the same manner as for `regions` we will use [`reflect()`](MockNeat#reflect) in order to mock some `Country` objects.
+
 We can use the [`seq()`](MockNeat#seq) to iterate over the two dictionaries and obtain a list of the 241 countries:
 
 ```java
@@ -131,9 +133,78 @@ final int totalCountries = 241;
 List<Country> countries = m.reflect(Country.class)
                             .field("id", m.seq(DictType.COUNTRY_ISO_CODE_2))
                             .field("name", m.seq(DictType.COUNTRY_NAME).mapToString().replaceAll("'", "''"))
-                            .field("regionId", m.from(regions).map(r -> r.getId()))
+                            .field("regionId", m.from(regions).map(Region::getId))
                             .list(totalCountries)
                             .val();
 ```
 
+Explanation:
+* `mapToString().replaceAll("'", "''")`: Is used to escape the apostrophe;
+* `m.from(regions).map(Region::getId)`: Is used to obtain a random id for a region (we need to do that in order to accomplish the constraint imposed by the foreign key).
+
+## Generation Locations
+
+The `locations` table is mapped by the [Location.class]((https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Location.java)).
+
+The ids for the locations will start from `1000` and the incrementor will be `100`. 
+
+For generating the street name we will use a custom MockUnitString written from scratch.
+
+```java
+// Generate Locations
+int totalLocations = 200;
+List<Location> locations = m.reflect(Location.class)
+                              .field("id", m.longSeq().start(1000).increment(100))
+                              .field("street", streeNameGenerator())
+                              .field("city", m.cities().capitals())
+                              .field("postalCode", m.regex("[A-Z]{1,3}[0-9]{1,2}[A-Z]{1,2}[0-9]{3,5}"))
+                              .field("countryId", m.from(countries).map(Country::getId))
+                              .map(HrSchema::cityWithCountryId)
+                              .list(totalLocations)
+                              .val();
+```
+
+Explanation:
+* `m.regex("[A-Z]{1,3}[0-9]{1,2}[A-Z]{1,2}[0-9]{3,5}")`: this makes use of the [`regex()`](MockUnit#regex) method that allows the developer to build arbitrary text from a given 'regex'. 
+* `m.from(countries).map(Country::getId)`: is used to model the foreign key relationship. We pick randomly a country from the `List<String> countries` that we've previously defined and then we "extract" the id using the `map()` method.
+
+As you can see the streetNameGenerator is a custom made `MockUnitString`.
+
+The method that defines this:
+
+```java
+private static final MockUnitString streeNameGenerator() {
+
+        // A reference to the mock object associated with the current thread;
+        MockNeat m = MockNeat.threadLocal();
+
+        // Returns a random string from the 'STREET_SUFFIX' list;
+        // Eg: "Str"
+        MockUnitString streetNameSuffix = m.fromStrings(STREET_SUFFIX);
+
+        // Returns a potential street name
+        // - Streets names have 55% chances of containing two words;
+        // - Street names have 45% chances of containing one word;
+        // The single word is always a noun (1 syllable, 2 syllables or 3 syllables)
+        // The first word if exists is an adjective (1 syllable or 2 syllables)
+        MockUnitString streetNameGenerator = m.fmt("#{word1}#{word2}")
+                .param("word1", m.probabilites(String.class)
+                                        .add(0.55, m.dicts().types(EN_ADJECTIVE_1SYLL, EN_ADJECTIVE_2SYLL))
+                                        .add(0.45, "")
+                                        // If the first word exists (55% chance) then append a space
+                                        .mapToString(s -> s.equals("") ? s : s + " ")
+                                        // Capitalize the two (or one words) generated
+                                        .format(CAPITALIZED))
+                .param("word2", m.dicts().types(EN_NOUN_1SYLL, EN_NOUN_2SYLL, EN_NOUN_3SYLL).format(CAPITALIZED));
+
+        // Formatting street name
+        // - First section is a number in the range [1, 100000)
+        // - Second section is the name as generated above
+        // - Last section is the suffix as obtained above
+        return m.fmt("#{no} #{name} #{suffix}")
+                .param("no", m.ints().range(1, 10000))
+                .param("name", streetNameGenerator)
+                .param( "suffix", streetNameSuffix);
+}
+``` 
 
