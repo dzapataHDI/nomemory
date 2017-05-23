@@ -144,11 +144,11 @@ Explanation:
 
 ## Generation Locations
 
-The `locations` table is mapped by the [Location.class]((https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Location.java)).
+The `locations` table is mapped by the [Location.class](https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Location.java).
 
-The ids for the locations will start from `1000` and the incrementor will be `100`. 
+The ids for the locations will start from `1000` and the increment will be `100`. 
 
-For generating the street name we will use a custom MockUnitString written from scratch.
+For generating the street name we will use a custom `MockUnitString` written from scratch.
 
 ```java
 // Generate Locations
@@ -173,6 +173,9 @@ As you can see the streetNameGenerator is a custom made `MockUnitString`.
 The method that defines this:
 
 ```java
+private static final List<String> STREET_SUFFIX =
+            asList("Rd", "Str", "Blvd");
+
 private static final MockUnitString streeNameGenerator() {
 
         // A reference to the mock object associated with the current thread;
@@ -182,7 +185,7 @@ private static final MockUnitString streeNameGenerator() {
         // Eg: "Str"
         MockUnitString streetNameSuffix = m.fromStrings(STREET_SUFFIX);
 
-        // Returns a potential street name
+        // Returns a potential street name:
         // - Streets names have 55% chances of containing two words;
         // - Street names have 45% chances of containing one word;
         // The single word is always a noun (1 syllable, 2 syllables or 3 syllables)
@@ -207,4 +210,93 @@ private static final MockUnitString streeNameGenerator() {
                 .param( "suffix", streetNameSuffix);
 }
 ``` 
+
+## Generating departments
+
+The `departments` table is mapped by [`Departments.class`](https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Departments.java)
+
+The Java code to generate the list of departments is:
+```java
+// Departments
+int totalDepartments = 16;
+List<Departments> departments = m.reflect(Departments.class)
+                                    .field("id", m.longSeq().start(10).increment(10))
+                                    .field( "depName", m.seq(DEPARTMENTS))
+                                    .field( "locationId", m.from(locations).map(Location::getId))
+                                    .list(16)
+                                    .val();
+```
+
+The field `managerId` from the `Departments.class` will be populated later, once we have generated the employees.
+
+## Generating Employees
+
+The `employees` table is mapped by the [`Employee.class`](https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Employee.java).
+
+The java code to generate a `List<Employee> employees`:
+
+```java
+// Employees
+int totalEmployees = 1500;
+LocalDate minDate = LocalDate.of(1990, 1, 1);
+List<Employee> employees = m.reflect(Employee.class)
+                                    .field("id", m.longSeq().start(1))
+                                    .field("firstName", m.names().first())
+                                    .field("lastName", m.names().last())
+                                    .field("email", m.emails())
+                                    .field("phoneNumber", m.regex("([0-9]{3}) [0-9]{10}"))
+                                    .field("hireDate", m.localDates().past(minDate).toUtilDate())
+                                    .field("salary", m.doubles().range(2000.0, 10000.0))
+                                    .field("depId", m.from(departments).map(Departments::getId))
+                                    .map(HrSchema::populateHireDateStr)
+                                    .list(totalEmployees)
+                                    .val();
+```
+
+And the `populateHireDateStr()` code is:
+
+```java
+/**
+* Generates a STR_TO_DATE string that is going to be used for the MySQL INSERT
+* @param employee
+* @return
+*/
+public static Employee populateHireDateStr(Employee employee) {
+        Date date = employee.getHireDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+        String dateStr = sdf.format(date);
+        employee.setHireDateStr("STR_TO_DATE('" + dateStr + "', '%d-%M-%Y')");
+        return employee;
+}
+```
+
+Before generating the employees we need to pick some random managers from their ranks and populate the `managerId` fields for both the employees and departments:
+
+```java
+// Decide who is manager
+int totalNumManagers = 100;
+List<Long> managersIds = m.from(employees)
+                                  .map(Employee::getId)
+                                  .list(totalNumManagers).val()
+                                  .stream().distinct().collect(Collectors.toList());
+
+// Set Up managers for employees
+employees.forEach(
+            e ->  {
+                long empId = e.getId();
+                long mngId = e.getId();
+
+                // Avoid assigning the same number as
+                // id and managerId
+                while(mngId == empId)
+                    mngId = m.from(managersIds).val();
+
+                e.setManagerId(mngId);
+            }
+);
+
+// Set Up Managers for departments
+MockUnit<Long> managersIdSeq = m.seq(managersIds);
+departments.forEach(d -> d.setManagerId(managersIdSeq.val()));
+```
 
