@@ -1,6 +1,4 @@
-One of the main reason MockNeat was created was to allow developers generate arbitrary test data for their real-world applications.
-
-The following tutorial will quickly demonstrate how we can populate a MySQL Schema for an "imaginary" HR Application (for an "imaginary" company).
+The following tutorial will quickly demonstrate how we can populate a MySQL Schema for an "imaginary" HR Application.
 
 # The Schema
 
@@ -86,11 +84,11 @@ The full DDL script to create the MySQL Schema can be found [here](https://githu
 
 # Generating the Data
 
-Before continue reading it's good that you have a general knowledge of the [MockNeat](MockNeat) methods and how a [MockUnit](MockUnits) works.
+Before continue reading it's good that you have a general knowledge of the [MockNeat](MockNeat) methods and how the[MockUnit](MockUnits) interfaces work.
 
 ## Generating Regions
 
-The `regions` table is mapped to the [`Region.class`](https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Region.java).
+The `regions` table is mapped by the [`Region.class`](https://github.com/nomemory/mockneat/blob/master/examples/net/andreinc/mockneat/github/hr/model/Region.java).
 
 We are going to define 4 regions:
 
@@ -113,9 +111,9 @@ List<Region> regions = m.reflect(Region.class)
 
 Explanation:
 * `field()`: It is used to define how we populate the fields of the `Region` class;
-* [`lonqSeq()`](MockNeat#longseq): It is used to return numbers in a sequence. Without additional configuration it will start by `0` and increment with `1`. 
-* [`seq()`](MockNeat#seq): It is used to iterate over REGIONS static variable. 
-* [`list()`](MockUnit#list): It is used to group all the results in a list of a given size.
+* [`lonqSeq()`](MockNeat#longseq): It is used to return numbers in a sequence. Without additional configuration it will start by `0` and increment on each subsequent call with `1`. 
+* [`seq()`](MockNeat#seq): It is used to iterate over the `REGIONS` static variable. 
+* [`list()`](MockUnit#list): It is used to call the same `MockUnit` a few times and group the results in a `List`.
 
 ## Generate Countries
 
