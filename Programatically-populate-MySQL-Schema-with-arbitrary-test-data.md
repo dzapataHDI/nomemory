@@ -125,9 +125,7 @@ All 241 the countries and their ISO2 codes are defined into two dictionaries: `D
 
 We can use the [`seq()`](MockNeat#seq) to iterate over the two dictionaries and obtain a list of the 241 countries:
 
-```
-java
-
+```java
 // Generate Countries
 final int totalCountries = 241;
 List<Country> countries = m.reflect(Country.class)
