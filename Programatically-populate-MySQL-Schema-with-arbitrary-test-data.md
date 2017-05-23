@@ -350,7 +350,7 @@ INSERT INTO countries VALUES('AZ', 'Azerbaijan', 1);
 INSERT INTO countries VALUES('BS', 'Bahamas', 3);
 INSERT INTO countries VALUES('BH', 'Bahrain', 3);
 /* .... */
-NSERT INTO locations VALUES(1000, '2175 Wows Str', 'YI9K4927', 'Bangkok HM', null, 'HM');
+INSERT INTO locations VALUES(1000, '2175 Wows Str', 'YI9K4927', 'Bangkok HM', null, 'HM');
 INSERT INTO locations VALUES(1100, '2662 Rowan Rd', 'YU41L132', 'Copenhagen IN', null, 'IN');
 INSERT INTO locations VALUES(1200, '2362 Pashas Rd', 'J79M112', 'Bern CN', null, 'CN');
 INSERT INTO locations VALUES(1300, '9392 Silenced Healds Rd', 'QFT35P855', 'Copenhagen BE', null, 'BE');
