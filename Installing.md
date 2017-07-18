@@ -47,9 +47,9 @@ pom.xml dependency:
 ```xml
 <repositories>
     <repository>
-            <id>jcenter</id>
-            <url>https://jcenter.bintray.com/</url>
-        </repository>
+        <id>jcenter</id>
+        <url>https://jcenter.bintray.com/</url>
+    </repository>
 </repositories>
 
 <dependencies>
