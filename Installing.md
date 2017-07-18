@@ -34,7 +34,7 @@ Add the following line a dependency:
 ```
 dependencies {
       // something else
-     compile 'net.andreinc.mockneat:mockneat:0.1.0'
+     compile 'net.andreinc.mockneat:mockneat:0.1.1'
 }
 ```
 
@@ -45,18 +45,18 @@ To check the latest version please check the library's [jcenter page](https://bi
 pom.xml dependency:
 
 ```xml
-    <repositories>
-        <repository>
+<repositories>
+    <repository>
             <id>jcenter</id>
             <url>https://jcenter.bintray.com/</url>
         </repository>
-    </repositories>
+</repositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>net.andreinc.mockneat</groupId>
-            <artifactId>mockneat</artifactId>
-            <version>0.1.1</version>
-        </dependency>
-    </dependencies>
+<dependencies>
+    <dependency>
+        <groupId>net.andreinc.mockneat</groupId>
+        <artifactId>mockneat</artifactId>
+        <version>0.1.1</version>
+    </dependency>
+</dependencies>
 ```
