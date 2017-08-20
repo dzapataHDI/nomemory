@@ -5,7 +5,7 @@
 * [With Gradle](Installing#with-gradle)
 * [With Maven](Installing#with-maven)
 
-**[Contributing](Contributing)
+**[Contributing](Contributing)**
 
 <hr/> 
 
