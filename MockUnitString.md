@@ -14,11 +14,14 @@ Methods that are particular to `MockUnitString`:
 | Method | Description |
 |:-------|:------------|
 | [`append()`](#append) | Appends to an existing `MockUnitString` a constant String value and then it returns a new `MockUnitString` that takes in consideration the previous operation. |
+| [`array()`](#array) | The method is used to translate an existing `MockUnitString` to a new `MockUnit<String[]>`. |
+| [`base64()`](#base64) | Transform the generated value by encoding it into *base64* and afterwards returns a new `MockUnitString`. |
 
 ### `append()` 
 
 Example:
 
+Example:
 ```java
 // APPEND
 String[] cityAppend = mock.cities()
@@ -26,6 +29,41 @@ String[] cityAppend = mock.cities()
                             .append("-001") // To each generated String we append "-001"
                             .array(10)
                             .val();
+
 // Possible Output: [Bishkek-001, Ulaanbaatar-001, Kigali-001, Bratislava-001, Sarajevo-001, Kabul-001, Lusaka-001, Port Vila-001, Tegucigalpa-001, Astana-001]
 ```
+### `array()`
 
+Example:
+```java
+// ARRAY
+String[] someDays = mock.days()
+                        .display()
+                        .array(10)
+                        .val();
+
+// Possible Output: [Saturday, Monday, Monday, Sunday, Sunday, Tuesday, Thursday, Friday, Monday, Wednesday]
+```
+
+### `base64()`
+
+Example:
+```java
+// Generate a list of names
+List<String> names = mock
+                     .names()
+                     .first()
+                     .format(CAPITALIZED)
+                     .list(5)
+                     .val();
+// Possible Output: [Carroll, Zane, Alfred, Brent, Loren]
+
+// Using seq() we iterate through the previous list and we encode the strings
+List<String> base64names = mock
+                            .seq(names)
+                            .mapToString()
+                            .base64()
+                            .list(5)
+                            .val();
+// Possible Output: [Q2Fycm9sbA==, WmFuZQ==, QWxmcmVk, QnJlbnQ=, TG9yZW4=]
+```
