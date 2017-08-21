@@ -12,4 +12,15 @@ The easiest way to obtain a `MockUnitLocalDate` is to call the [`localDates()`](
 
 Methods that are particular to `MockUnitInt`:
 
-**NONE HAS BEEN IMPLEMENTED YET**
+| Method | Description |
+|:-------|:------------|
+| [`toUtilDate()`](#arrayprimitive) | Generates a `MockUnit<java.util.Date>` from a `MockUnitLocalDate`. |
+
+### `toUtilDate()`
+
+Translates the existing `MockUnitLocalDate` into a `MockUnit<java.util.Date>`.
+
+Example:
+```java
+
+```
