@@ -16,6 +16,7 @@ The methods of the interface are:
 | [`mapToString()`](#maptostring) | `MockUnitString` | This method is used to translate a `MockUnit<T>` into a MockUnitString. |
 | [`mapVals()`](#mapvals) | `MockUnit<Map<R, T>>` | This method is used to generate a `MockUnit<Map<R, T>>` from a `MockUnit<T>`.|
 | [`set()`](#set) | `MockUnit<Set<T>>` | This method is used to generate a `MockUnit<Set<T>>` from a `MockUnit<T>`.|
+| [`serialize()`](#serialize) | `void` | This method is used to serialize the object(s) generated to a file on the disk. |
 | [`stream()`](#stream) | `MockUnit<Stream<T>>` | This method is sued to generate a `MockUnit<Stream<T>>`.|
 | `supplier()` | `Supplier<T>` | This is the abstract, non-default method of the interface. Once it's implemented it's being called by the rest of the methods to generate data. |
 | [`val()`](#val) | `T` | This method is used to obtain an individual value `T` from a `MockUnit<T>`.|
@@ -281,6 +282,15 @@ Set<Integer> setInt = m.ints().set(100).val();
 ```
 
 *Note:* 100 in our case doesn't necessarily represents the size of the `Set`. If the random numbers are not unique the `Set` may have less than 100 elements.
+
+### `serialize()`
+
+This method doesn't return anything. It's a closing method.
+
+Example for storing a `Boolean` value in a file:
+```java
+mock.bools().serialize(file1.obj);
+```
 
 ### `stream()`
 
