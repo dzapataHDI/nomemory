@@ -1,6 +1,6 @@
 # MockUnitDays
 
-The `MockUnitInt` interface extends `MockUnit<DayOfWeek>`. 
+The `MockUnitDays` interface extends `MockUnit<DayOfWeek>`. 
 
 ```java
 public interface MockUnitDays extends MockUnit<DayOfWeek> 
