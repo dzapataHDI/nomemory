@@ -16,6 +16,11 @@ Methods that are particular to `MockUnitString`:
 | [`append()`](#append) | Appends to an existing `MockUnitString` a constant String value and then it returns a new `MockUnitString` that takes in consideration the previous operation. |
 | [`array()`](#array) | The method is used to translate an existing `MockUnitString` to a new `MockUnit<String[]>`. |
 | [`base64()`](#base64) | Transform the generated value by encoding it into *base64* and afterwards returns a new `MockUnitString`. |
+| [`escapeCsv()`](#escapeCsv) | Escapes the previously generated String in order to be `.csv` compliant. Returns a new `MockUnitString` |
+| `escapeEcmaScript()` | Escapes the previously generated String if it contains Ecma Script code. Returns a new `MockUnitString` |
+| `escapeHtml()` | Escapes the previously generated String if it contains HTML code. Returns a new `MockUnitString` |
+| `escapeXml()` | Escapes the previously generated String if it contains XML code. Returns a new `MockUnitString` |
+|`format()`| Formats the previously generated String. Supported formats are defined by the StringFormatType
 
 ### `append()` 
 
@@ -67,3 +72,17 @@ List<String> base64names = mock
                             .val();
 // Possible Output: [Q2Fycm9sbA==, WmFuZQ==, QWxmcmVk, QnJlbnQ=, TG9yZW4=]
 ```
+
+### `escapeCsv()`
+
+Example
+```
+String[] notFriendlyCsv = { "\"", /* OTHERS */};
+
+String friendlyCSV = mock.from(notFriendlyCsv)
+                         .mapToString()
+                         .escapeCsv()
+                         .val();
+```
+
+
