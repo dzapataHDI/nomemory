@@ -19,7 +19,7 @@
     * [MockUnitInt](MockUnitInt)
     * [MockUnitLocalDate](MockUnitLocalDate)
     * [MockUnitLong](MockUnitLong)
-    * [MockUnitMonth - TODO](MockUnitMonth)
+    * [MockUnitMonth](MockUnitMonth)
     * [MockUnitString - TODO](MockUnitString)
 * [Creating Custom MockUnit(s)](CustomMockUnits)
 
