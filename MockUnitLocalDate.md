@@ -22,5 +22,11 @@ Translates the existing `MockUnitLocalDate` into a `MockUnit<java.util.Date>`.
 
 Example:
 ```java
-
+Date date = mock.localDates()
+                  .between(
+                     of(2000, 10, 10),
+                     of(2020, 10, 10)
+                  )
+                  .toUtilDate()
+                  .val();
 ```
