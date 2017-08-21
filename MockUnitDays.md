@@ -8,7 +8,7 @@ public interface MockUnitDays extends MockUnit<DayOfWeek>
 
 This means that it "inherits" all the methods from [`MockUnit<DayOfWeek>`](MockUnit)
 
-The easiest way to obtain a `MockUnitDays` is to call the [`days()`](MockNeat#ints) method from `MockNeat<T>`.
+The easiest way to obtain a `MockUnitDays` is to call the [`days()`](MockNeat#days) method from `MockNeat<T>`.
 
 Methods that are particular to `MockUnitDays`:
 
