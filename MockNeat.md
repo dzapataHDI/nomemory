@@ -15,9 +15,9 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`countries()`](#countries) | `Countries` | The `Countries` class implements `MockUnitString`. It is used to generate country names or their corresponding ISO2 code. |
 | [`creditCards()`](#creditcards) | `CreditCards` | The `CreditCards` class implements `MockUnitString`. It is used to generate valid Credit Card Numbers (numbers that pass the [Luhn Check](https://en.wikipedia.org/wiki/Luhn_algorithm)). Using [`creditCards().names()`](#creditcardsnames) it is possible to generate Credit Card names as Strings. |
 | [`currencies()`](#currencies) | `Currencies` | This is a helper class that groups different methods related to currencies: [`currencies().name()`](#currenciesname), [`currencies().symbol()`](#currenciessymbol), [`currencies().code()`](#currenciescode), [`currencies().forexPair()`](#currenciesforexpair) |
-| [`cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers).
-| [`dicts()`](#dicts) | `Dicts` | The `Dicts` class is used as a an utility class that facilitates generating random lines from the internal library dictionaries. The internal dictionaries are collections of data grouped into files. The enum `DictType` maps all those files. |
+| [`cvvs()`](#cvvs) | `CVVS` | The `CVVS` class implements `MockUnitString`. It is used to generate CVV codes for Credit Cards (3 or 4 digit numbers). |
 | [`days()`](#days) | `Days` | This `Days` class implements `MockUnitDays`. It is used to generate days of the week.|
+| [`dicts()`](#dicts) | `Dicts` | The `Dicts` class is used as a an utility class that facilitates generating random lines from the internal library dictionaries. The internal dictionaries are collections of data grouped into files. The enum `DictType` maps all those files. |
 | [`departments()`](#departments) | `Departments` | The `Departments` class implements `MockUnitString`. It is used to generate arbitrary department names from company. |
 | [`domains()`](#domains) | `Domains` | The `Domains` class implements `MockUnitString`. It is used to generate web domains like 'com', 'net', 'org' and so on. |
 | [`doubles()`](#doubles) | `Doubles` | The `Doubles` class implements `MockUnitDouble`. It is used to generate double numbers. |
