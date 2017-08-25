@@ -57,6 +57,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
 | [`uuids()`](#uuids) | `UUIDs` | The `UIDs` class implements `MockUnitString`. It is used to generate unique identifiers. |
 | [`users()`](#users) | `Users` | The `Users` class implements `MockUnitString`. It is used to generate random usernames. |
+| [`words()`](#words) | `Words` | The `Words` class implements `MockUnitString`. It used to generate random English (for the moment) words. Additional methods that can narrow down the type of word generated `words().adjectives()`, `words().adverbs()`, `words().nouns()`, `words().verbs()` |
 
 
 #### `bools()`
@@ -1218,4 +1219,36 @@ Example to generate a `String` that only contains letters (no numbers or special
 ```java
 String onlyLetters = mock.strings().size(5).type(LETTERS).val();
 // Possible Output: "P7S9ojfEyJ47ohy"
+```
+
+### `words()`
+
+This method is used to generate random words.
+
+It comes in 5 flavors:
+
+- `words()` : will return arbitrary words from the English vocabulary;
+- `words().adverbs()` : will return arbitrary adverbs from the English vocabulary;
+- `words().adjectives()` : will return arbitrary adjectives from the English vocabulary;
+- `words().nouns()` : will return arbitrary nouns from the English vocabulary;
+- `words().verbs()` : will return arbitrary verbs from the English vocabulary.
+
+Example:
+
+```java
+String word = mockNeat.words().val();
+```
+
+Example for generating a adjective/noun combination:
+
+```java
+mockNeat.fmt("#{adj} #{noun}")
+                .param("adj", mockNeat.words().adjectives().format(CAPITALIZED))
+                .param("noun", mockNeat.words().nouns().format(LOWER_CASE))
+                .list(10)
+                .consume(list -> System.out.println(list));
+
+// Possible Output: 
+// [Pyelitic foehn, Slung dragonheads, Triste encumbrancer, Malicious culls, Tridactyl liege, Amicable wisteria, Stringed linns, Palladous idleness, Retractable cocksfoots, Unallayed bots]
+
 ```
