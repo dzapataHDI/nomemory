@@ -57,6 +57,7 @@ The most important methods that can be accessed on the `MockNeat` object are:
 | [`urls()`](#urls) | `URLs` | The `URLs` class implements `MockUnitString`. It is used to generate arbitrary URL values. |
 | [`uuids()`](#uuids) | `UUIDs` | The `UIDs` class implements `MockUnitString`. It is used to generate unique identifiers. |
 | [`users()`](#users) | `Users` | The `Users` class implements `MockUnitString`. It is used to generate random usernames. |
+| [`usStates()`](#usstates) | `UsStates` | The `UsStates` class implements `MockUnitString`. It is used to generate Us States names or their ISO2 codes. |
 | [`words()`](#words) | `Words` | The `Words` class implements `MockUnitString`. It used to generate random English (for the moment) words. Additional methods that can narrow down the type of word generated `words().adjectives()`, `words().adverbs()`, `words().nouns()`, `words().verbs()` |
 
 
@@ -1219,6 +1220,15 @@ Example to generate a `String` that only contains letters (no numbers or special
 ```java
 String onlyLetters = mock.strings().size(5).type(LETTERS).val();
 // Possible Output: "P7S9ojfEyJ47ohy"
+```
+
+### `usStates()`
+
+This method is used to generate US States.
+
+```java
+String usState = mockNeat.usStates().val();
+String usStateISO2 = mockNeat.usStates().iso2().val();
 ```
 
 ### `words()`
