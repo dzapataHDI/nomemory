@@ -193,6 +193,14 @@ String visaOrMastercard = m.creditCards()
                            .val();
 ```
 
+Visa, MasterCard and AMEX credit cards have shortcut methods that can be invoked directly without using `type()` or `types()`. 
+
+```java
+String amex = mockNeat.creditCards().amex().val();
+String visa = mockNeat.creditCards().visa().val();
+String masterCard = mockNeat.creditCards().masterCard().val();
+``` 
+
 ### `creditCards().names()` 
 
 This generates the name of a Credit Card.
